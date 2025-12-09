@@ -13,6 +13,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function IdentityFlowchartSection() {
   return (
@@ -95,7 +96,7 @@ export function IdentityFlowchartSection() {
                   
                   <div className="bg-white border border-slate-200 rounded-full w-48 h-48 flex flex-col items-center justify-center shadow-xl relative z-10 p-6 text-center group hover:border-blue-300 transition-colors">
                      <div className="w-16 h-16 bg-gradient-to-tr from-blue-600 to-teal-500 rounded-xl flex items-center justify-center mb-3 shadow-lg shadow-blue-500/30 p-3">
-                        <img src="/cydenti-brandmark.svg" alt="Cydenti" className="w-full h-full brightness-0 invert" />
+                        <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={40} height={40} className="brightness-0 invert" />
                      </div>
                      <h3 className="font-bold text-slate-900 text-sm leading-tight">Unified Identity Graph</h3>
                      <p className="text-[10px] text-slate-500 mt-1">Real-time Model</p>

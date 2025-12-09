@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -37,7 +38,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           {/* Brandmark (Colored) */}
-          <img src="/cydenti-brandmark.svg" alt="Cydenti" className="h-8 w-auto" />
+          <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
           <span className="text-xl font-bold tracking-tight text-gray-900">Cydenti</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
