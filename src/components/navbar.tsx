@@ -38,7 +38,7 @@ export default function Navbar() {
       <div className="flex h-16 w-full max-w-7xl items-center justify-between rounded-full border border-gray-200/50 bg-white/80 px-6 backdrop-blur-md shadow-sm transition-all hover:shadow-md">
         <Link href="/" className="flex items-center gap-2">
           {/* Brandmark (Colored) */}
-          <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
+          <Image src="cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
           <span className="text-xl font-bold tracking-tight text-gray-900">Cydenti</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">

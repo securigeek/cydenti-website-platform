@@ -26,7 +26,7 @@ export function Footer() {
           <div className="md:col-span-4 lg:col-span-5 space-y-6">
             <div className="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
               {/* White Logo */}
-              <Image src="/cydenti-logo-white.svg" alt="Cydenti" width={120} height={32} />
+              <Image src="cydenti-logo-white.svg" alt="Cydenti" width={120} height={32} />
             </div>
             <p className="text-sm leading-relaxed max-w-xs text-slate-500">
               The sovereign intelligence layer for identity security. Built for privacy, automation, and scale.
