@@ -12,7 +12,8 @@ import {
   AlertTriangle,
   CheckCircle2,
   MoreHorizontal,
-  Fingerprint
+  Fingerprint,
+  FileText
 } from 'lucide-react';
 
 const containerVariants: Variants = {
@@ -42,7 +43,10 @@ export function Hero() {
   return (
     <section className="relative w-full overflow-visible bg-white pt-24 pb-12 lg:pt-32 lg:pb-12">
       {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.3 }}
@@ -68,7 +72,7 @@ export function Hero() {
         
         {/* 1. Centered Header Content */}
         <motion.div 
-          className="max-w-5xl text-center mb-24"
+          className="max-w-5xl text-center mb-16"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -84,39 +88,54 @@ export function Hero() {
             variants={itemVariants}
             className="text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1A1A1A] mb-6 leading-[1.1] md:leading-[1.05]"
           >
-            The Sovereign Intelligence Layer for<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cydenti-primary to-cydenti-secondary">Your SaaS and Identity Blind Spots</span>
+            The Sovereign <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Intelligence Layer</span> for<br />
+            Your <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">SaaS</span> and <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Identity</span> Blind Spots
           </motion.h1>
 
           <motion.p 
             variants={itemVariants}
-            className="max-w-3xl mx-auto text-lg text-gray-600 md:text-xl lg:text-2xl mb-6 leading-relaxed font-normal"
+            className="max-w-3xl mx-auto text-lg text-gray-600 md:text-xl lg:text-2xl mb-12 leading-relaxed font-normal"
           >
             Instantly reveal risky permissions, non-human identities, and Shadow AI agents across Microsoft 365, Salesforce, and the rest of your SaaS stack.
           </motion.p>
 
-          <motion.p 
-            variants={itemVariants}
-            className="text-base md:text-lg text-gray-500 font-medium mb-10"
-          >
-            Start with a comprehensive, privacy-preserving audit — deployed in minutes.
-          </motion.p>
-
           <motion.div 
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto"
+            className="relative z-20 flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto"
           >
             <Button 
               asChild
               size="lg" 
-              className="rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] text-white font-semibold px-8 h-14 text-lg shadow-xl hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              className="group relative overflow-hidden rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] text-white font-semibold px-8 h-14 text-lg shadow-xl hover:shadow-2xl hover:shadow-cydenti-primary/20 transition-all duration-300 hover:-translate-y-0.5"
             >
               <Link href="/demo">
-                Get a Demo
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <span className="relative z-10 flex items-center">
+                  Get a Demo
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] z-0" />
+              </Link>
+            </Button>
+
+            <Button 
+              asChild
+              variant="outline"
+              size="lg" 
+              className="rounded-full border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-semibold px-8 h-14 text-lg transition-all duration-300"
+            >
+              <Link href="/docs">
+                <FileText className="mr-2 h-4 w-4" />
+                Read Documentation
               </Link>
             </Button>
           </motion.div>
+
+          <motion.p 
+            variants={itemVariants}
+            className="text-xs md:text-sm text-gray-500 font-mono mt-8 tracking-wide font-medium"
+          >
+            Start with a comprehensive, privacy-preserving audit — deployed in minutes.
+          </motion.p>
         </motion.div>
       </div>
     </section>

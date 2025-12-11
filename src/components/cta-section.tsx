@@ -39,7 +39,7 @@ export function CtaSection() {
               <Button 
                 asChild
                 size="lg" 
-                className="rounded-full bg-white text-cydenti-primary hover:bg-blue-50 hover:text-blue-700 px-10 py-7 text-lg font-bold shadow-xl shadow-blue-900/20 transition-all hover:scale-105"
+                className="rounded-full bg-white/20 backdrop-blur-lg border border-white/50 text-white hover:bg-white/40 px-10 py-7  text-lg font-bold shadow-xl transition-all hover:scale-105 hover:border-white/60"
               >
                 <Link href="/demo">
                   Get a Demo
