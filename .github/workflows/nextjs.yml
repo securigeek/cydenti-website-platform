@@ -5,11 +5,10 @@
 name: Deploy Next.js site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Restrict automatic runs to the gh-pages branch to avoid failing on main
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: ["gh-pages"]
+  # Allow manual runs from the Actions tab
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -27,7 +26,11 @@ concurrency:
 jobs:
   # Build job
   build:
+    # Allow developers to opt out of this workflow by setting SKIP_PAGES to true
+    if: ${{ !env.SKIP_PAGES }}
     runs-on: ubuntu-latest
+    env:
+      PAGES_STATIC: "1"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -73,6 +76,12 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Remove server-only routes for static export
+        run: |
+          rm -rf src/app/api
+          rm -rf src/app/admin
+          rm -rf src/app/studio
+          rm -rf src/app/resources/blogs/[slug]
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact

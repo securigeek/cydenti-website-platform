@@ -13,6 +13,10 @@ interface Blog {
 }
 
 async function getBlogs(): Promise<Blog[]> {
+  const staticMode = process.env.PAGES_STATIC === '1';
+  if (staticMode || !process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+    return [];
+  }
   try {
     const blogs = await sanityClient.fetch(
       `*[_type == "blog" && published == true] | order(publishedAt desc) {
@@ -24,10 +28,8 @@ async function getBlogs(): Promise<Blog[]> {
         publishedAt
       }`
     );
-    console.log('Fetched blogs:', blogs);
     return blogs;
   } catch (error) {
-    console.error('Error fetching blogs:', error);
     return [];
   }
 }
