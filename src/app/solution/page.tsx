@@ -1,9 +1,21 @@
-export default function Page() {
+import { SolutionHero } from "@/components/solution-hero";
+import { SolutionChallenges } from "@/components/solution-challenges";
+import { SolutionCore } from "@/components/solution-core";
+import { SolutionTeams } from "@/components/solution-teams";
+import { SolutionBenefits } from "@/components/solution-benefits";
+import { SolutionCta } from "@/components/solution-cta";
+import { Footer } from "@/components/footer";
+
+export default function SolutionPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      <h1 className="text-3xl font-semibold">Solution</h1>
-      <p className="mt-4 text-zinc-600">How the solution works.</p>
+    <main className="flex min-h-screen flex-col items-center w-full">
+      <SolutionHero />
+      <SolutionChallenges />
+      <SolutionCore />
+      <SolutionBenefits />
+      <SolutionTeams />
+      <SolutionCta />
+      <Footer />
     </main>
   );
 }
-

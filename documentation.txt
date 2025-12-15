@@ -1,0 +1,187 @@
+# Cydenti Documentation
+
+Welcome to the Cydenti documentation. This guide provides an overview of how the Cydenti SaaS Identity Security platform works, how to deploy it, and how to use it effectively to reduce identity-driven risk across your SaaS environment.
+
+For product updates and additional information, visit **Cydenti.com**.
+
+---
+
+## 1. Platform Overview
+
+Cydenti is a SaaS Identity Security platform designed to help organizations discover, understand, and mitigate identity risk across modern SaaS environments.
+
+Unlike traditional security tools that focus on infrastructure or endpoints, Cydenti focuses on **identities, permissions, and integrations**—including non-human identities and OAuth applications—that are increasingly targeted by attackers.
+
+### What Cydenti Does
+
+* Continuously analyzes SaaS identity configurations and access models
+* Identifies excessive privileges and risky integrations
+* Detects identity-based threats and anomalous behavior
+* Maps identity relationships to understand potential blast radius
+* Integrates with existing SOC, SIEM, and ticketing workflows
+
+Cydenti helps security teams move from fragmented SaaS visibility to a unified, risk-driven view of identity exposure.
+
+---
+
+## 2. Identity Security Model
+
+### Human and Non-Human Identities
+
+Cydenti secures both human users and non-human identities, including:
+
+* Service accounts and automation users
+* API keys and tokens
+* OAuth applications
+* Third-party integrations
+
+Non-human identities often have persistent and high-impact access, making them a frequent target for attackers. Cydenti prioritizes visibility and detection for these identities.
+
+### OAuth and Third-Party Access
+
+Cydenti inventories OAuth applications and third-party integrations across supported SaaS platforms. It evaluates:
+
+* Granted scopes and permissions
+* Privilege levels
+* Usage patterns
+* Dormant or unused access
+
+This allows teams to identify integrations that increase attack surface and remediate unnecessary or risky access.
+
+### Blast Radius and Access Paths
+
+Cydenti maps identity relationships across SaaS applications to show how access can propagate if an identity is compromised.
+
+This helps teams:
+
+* Understand potential impact of an attack
+* Prioritize remediation based on risk
+* Reduce over-privileged access
+
+---
+
+## 3. Threat Detection and ITDR
+
+Cydenti provides Identity Threat Detection and Response (ITDR) capabilities tailored to SaaS environments.
+
+### Detection Coverage
+
+Detections are aligned with common identity attack behaviors, often described using MITRE-style patterns, including:
+
+* Suspicious or anomalous sign-in behavior
+* Risky privilege escalation or role changes
+* Unusual access by service accounts or OAuth apps
+* High-risk administrative actions
+
+### Actionable Alerts
+
+All detections are enriched with SaaS-specific context—such as identity type, permissions, and integrations—to reduce false positives and alert fatigue.
+
+Alerts can be forwarded to SIEM platforms or ticketing systems so security teams can respond using existing workflows.
+
+---
+
+## 4. Deployment and Integration
+
+### Agentless Architecture
+
+Cydenti is fully agentless. It connects to SaaS platforms using secure APIs and native integration mechanisms, minimizing operational overhead.
+
+### Supported SaaS Applications
+
+Cydenti supports a growing list of widely used SaaS applications and identity providers. Coverage continues to expand based on customer needs and risk priorities.
+
+### Time to Value
+
+Most organizations can:
+
+* Connect initial SaaS applications within hours
+* Generate an initial risk snapshot on the first day
+* Begin validating detections and workflows immediately
+
+### Integrations
+
+Cydenti integrates with:
+
+* SIEM platforms
+* Ticketing systems
+* SOC workflows
+
+This ensures that findings and alerts fit seamlessly into existing security operations.
+
+---
+
+## 5. Privacy, Security, and Compliance
+
+### Data Handling and Privacy
+
+Cydenti is designed to minimize data exposure. The platform:
+
+* Does not read email, file, or document content
+* Focuses on metadata, configuration, permissions, and activity signals
+
+### European Sovereignty
+
+Cydenti supports European data protection and sovereignty requirements and aligns with GDPR expectations. Regional data handling controls are available to meet regulatory needs.
+
+### Security Principles
+
+Security and privacy are foundational to the platform, including:
+
+* Secure API-based access
+* Strict access controls
+* Controlled data processing environments
+
+---
+
+## 6. AI and Technology
+
+### Role of AI
+
+AI is used to:
+
+* Analyze complex identity relationships at scale
+* Detect anomalies and risky patterns
+* Prioritize risk across large SaaS environments
+
+This helps security teams focus on the most meaningful risks without manual analysis overload.
+
+### AI Security
+
+Cydenti’s AI components are designed with security-first principles. Customer data is processed according to strict controls and is not exposed outside approved environments.
+
+---
+
+## 7. Getting Started
+
+### Who Cydenti Is For
+
+Cydenti is built for:
+
+* Security and SOC teams
+* Identity and IAM teams
+* Cloud and SaaS security teams
+
+It is especially valuable for organizations with complex SaaS usage, third-party integrations, and compliance requirements.
+
+### Typical Evaluation Flow
+
+A common evaluation path includes:
+
+1. Connecting a small number of critical SaaS applications (and optionally an IdP)
+2. Generating an initial risk snapshot covering identity and integration exposure
+3. Validating detections and SIEM workflows
+4. Reviewing reporting for compliance and audit needs
+5. Scaling coverage to additional SaaS applications
+
+This approach keeps evaluations fast, measurable, and focused on real risk reduction.
+
+---
+
+## 8. Next Steps
+
+To learn more or see Cydenti in action:
+
+* Request a free SaaS identity risk audit
+* Review additional resources on **Cydenti.com**
+* Contact the Cydenti team for deployment guidance and best practices

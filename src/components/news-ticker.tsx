@@ -1,28 +1,70 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { sanityClient } from "@/lib/sanity";
+
+interface Announcement {
+  message: string;
+  linkText?: string;
+  linkUrl?: string;
+  isActive: boolean;
+  backgroundColor: string;
+  textColor: string;
+}
 
 export function NewsTicker() {
-  const text = "New Update - Cydenti has recently launched Identity Access Graph. Existing User will get this feature in their included subscription. Get a Demo to know more about our feature in detail";
+  const [announcement, setAnnouncement] = useState<Announcement | null>(null);
+  const fallbackAnnouncement: Announcement = {
+    message:
+      'New Update — The Cydenti now features AI/LLM and seamless automation with in‑built AI agents',
+    linkText: 'Learn more',
+    linkUrl: '/company/updates',
+    isActive: true,
+    backgroundColor: '#000000',
+    textColor: '#FFFFFF',
+  };
+
+  useEffect(() => {
+    sanityClient
+      .fetch(`*[_type == "announcement" && isActive == true][0]`)
+      .then((doc) => setAnnouncement(doc || fallbackAnnouncement))
+      .catch(() => setAnnouncement(fallbackAnnouncement));
+  }, []);
+
+  if (!announcement?.isActive) return null;
+
+  const content = (
+    <>
+      <span className="mx-4 text-sm font-medium tracking-wide">{announcement.message}</span>
+      {announcement.linkText && announcement.linkUrl && (
+        <Link href={announcement.linkUrl} className="mx-2 underline hover:opacity-80">
+          {announcement.linkText}
+        </Link>
+      )}
+      <span className="mx-4 text-sm font-medium tracking-wide">•</span>
+    </>
+  );
 
   return (
-    <div className="w-full bg-[#1A1A1A] text-white py-2 overflow-hidden border-y border-gray-800 relative z-20 group">
+    <div 
+      className="w-full py-2 overflow-hidden border-y relative z-20 group"
+      style={{
+        backgroundColor: announcement.backgroundColor,
+        color: announcement.textColor,
+        borderColor: announcement.textColor + '20'
+      }}
+    >
       <div className="flex whitespace-nowrap">
         <div className="animate-marquee flex items-center group-hover:[animation-play-state:paused]">
-          <span className="mx-4 text-sm font-medium tracking-wide">{text}</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">•</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">{text}</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">•</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">{text}</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">•</span>
+          {content}
+          {content}
+          {content}
         </div>
         <div className="animate-marquee flex items-center group-hover:[animation-play-state:paused]" aria-hidden="true">
-          <span className="mx-4 text-sm font-medium tracking-wide">{text}</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">•</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">{text}</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">•</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">{text}</span>
-          <span className="mx-4 text-sm font-medium tracking-wide">•</span>
+          {content}
+          {content}
+          {content}
         </div>
       </div>
     </div>

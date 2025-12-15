@@ -1,0 +1,441 @@
+CYDENTI — PROJECT BIBLE (MASTER DOCUMENT)
+A foundational guide for AI systems, teams, and future content generation
+1. INTRODUCTION
+
+Cydenti is a modern Identity Security platform built for SaaS- and cloud-driven enterprises.
+It focuses exclusively on identity blind spots, not IAM workflows or governance tasks.
+
+The platform unifies and analyzes:
+
+Human identities
+
+Machine identities
+
+Service accounts
+
+Cloud roles
+
+OAuth apps / 3rd-party integrations
+
+AI agents
+
+LLM-driven workflows
+
+SaaS configurations
+
+Cloud IAM policies
+
+Behavioral signals
+
+Cydenti exists to give organizations clear visibility, intelligent risk prioritization, and automated identity posture management across the entire SaaS & cloud ecosystem.
+
+It is not an IAM tool. Not an SSO tool. Not a compliance platform.
+It is an Identity Security platform — a new category emerging globally.
+
+2. WHAT PROBLEM CYDENTI SOLVES
+
+Modern enterprises have an identity problem:
+
+2.1 Identity is the main attack surface
+
+Users, machines, and now AI agents act across many systems.
+Attackers target identities > 70% of breaches (industry-wide trend).
+
+2.2 SaaS environments are misconfigured
+
+Most enterprises cannot see:
+
+who has access
+
+how much access they have
+
+what SaaS apps are doing
+
+how third-party integrations behave
+
+where settings drift
+
+where data exposure occurs
+
+2.3 AI agents are entering enterprise systems
+
+AI systems can:
+
+read data
+
+write configurations
+
+trigger workflows
+
+access files
+
+connect to APIs
+
+This creates new identity paths and high-risk automations that are invisible today.
+
+2.4 Cloud IAM is extremely complex
+
+Cloud permissions are granular, evolving, and hard to evaluate manually.
+
+2.5 Compliance requires continuous evidence
+
+Frameworks like:
+
+GDPR
+
+ISO
+
+SOC 2
+
+NIS2
+
+DORA
+
+…require proof of identity and configuration controls.
+
+Teams do not have the time or visibility to maintain compliance manually.
+
+3. CYDENTI — CORE VALUE PROPOSITION
+“The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.”
+
+Cydenti delivers:
+
+Complete identity visibility (human, machine, AI)
+
+Misconfiguration & exposure detection
+
+Risk prioritization powered by AI/LLMs
+
+SaaS Security Posture Management (SSPM)
+
+Identity Threat Detection & Response (ITDR)
+
+Cloud identity exposure monitoring
+
+Third-party/OAuth oversight
+
+Automated compliance evidence
+
+It serves as the intelligence layer that sits on top of SaaS + cloud environments, connecting identity signals to risk.
+
+4. HOW CYDENTI WORKS (HIGH LEVEL)
+4.1 Agentless, API-based integrations
+
+No agents, no deploy friction.
+
+Integrates with:
+
+Microsoft 365
+
+Google Workspace
+
+Salesforce
+
+AWS IAM
+
+Azure AD
+
+GCP IAM
+
+GitHub
+
+Slack
+
+ServiceNow
+
+And more…
+
+4.2 Cydenti’s Detection Engine
+
+Combines:
+
+configuration scanning
+
+permission analysis
+
+behavioral anomaly detection
+
+identity drift detection
+
+cloud IAM exposure mapping
+
+AI agent behavior tracking
+
+SaaS posture evaluation
+
+4.3 In-house LLMs
+
+Cydenti uses in-house, privacy-focused LLMs for:
+
+reasoning over identity graphs
+
+summarizing security issues
+
+suggesting remediations
+
+correlating risk between SaaS → cloud → identity → agents
+
+pattern detection in human + machine + AI activity
+
+contextual prioritization
+
+4.4 AI Agent Monitoring
+
+Cydenti uniquely monitors:
+
+agent-initiated actions
+
+unintended automations
+
+over-scoped permissions
+
+cross-app workflows triggered by AI
+
+agent impersonation or credential abuse
+
+4.5 Unified Identity Graph
+
+All identities, permissions, behaviors, roles, policies, apps, and configurations are mapped in one model.
+
+5. PRODUCT PILLARS
+
+Cydenti is built on three pillars:
+
+Pillar 1 — Identity Threat Detection (ITDR)
+
+Detect high-risk identity activity across SaaS and cloud:
+
+suspicious privilege changes
+
+abnormal login behavior
+
+token misuse
+
+impersonation attempts
+
+agent-driven anomalies
+
+privilege escalation paths
+
+Goal: Stop identity threats before they become incidents.
+
+Pillar 2 — SaaS & Cloud Posture Management (SSPM)
+
+Continuously detect:
+
+misconfigurations
+
+risky permissions
+
+shadow SaaS
+
+misaligned roles
+
+agent-induced drift
+
+exposure pathways
+
+Goal: Minimize SaaS and cloud identity attack surface.
+
+Pillar 3 — Identity Exposure Intelligence
+
+Score risks and offer contextual remediation:
+
+unified risk score
+
+blast-radius evaluation
+
+identity-level exposure mapping
+
+role trust analysis
+
+“fix-first” prioritization powered by LLM reasoning
+
+Goal: Give teams clarity and confidence in every security decision.
+
+6. SOLUTIONS WE OFFER
+• Identity Threat Detection (ITDR)
+• SaaS Security Posture Management (SSPM)
+• Cloud IAM Exposure Analysis
+• Shadow AI & AI Agent Monitoring
+• OAuth & Third-Party Integration Oversight
+• Identity Risk Scoring & Prioritization
+• Compliance Evidence Automation
+7. WHY CYDENTI IS DIFFERENT
+Sovereign AI & Data Privacy
+
+All AI models run in-house, not on shared third-party LLM infrastructure.
+No customer identity data leaves the platform boundary.
+
+Identity-First Approach
+
+Not IAM.
+Not SIEM.
+Not a CSPM.
+Not just SaaS.
+Identity-first security, unified.
+
+Understands AI Agents
+
+Most tools are blind to automated workflows and agent-driven activity.
+Cydenti is designed to detect and secure them.
+
+Unifies SaaS + Cloud + Identity into one view
+
+Competitors cover pieces.
+Cydenti covers the whole.
+
+Deploys in minutes
+
+Agentless.
+API-first.
+
+8. TARGET CUSTOMERS
+
+Mid-sized to large enterprises
+
+Cloud-first or SaaS-heavy organizations
+
+Security-led teams
+
+Identity & Access teams
+
+Cloud security teams
+
+Regulated industries
+
+AI-adopting organizations
+
+9. TONE OF VOICE & MESSAGING STYLE
+
+All messaging for Cydenti must be:
+
+✔ Clear, direct, and outcome-driven
+✔ Not salesy
+✔ No buzzwords unless meaningful
+✔ Modern, enterprise, trustworthy
+✔ Slightly technical but approachable
+✔ Confident, not exaggerated
+✔ Identity-first, not IAM-first
+✔ SaaS + cloud + AI agent aware
+✔ Privacy & sovereignty forward
+
+Avoid writing:
+
+× Jargon-heavy sentences
+× Overly long paragraphs
+× IAM/GRC-focused messaging
+× Over-claiming “magic AI”
+
+Tone should feel similar to:
+
+Wiz
+
+CrowdStrike
+
+Exabeam (modern version)
+
+Veza (identity clarity)
+
+AppOmni (SaaS posture)
+
+10. KEY TERMINOLOGY (for AI consistency)
+Identity Security
+
+Protection focused on identities and permissions, not authentication or provisioning.
+
+Non-human identities (NHI)
+
+Machine identities, service accounts, cloud roles, scripts.
+
+AI Agents
+
+Autonomous systems capable of performing actions across SaaS / cloud environments.
+
+Shadow AI
+
+AI workflows or agents introduced without security oversight.
+
+Permission Drift
+
+Accumulation of excessive privileges over time.
+
+SaaS Misconfiguration
+
+Any setting or permission in SaaS apps that creates exposure.
+
+Unified Identity Graph
+
+Cydenti’s complete model of all identities, roles, behaviors, connections, and configurations.
+
+11. STRATEGIC NARRATIVE
+
+Cydenti is building the intelligence layer that enterprises will rely on as SaaS, cloud, and AI agents reshape the attack surface.
+
+Identity is no longer limited to a username and password.
+Today, identity is:
+
+a human
+
+a machine
+
+a cloud role
+
+an automation
+
+an OAuth link
+
+an API key
+
+a workflow
+
+a LLM-powered agent
+
+Security teams must protect all of it — not just the user account.
+
+Cydenti is the sovereign, AI-powered platform built to secure this era of identity complexity.
+
+12. VISION
+
+To become the world's most trusted identity security intelligence layer, delivering:
+
+complete visibility
+
+faster detection
+
+smarter prioritization
+
+automated security outcomes
+
+…across human, machine, and AI-driven environments.
+
+13. HOW AI SHOULD USE THIS BIBLE
+
+Any AI generating:
+
+website copy
+
+product descriptions
+
+UI wording
+
+pitch content
+
+messaging
+
+marketing materials
+
+documentation
+
+persona-based messaging
+
+…must align with:
+
+✔ The identity-first framing
+✔ AI & agent awareness
+✔ Sovereign / privacy-focused positioning
+✔ Cydenti’s core capabilities
+✔ Tone of voice
+✔ Messaging principles
+
+This document is the canonical reference.

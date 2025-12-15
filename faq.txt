@@ -1,0 +1,178 @@
+# Frequently Asked Questions (FAQ)
+
+Everything you need to know about Cydenti's SaaS Identity Security platform, from deployment to compliance.
+
+---
+
+## Platform Overview
+
+**Understanding what Cydenti does and how it differs**
+
+### What exactly does Cydenti do?
+
+Cydenti is a SaaS Identity Security platform that helps organizations understand, monitor, and protect identities, permissions, and integrations across their SaaS environment. It focuses on risks that traditional security tools miss—such as non-human identities, OAuth applications, excessive privileges, and identity-driven attack paths—while providing actionable detections and compliance-ready visibility.
+
+Cydenti continuously analyzes SaaS configurations, identity relationships, and activity signals to identify exposure, misuse, and abuse of access before it turns into an incident.
+
+### Is this a SIEM replacement? We already have Splunk / Microsoft Sentinel / QRadar.
+
+No—Cydenti is designed to **augment your SIEM, not replace it**.
+
+A SIEM is excellent at storage, correlation, and SOC workflows—but it still needs:
+
+* clean SaaS signals,
+* SaaS-specific context (identities, permissions, OAuth grants, integrations),
+* and ready-to-use detection logic for SaaS identity threats.
+
+Cydenti provides that SaaS identity context and curated detections, and can forward alerts and events into your SIEM or ticketing tools so your SOC can investigate and respond using existing workflows.
+
+### How is this different from CNAPP/CSPM tools (Wiz, Prisma, Orca, etc.)?
+
+CNAPP and CSPM tools focus primarily on **cloud infrastructure security**—such as misconfigurations, workloads, containers, and cloud-native identities inside IaaS environments.
+
+Cydenti is purpose-built for **SaaS identity security**. It deeply understands SaaS-specific identity models, OAuth consent frameworks, non-human identities, and third-party integrations that cloud security tools typically do not analyze in detail.
+
+The two approaches are complementary: CNAPP secures infrastructure, while Cydenti secures how identities and integrations operate across SaaS platforms.
+
+### What problem does Cydenti solve that "cloud security" tools miss?
+
+Cloud security tools often lack visibility into:
+
+* SaaS-native permission models
+* OAuth tokens and scopes
+* Third-party app access
+* Service accounts and automation identities
+* Cross-SaaS identity blast radius
+
+Cydenti addresses these gaps by mapping identity relationships and access paths across SaaS applications, enabling security teams to detect real-world identity abuse scenarios that would otherwise go unnoticed.
+
+---
+
+## Identity Security
+
+**Non-human identities, OAuth, and threat detection**
+
+### What are "non-human identities" and why do you focus on them?
+
+Non-human identities include service accounts, API keys, automation users, bots, and OAuth applications. These identities often have broad, persistent access and are rarely monitored as closely as human users.
+
+Attackers increasingly target non-human identities because they are harder to detect, rarely rotate credentials, and can provide long-term access. Cydenti prioritizes visibility and detection around these identities to reduce hidden and high-impact risk.
+
+### How do you handle OAuth apps and third-party integrations?
+
+Cydenti inventories OAuth applications and third-party integrations across supported SaaS platforms, analyzing granted scopes, privilege levels, and usage patterns.
+
+The platform highlights risky OAuth grants, unused or over-privileged apps, and abnormal behavior—helping teams understand which integrations expand their attack surface and which ones pose real risk.
+
+### Can you show "blast radius" or attack paths if an identity is compromised?
+
+Yes. Cydenti maps identity relationships, permissions, and integrations to show how access can propagate if an identity is compromised.
+
+This includes understanding which SaaS apps, data, and administrative actions could be reached through a single user, service account, or OAuth token—allowing teams to prioritize remediation based on potential impact.
+
+### What detections and use cases do you provide in ITDR?
+
+Cydenti includes detection logic aligned with common identity attack behaviors (often described using MITRE-style patterns). Examples include:
+
+* suspicious sign-in patterns and anomalous behavior,
+* risky privilege changes,
+* unusual access by service accounts or OAuth apps,
+* and high-risk administrative actions.
+
+Detections are enriched with SaaS context to reduce false positives and alert fatigue, making them easier for SOC teams to act on.
+
+---
+
+## Deployment & Integration
+
+**Setup, connectors, and tool integrations**
+
+### Which SaaS applications can you support?
+
+Cydenti supports a growing set of widely used SaaS applications and identity providers, focusing on platforms with complex identity and integration models.
+
+Support is continuously expanding based on customer needs and risk coverage priorities.
+
+### How quickly can we deploy and see value?
+
+Most customers can connect initial SaaS applications and generate meaningful insights within hours.
+
+An initial risk snapshot—covering identity exposure, integrations, and posture—can typically be produced on the first day, allowing teams to validate value quickly.
+
+### Do you require agents?
+
+No. Cydenti is agentless.
+
+It connects to SaaS platforms using secure APIs and native integration mechanisms, minimizing operational overhead and deployment complexity.
+
+### Can you integrate with our existing tools (SIEM, ticketing, SOC workflows)?
+
+Yes. Cydenti is designed to integrate into existing security operations.
+
+Alerts and findings can be forwarded to SIEM platforms, ticketing systems, and SOC tooling so teams can respond using established processes and workflows.
+
+---
+
+## Privacy & Compliance
+
+**European sovereignty and data handling**
+
+### Is Cydenti compliant with European sovereignty requirements?
+
+Yes. Cydenti is designed with European data protection and sovereignty requirements in mind.
+
+The platform supports regional data handling controls and aligns with GDPR and related regulatory expectations.
+
+### Do you read the content of emails, files, or documents?
+
+No. Cydenti does **not** read or analyze the content of emails, files, or documents.
+
+The platform focuses on metadata, configuration, permissions, and activity signals required for identity security, minimizing data exposure while maintaining security effectiveness.
+
+---
+
+## AI & Technology
+
+**How AI enhances security operations**
+
+### Where does the "AI" fit in, and why use it?
+
+AI is used to help analyze complex identity relationships, detect anomalies, and prioritize risk across large and dynamic SaaS environments.
+
+This allows Cydenti to surface meaningful insights faster and reduce manual analysis for security teams.
+
+### Is the AI secure? Do you send our data outside?
+
+Cydenti’s AI components are designed with security and privacy as first principles.
+
+Customer data is handled according to strict security controls, and AI processing does not expose sensitive data outside approved environments.
+
+---
+
+## Getting Started
+
+**Evaluation and deployment guidance**
+
+### Who is Cydenti built for?
+
+Cydenti is built for security, IAM, and cloud teams responsible for protecting SaaS environments, identities, and integrations.
+
+It is particularly valuable for organizations with complex SaaS usage, third-party integrations, and compliance requirements.
+
+### What does a typical evaluation look like?
+
+A common evaluation path is:
+
+1. Connect a small number of critical SaaS apps (and optionally an IdP)
+2. Generate an initial risk snapshot (posture + identity and integration exposure)
+3. Validate detections, use cases, and SIEM workflows
+4. Review reporting outputs for compliance and audit needs
+5. Scale coverage to additional SaaS applications
+
+This approach keeps evaluations fast, measurable, and focused on real risk reduction.
+
+---
+
+## Still have questions?
+
+Get a free SaaS identity risk audit and see Cydenti in action. Our team will walk you through the platform and answer any specific questions.

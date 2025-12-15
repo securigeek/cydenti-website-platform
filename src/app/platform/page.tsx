@@ -1,9 +1,17 @@
-export default function Page() {
+import { PlatformHero } from "@/components/platform-hero";
+import { PlatformOverview } from "@/components/platform-overview";
+import { PlatformCapabilities } from "@/components/platform-capabilities";
+import { CtaSection } from "@/components/cta-section";
+import { Footer } from "@/components/footer";
+
+export default function PlatformPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      <h1 className="text-3xl font-semibold">Platform</h1>
-      <p className="mt-4 text-zinc-600">Overview of the platform.</p>
+    <main className="flex min-h-screen flex-col items-center w-full">
+      <PlatformHero />
+      <PlatformOverview />
+      <PlatformCapabilities />
+      <CtaSection />
+      <Footer />
     </main>
   );
 }
-

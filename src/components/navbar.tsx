@@ -38,7 +38,7 @@ export default function Navbar() {
       <div className="flex h-16 w-full max-w-7xl items-center justify-between rounded-full border border-gray-200/50 bg-white/80 px-6 backdrop-blur-md shadow-sm transition-all hover:shadow-md">
         <Link href="/" className="flex items-center gap-2">
           {/* Brandmark (Colored) */}
-          <Image src="cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
+          <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
           <span className="text-xl font-bold tracking-tight text-gray-900">Cydenti</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
@@ -84,11 +84,6 @@ export default function Navbar() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50">
-                  <Link href="/itdr">ITDR</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
           <Button asChild className="rounded-full bg-cydenti-primary hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 px-6">
@@ -117,7 +112,6 @@ export default function Navbar() {
                   <Link href="/company/about" onClick={() => setOpen(false)} className="px-2 py-1">About Us</Link>
                   <Link href="/company/updates" onClick={() => setOpen(false)} className="px-2 py-1">New Feature/Update</Link>
                 </div>
-                <Link href="/itdr" onClick={() => setOpen(false)} className="px-2 py-1">ITDR</Link>
                 <Button asChild className="mt-2">
                   <Link href="/demo" onClick={() => setOpen(false)}>Get a Demo</Link>
                 </Button>

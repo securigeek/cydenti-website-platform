@@ -123,7 +123,7 @@ export function Hero() {
               size="lg" 
               className="rounded-full border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-semibold px-8 h-14 text-lg transition-all duration-300"
             >
-              <Link href="/docs">
+              <Link href="/resources/documentation">
                 <FileText className="mr-2 h-4 w-4" />
                 Read Documentation
               </Link>

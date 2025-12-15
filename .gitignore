@@ -28,10 +28,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
@@ -40,9 +43,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# YoYo AI version control directory
-.yoyo/
+# sanity
+/sanity-studio
+.sanity
 
-# System Files
+# IDE
 .vscode
-*.icloud
+.idea
+*.swp
+*.swo
+*~
