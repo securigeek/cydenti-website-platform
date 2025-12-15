@@ -78,10 +78,10 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Remove server-only routes for static export
         run: |
-          rm -rf src/app/api
-          rm -rf src/app/admin
-          rm -rf src/app/studio
-          rm -rf src/app/resources/blogs/[slug]
+          rm -rf src/app/api || true
+          rm -rf src/app/admin || true
+          rm -rf src/app/studio || true
+          rm -rf "src/app/resources/blogs/[slug]" || true
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
