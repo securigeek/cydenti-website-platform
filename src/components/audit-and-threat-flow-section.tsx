@@ -11,13 +11,10 @@ import {
   BrainCircuit,
   Share2,
   BellRing,
-  ArrowRight,
-  ArrowDown,
   RefreshCw,
   Globe,
   Activity
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export function AuditAndThreatFlowSection() {
   return (
@@ -38,7 +35,7 @@ export function AuditAndThreatFlowSection() {
                   Discovery Phase
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-1">
-                  "One-Click" Audit
+                  &quot;One-Click&quot; Audit
                 </h2>
                 <p className="text-sm text-slate-500 font-medium">Discovery & Posture Management</p>
               </div>

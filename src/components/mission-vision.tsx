@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Target, Lightbulb, Asterisk, Eye, Flag } from "lucide-react";
+import { Flag, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function MissionVision() {

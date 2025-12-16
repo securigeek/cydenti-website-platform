@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { Eye, Zap, ShieldCheck, FileCheck, Check, AlertTriangle } from 'lucide-react';
+import { Zap, ShieldCheck, Check, AlertTriangle } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 const benefits = [

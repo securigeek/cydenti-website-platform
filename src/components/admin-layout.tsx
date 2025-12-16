@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from './ui/button';
@@ -8,23 +8,18 @@ import { Button } from './ui/button';
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [loading, setLoading] = useState(true);
+  const authenticated = typeof window !== 'undefined' && !!localStorage.getItem('adminToken');
 
   useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/admin');
-    } else {
-      setLoading(false);
-    }
-  }, [router]);
+    if (!authenticated) router.push('/admin');
+  }, [authenticated, router]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
     router.push('/admin');
   };
 
-  if (loading) {
+  if (!authenticated) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 

@@ -1,3 +1,5 @@
+import type { Rule } from 'sanity'
+
 export default {
   name: 'blog',
   title: 'Blog Post',
@@ -7,7 +9,7 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -17,7 +19,7 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'excerpt',
@@ -120,7 +122,7 @@ export default {
       media: 'featuredImage',
       published: 'published',
     },
-    prepare(selection: any) {
+    prepare(selection: { title?: string; published?: boolean }) {
       const { title, published } = selection;
       return {
         title: title,

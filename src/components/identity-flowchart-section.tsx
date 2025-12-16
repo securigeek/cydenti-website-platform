@@ -3,16 +3,11 @@
 import React from "react";
 import { 
   User, 
-  Bot, 
   Cpu, 
-  Search, 
   ShieldCheck, 
   Zap, 
-  AlertTriangle,
-  Globe,
-  ArrowRight
+  Globe
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export function IdentityFlowchartSection() {

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkle, ShieldCheck, Trophy, Users, Globe2, Building2 } from "lucide-react";
+import { Sparkle, ShieldCheck, Users, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const stats = [
@@ -54,7 +54,7 @@ export function AboutStorySection() {
              <div className="relative mb-12">
                 <span className="text-8xl text-slate-100 font-serif absolute -top-10 -left-6 -z-10">“</span>
                 <h2 className="text-3xl md:text-4xl font-medium text-slate-900 leading-tight relative z-10">
-                   Cydenti leads in France, innovating in <span className="text-blue-600">ITDR</span> and <span className="text-teal-600">SSPM</span>, defining tomorrow's secure cloud solutions for enterprises.
+                   Cydenti leads in France, innovating in <span className="text-blue-600">ITDR</span> and <span className="text-teal-600">SSPM</span>, defining tomorrow&apos;s secure cloud solutions for enterprises.
                 </h2>
                 <p className="mt-6 text-lg text-slate-600 leading-relaxed">
                    Our team of experts works tirelessly to bring your vision of a secure digital future to life. We combine deep technical expertise with a passion for user-centric security.

@@ -8,7 +8,7 @@ interface Blog {
   title: string;
   slug: { current: string };
   excerpt: string;
-  featuredImage?: any;
+  featuredImage?: { asset?: { _ref?: string } | unknown; alt?: string };
   publishedAt: string;
 }
 
@@ -58,17 +58,21 @@ export default async function BlogsPage() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog) => (
+            {blogs.map((blog) => {
+              const hasFeaturedImage = Boolean(
+                blog.featuredImage && (blog.featuredImage as { asset?: unknown }).asset
+              );
+              return (
               <Link
                 key={blog._id}
                 href={`/resources/blogs/${blog.slug.current}`}
                 className="group block rounded-lg border bg-card overflow-hidden hover:shadow-lg transition-shadow"
               >
-                {blog.featuredImage && blog.featuredImage.asset && (
+                {hasFeaturedImage && (
                   <div className="relative aspect-video overflow-hidden bg-muted">
                     <Image
                       src={urlFor(blog.featuredImage).width(600).height(400).url()}
-                      alt={blog.featuredImage.alt || blog.title}
+                      alt={(blog.featuredImage as { alt?: string })?.alt || blog.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -90,7 +94,7 @@ export default async function BlogsPage() {
                   )}
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
         )}
       </main>

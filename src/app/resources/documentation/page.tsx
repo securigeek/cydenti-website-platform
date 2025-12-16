@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, FileText, Shield, Zap, Lock, Cpu, Rocket, ArrowRight } from "lucide-react";
+import { FileText, Shield, Zap, Lock, Cpu, Rocket, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 
