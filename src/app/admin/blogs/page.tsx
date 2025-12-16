@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, startTransition } from 'react';
 import { AdminLayout } from '@/components/admin-layout';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -15,23 +15,23 @@ interface Blog {
 
 export default function AdminBlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     const token = localStorage.getItem('adminToken');
     const res = await fetch('/api/admin/blog', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.ok) {
       const data = await res.json();
-      setBlogs(data);
+      startTransition(() => {
+        setBlogs(data);
+      });
     }
-    setLoading(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, [fetchBlogs]);
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this blog?')) return;
@@ -46,8 +46,6 @@ export default function AdminBlogsPage() {
       fetchBlogs();
     }
   };
-
-  if (loading) return <AdminLayout><div>Loading...</div></AdminLayout>;
 
   return (
     <AdminLayout>

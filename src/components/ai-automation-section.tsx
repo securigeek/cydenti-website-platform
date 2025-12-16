@@ -5,21 +5,12 @@ import {
   BrainCircuit, 
   CheckCircle2,
   Zap,
-  Lock,
-  FileCheck,
   Search,
-  ShieldCheck,
   User,
   Users,
   Key,
-  Database,
-  Globe,
-  MoreHorizontal,
-  Info,
-  X
+  Globe
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 // CSS for the circuit animation
 const circuitStyles = `
@@ -86,15 +77,34 @@ export function AiAutomationSection() {
 
         {/* Binary Rain Effect (Subtle) */}
         <div className="absolute inset-0 opacity-10 flex justify-between px-10 pointer-events-none select-none overflow-hidden">
-             {Array.from({ length: 10 }).map((_, i) => (
-                 <div key={i} className="text-[10px] text-blue-500 font-mono animate-fall" style={{
-                     animationDuration: `${Math.random() * 5 + 5}s`,
-                     animationDelay: `${Math.random() * 5}s`,
-                     writingMode: 'vertical-rl'
-                 }}>
-                     {Array.from({ length: 20 }).map(() => Math.random() > 0.5 ? '1' : '0').join(' ')}
-                 </div>
-             ))}
+             {Array.from({ length: 10 }).map((_, i) => {
+                 const pr = (k: number) => {
+                     const x = Math.sin((i + 1) * 12.9898 + k * 78.233) * 43758.5453;
+                     return x - Math.floor(x);
+                 };
+                 const duration = 5 + 5 * pr(1);
+                 const delay = 5 * pr(2);
+                 const bits = Array.from({ length: 20 })
+                     .map((_, j) => {
+                         const x = Math.sin(((i + 1) * 100 + j) * 12.9898 + 3 * 78.233) * 43758.5453;
+                         const v = x - Math.floor(x);
+                         return v > 0.5 ? '1' : '0';
+                     })
+                     .join(' ');
+                 return (
+                     <div
+                         key={i}
+                         className="text-[10px] text-blue-500 font-mono animate-fall"
+                         style={{
+                             animationDuration: `${duration}s`,
+                             animationDelay: `${delay}s`,
+                             writingMode: 'vertical-rl',
+                         }}
+                     >
+                         {bits}
+                     </div>
+                 );
+             })}
         </div>
       </div>
 
@@ -176,11 +186,11 @@ export function AiAutomationSection() {
                   </div>
                   <div className="flex">
                     <span className="text-slate-600 w-8 text-right mr-4 select-none">5</span>
-                    <span className="pl-4 text-purple-400">if</span> <span className="text-green-300">"Shadow Admin"</span> <span className="text-purple-400">in</span> permissions:
+                    <span className="pl-4 text-purple-400">if</span> <span className="text-green-300">&quot;Shadow Admin&quot;</span> <span className="text-purple-400">in</span> permissions:
                   </div>
                   <div className="flex">
                     <span className="text-slate-600 w-8 text-right mr-4 select-none">6</span>
-                    <span className="pl-8 text-blue-300">flag_anomaly</span><span className="text-slate-400">(</span><span className="text-green-300">"Hidden Path Discovered"</span><span className="text-slate-400">)</span>
+                    <span className="pl-8 text-blue-300">flag_anomaly</span><span className="text-slate-400">(</span><span className="text-green-300">&quot;Hidden Path Discovered&quot;</span><span className="text-slate-400">)</span>
                   </div>
                   <div className="flex relative group/line">
                      {/* Highlight line */}

@@ -1,3 +1,5 @@
+import type { Rule } from 'sanity'
+
 export default {
   name: 'announcement',
   title: 'Announcement Strip',
@@ -7,7 +9,7 @@ export default {
       name: 'message',
       title: 'Message',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'linkText',

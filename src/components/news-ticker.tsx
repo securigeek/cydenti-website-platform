@@ -13,23 +13,24 @@ interface Announcement {
   textColor: string;
 }
 
+const FALLBACK_ANNOUNCEMENT: Announcement = {
+  message:
+    'New Update — The Cydenti now features AI/LLM and seamless automation with in‑built AI agents',
+  linkText: 'Learn more',
+  linkUrl: '/company/updates',
+  isActive: true,
+  backgroundColor: '#000000',
+  textColor: '#FFFFFF',
+};
+
 export function NewsTicker() {
   const [announcement, setAnnouncement] = useState<Announcement | null>(null);
-  const fallbackAnnouncement: Announcement = {
-    message:
-      'New Update — The Cydenti now features AI/LLM and seamless automation with in‑built AI agents',
-    linkText: 'Learn more',
-    linkUrl: '/company/updates',
-    isActive: true,
-    backgroundColor: '#000000',
-    textColor: '#FFFFFF',
-  };
 
   useEffect(() => {
     sanityClient
       .fetch(`*[_type == "announcement" && isActive == true][0]`)
-      .then((doc) => setAnnouncement(doc || fallbackAnnouncement))
-      .catch(() => setAnnouncement(fallbackAnnouncement));
+      .then((doc) => setAnnouncement(doc || FALLBACK_ANNOUNCEMENT))
+      .catch(() => setAnnouncement(FALLBACK_ANNOUNCEMENT));
   }, []);
 
   if (!announcement?.isActive) return null;

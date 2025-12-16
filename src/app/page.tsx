@@ -8,7 +8,6 @@ import { AiAutomationSection } from "@/components/ai-automation-section";
 import { IntegrationsSection } from "@/components/integrations-section";
 import { FaqSection } from "@/components/faq-section";
 import { WhyCydentiSection } from "@/components/why-cydenti-section";
-import { AuditAndThreatFlowSection } from "@/components/audit-and-threat-flow-section";
 import { UseCasesSection } from "@/components/use-cases-section";
 
 import { CtaSection } from "@/components/cta-section";

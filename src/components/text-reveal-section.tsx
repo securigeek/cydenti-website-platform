@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TextRevealProps {
@@ -82,7 +82,7 @@ const Word = ({
     highlight 
 }: { 
     children: string; 
-    progress: any; 
+    progress: MotionValue<number>; 
     range: [number, number];
     highlight: boolean;
 }) => {

@@ -29,7 +29,7 @@ const GlassCard = ({
   children?: React.ReactNode, 
   className?: string, 
   title?: string, 
-  icon?: any, 
+  icon?: React.ElementType, 
   glowColor?: string,
   pattern?: PatternType
 }) => {

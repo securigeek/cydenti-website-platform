@@ -30,8 +30,9 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(asset);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Upload error:', error);
-    return NextResponse.json({ error: error.message || 'Failed to upload image' }, { status: 500 });
+    const message = error instanceof Error ? error.message : 'Failed to upload image';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

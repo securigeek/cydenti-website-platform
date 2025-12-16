@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -22,8 +22,8 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     title: '',
     slug: { current: '' },
     excerpt: '',
-    content: [] as any[],
-    featuredImage: null as any,
+    content: [] as unknown[],
+    featuredImage: null as unknown,
     seoTitle: '',
     seoDescription: '',
     published: false,
@@ -37,44 +37,27 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
   const [isDirty, setIsDirty] = useState(false);
   const [currentId, setCurrentId] = useState(blogId);
 
-  useEffect(() => {
-    if (blogId) {
-      setCurrentId(blogId);
-      fetchBlog(blogId);
-    }
-  }, [blogId]);
+  type BlogDoc = {
+    _id: string
+    title?: string
+    slug?: { current: string }
+    excerpt?: string
+    content?: unknown[]
+    featuredImage?: unknown
+    seoTitle?: string
+    seoDescription?: string
+    published?: boolean
+    publishedAt?: string
+  }
 
-  // Debounced Auto-save
-  useEffect(() => {
-    if (!isDirty || !currentId) return; // Only auto-save existing posts
-
-    const timeoutId = setTimeout(async () => {
-      await performSave(true);
-    }, 2000);
-
-    return () => clearTimeout(timeoutId);
-  }, [formData, contentText, isDirty, currentId]);
-
-  const handleChange = (updater: (prev: typeof formData) => typeof formData) => {
-    setFormData(updater);
-    setIsDirty(true);
-    setSavingStatus('unsaved');
-  };
-
-  const handleContentChange = (text: string) => {
-    setContentText(text);
-    setIsDirty(true);
-    setSavingStatus('unsaved');
-  };
-
-  const fetchBlog = async (id: string) => {
+  const fetchBlog = useCallback(async (id: string) => {
     const token = localStorage.getItem('adminToken');
     const res = await fetch('/api/admin/blog', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.ok) {
-      const blogs = await res.json();
-      const blog = blogs.find((b: any) => b._id === id);
+      const blogs: BlogDoc[] = await res.json();
+      const blog = blogs.find((b) => b._id === id);
       if (blog) {
         setFormData({
           title: blog.title || '',
@@ -90,61 +73,9 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
         setContentText(blog.content ? JSON.stringify(blog.content, null, 2) : '');
       }
     }
-  };
+  }, []);
 
-  const generateSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
-  };
-
-  const handleTitleChange = (title: string) => {
-    handleChange(prev => ({
-      ...prev,
-      title,
-      slug: { current: generateSlug(title) },
-    }));
-  };
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    setImageFileName(file.name);
-    const token = localStorage.getItem('adminToken');
-    const formDataUpload = new FormData();
-    formDataUpload.append('file', file);
-
-    try {
-      const res = await fetch('/api/admin/upload', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: formDataUpload,
-      });
-
-      if (res.ok) {
-        const asset = await res.json();
-        handleChange(prev => ({
-          ...prev,
-          featuredImage: {
-            _type: 'image',
-            asset: {
-              _type: 'reference',
-              _ref: asset._id,
-            },
-          },
-        }));
-      }
-    } catch (error) {
-      alert('Failed to upload image');
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  const performSave = async (isAutoSave = false) => {
+  const performSave = useCallback(async (isAutoSave = false) => {
     if (isAutoSave) setSavingStatus('saving');
     else setLoading(true);
 
@@ -192,13 +123,99 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
         if (!isAutoSave) alert('Failed to save blog');
         setSavingStatus('unsaved');
       }
-    } catch (error) {
+    } catch {
       if (!isAutoSave) alert('An error occurred');
       setSavingStatus('unsaved');
     } finally {
       if (!isAutoSave) setLoading(false);
     }
+  }, [contentText, formData, currentId, router]);
+
+  useEffect(() => {
+    if (blogId) {
+      setCurrentId(blogId);
+      fetchBlog(blogId);
+    }
+  }, [blogId, fetchBlog]);
+
+  // Debounced Auto-save
+  useEffect(() => {
+    if (!isDirty || !currentId) return; // Only auto-save existing posts
+
+    const timeoutId = setTimeout(async () => {
+      await performSave(true);
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [formData, contentText, isDirty, currentId, performSave]);
+
+  const handleChange = (updater: (prev: typeof formData) => typeof formData) => {
+    setFormData(updater);
+    setIsDirty(true);
+    setSavingStatus('unsaved');
   };
+
+  const handleContentChange = (text: string) => {
+    setContentText(text);
+    setIsDirty(true);
+    setSavingStatus('unsaved');
+  };
+
+  
+
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
+
+  const handleTitleChange = (title: string) => {
+    handleChange(prev => ({
+      ...prev,
+      title,
+      slug: { current: generateSlug(title) },
+    }));
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setImageFileName(file.name);
+    const token = localStorage.getItem('adminToken');
+    const formDataUpload = new FormData();
+    formDataUpload.append('file', file);
+
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formDataUpload,
+      });
+
+      if (res.ok) {
+        const asset = await res.json();
+        handleChange(prev => ({
+          ...prev,
+          featuredImage: {
+            _type: 'image',
+            asset: {
+              _type: 'reference',
+              _ref: asset._id,
+            },
+          },
+        }));
+      }
+    } catch {
+      alert('Failed to upload image');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -290,17 +307,17 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
             type="button"
             variant="outline"
             disabled={uploading}
-            onClick={() => {
-              const el = fileInputRef.current;
-              if (!el) return;
-              const anyEl = el as any;
-              if (typeof anyEl.showPicker === 'function') {
-                anyEl.showPicker.call(anyEl);
-              } else {
-                el.click();
-              }
-            }}
-          >
+          onClick={() => {
+            const el = fileInputRef.current;
+            if (!el) return;
+            const pickerInput = el as HTMLInputElement & { showPicker?: () => void };
+            if (typeof pickerInput.showPicker === 'function') {
+              pickerInput.showPicker.call(pickerInput);
+            } else {
+              el.click();
+            }
+          }}
+        >
             {uploading ? 'Uploading...' : 'Choose File'}
           </Button>
           <span className="text-sm text-muted-foreground">

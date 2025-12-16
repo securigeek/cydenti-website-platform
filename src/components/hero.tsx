@@ -6,13 +6,6 @@ import { Button } from "@/components/ui/button";
 import { motion, type Variants } from "framer-motion";
 import { 
   ArrowRight, 
-  ShieldCheck, 
-  Bot, 
-  Server, 
-  AlertTriangle,
-  CheckCircle2,
-  MoreHorizontal,
-  Fingerprint,
   FileText
 } from 'lucide-react';
 

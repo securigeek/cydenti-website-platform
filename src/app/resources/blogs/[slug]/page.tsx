@@ -1,5 +1,6 @@
 import { sanityClient, sanityWriteClient, urlFor } from '@/lib/sanity';
-import { PortableText } from '@portabletext/react';
+import { PortableText, type PortableTextReactComponents } from '@portabletext/react';
+import type { PortableTextBlock } from '@portabletext/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Footer } from '@/components/footer';
@@ -9,8 +10,8 @@ interface Blog {
   title: string;
   slug: { current: string };
   excerpt: string;
-  content: any;
-  featuredImage?: any;
+  content: PortableTextBlock[];
+  featuredImage?: { asset?: unknown; alt?: string };
   seoTitle?: string;
   seoDescription?: string;
   publishedAt: string;
@@ -61,7 +62,7 @@ async function getBlog(slug: string): Promise<Blog | null> {
           published
         }`
       );
-      result = (all || []).find((b: any) => b?.slug?.current?.toLowerCase() === slug) || null;
+      result = (all || []).find((b: { slug?: { current?: string } }) => b?.slug?.current?.toLowerCase() === slug) || null;
     }
 
     console.log('Fetched blog for slug:', slug, result);
@@ -106,13 +107,13 @@ export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 
 
-const portableTextComponents = {
+const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
-    image: ({ value }: any) => (
+    image: ({ value }) => (
       <div className="relative w-full aspect-video my-8 rounded-lg overflow-hidden">
         <Image
           src={urlFor(value).width(1200).url()}
-          alt={value.alt || ''}
+          alt={(value as { alt?: string })?.alt || ''}
           fill
           className="object-cover"
         />
@@ -120,23 +121,23 @@ const portableTextComponents = {
     ),
   },
   block: {
-    h1: ({ children }: any) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-3xl font-bold mt-8 mb-4">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>,
-    normal: ({ children }: any) => <p className="mb-4 leading-7">{children}</p>,
-    blockquote: ({ children }: any) => (
+    h1: ({ children }) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-3xl font-bold mt-8 mb-4">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>,
+    normal: ({ children }) => <p className="mb-4 leading-7">{children}</p>,
+    blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-cydenti-primary pl-4 italic my-6">{children}</blockquote>
     ),
   },
   marks: {
-    link: ({ children, value }: any) => (
+    link: ({ children, value }) => (
       <a href={value.href} className="text-cydenti-primary hover:underline" target="_blank" rel="noopener noreferrer">
         {children}
       </a>
     ),
-    strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
-    em: ({ children }: any) => <em className="italic">{children}</em>,
-    code: ({ children }: any) => (
+    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    code: ({ children }) => (
       <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
     ),
   },
@@ -149,6 +150,10 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
   if (!blog) {
     notFound();
   }
+
+  const hasFeaturedImage = Boolean(
+    blog.featuredImage && (blog.featuredImage as { asset?: unknown }).asset
+  );
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -184,11 +189,11 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
           )}
         </header>
 
-        {blog.featuredImage && blog.featuredImage.asset && (
+        {hasFeaturedImage && (
           <div className="relative w-full aspect-video mb-12 rounded-lg overflow-hidden">
             <Image
               src={urlFor(blog.featuredImage).width(1200).url()}
-              alt={blog.featuredImage.alt || blog.title}
+              alt={(blog.featuredImage as { alt?: string })?.alt || blog.title}
               fill
               className="object-cover"
               priority
