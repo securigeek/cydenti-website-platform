@@ -47,21 +47,21 @@ export function PlatformHero() {
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1A1A1A] mb-8 leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-8 leading-[1.1]"
           >
             The <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Cydenti Identity Security</span> Platform
           </motion.h1>
 
           <motion.p 
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto"
           >
             AI-powered visibility into identities, permissions, SaaS configurations, cloud exposures, and third-party integrations — all in one unified platform.
           </motion.p>
 
           <motion.p 
             variants={itemVariants}
-            className="text-lg text-gray-500 max-w-2xl mx-auto"
+            className="text-lg text-slate-500 max-w-2xl mx-auto"
           >
             Built to secure the identity attack surface of modern SaaS and cloud enterprises.
           </motion.p>

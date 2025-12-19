@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, startTransition } from 'react';
 import { AdminLayout } from '@/components/admin-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,11 +18,7 @@ export default function AnnouncementPage() {
     textColor: '#FFFFFF',
   });
 
-  useEffect(() => {
-    fetchAnnouncement();
-  }, []);
-
-  const fetchAnnouncement = async () => {
+  const fetchAnnouncement = useCallback(async () => {
     const token = localStorage.getItem('adminToken');
     const res = await fetch('/api/admin/announcement', {
       headers: { Authorization: `Bearer ${token}` },
@@ -30,10 +26,16 @@ export default function AnnouncementPage() {
     if (res.ok) {
       const data = await res.json();
       if (data) {
-        setFormData(data);
+        startTransition(() => {
+          setFormData(data);
+        });
       }
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchAnnouncement();
+  }, [fetchAnnouncement]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

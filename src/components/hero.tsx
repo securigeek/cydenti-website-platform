@@ -6,13 +6,6 @@ import { Button } from "@/components/ui/button";
 import { motion, type Variants } from "framer-motion";
 import { 
   ArrowRight, 
-  ShieldCheck, 
-  Bot, 
-  Server, 
-  AlertTriangle,
-  CheckCircle2,
-  MoreHorizontal,
-  Fingerprint,
   FileText
 } from 'lucide-react';
 
@@ -86,7 +79,7 @@ export function Hero() {
 
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1A1A1A] mb-6 leading-[1.1] md:leading-[1.05]"
+            className="text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1] md:leading-[1.05]"
           >
             The Sovereign <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Intelligence Layer</span> for<br />
             Your <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">SaaS</span> and <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Identity</span> Blind Spots
@@ -94,7 +87,7 @@ export function Hero() {
 
           <motion.p 
             variants={itemVariants}
-            className="max-w-3xl mx-auto text-lg text-gray-600 md:text-xl lg:text-2xl mb-12 leading-relaxed font-normal"
+            className="max-w-3xl mx-auto text-lg text-slate-600 md:text-xl lg:text-2xl mb-12 leading-relaxed font-normal"
           >
             Instantly reveal risky permissions, non-human identities, and Shadow AI agents across Microsoft 365, Salesforce, and the rest of your SaaS stack.
           </motion.p>
@@ -106,7 +99,7 @@ export function Hero() {
             <Button 
               asChild
               size="lg" 
-              className="group relative overflow-hidden rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] text-white font-semibold px-8 h-14 text-lg shadow-xl hover:shadow-2xl hover:shadow-cydenti-primary/20 transition-all duration-300 hover:-translate-y-0.5"
+              className="group relative overflow-hidden rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 h-14 text-lg shadow-xl hover:shadow-2xl hover:shadow-cydenti-primary/20 transition-all duration-300 hover:-translate-y-0.5"
             >
               <Link href="/demo">
                 <span className="relative z-10 flex items-center">
@@ -121,7 +114,7 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg" 
-              className="rounded-full border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 font-semibold px-8 h-14 text-lg transition-all duration-300"
+              className="rounded-full border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-semibold px-8 h-14 text-lg transition-all duration-300"
             >
               <Link href="/resources/documentation">
                 <FileText className="mr-2 h-4 w-4" />
@@ -132,10 +125,11 @@ export function Hero() {
 
           <motion.p 
             variants={itemVariants}
-            className="text-xs md:text-sm text-gray-500 font-mono mt-8 tracking-wide font-medium"
+            className="text-xs md:text-sm text-slate-500 font-mono mt-8 tracking-wide font-medium"
           >
             Start with a comprehensive, privacy-preserving audit — deployed in minutes.
           </motion.p>
+
         </motion.div>
       </div>
     </section>

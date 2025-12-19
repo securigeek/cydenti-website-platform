@@ -1,4 +1,6 @@
-export default {
+import type { Rule } from 'sanity'
+
+const blog = {
   name: 'blog',
   title: 'Blog Post',
   type: 'document',
@@ -7,7 +9,7 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -17,7 +19,21 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Cloud Technologies', value: 'Cloud Technologies' },
+          { title: 'Threats', value: 'Threats' },
+          { title: 'CASB', value: 'CASB' },
+          { title: 'Azure', value: 'Azure' },
+          { title: 'Trending', value: 'Trending' },
+        ],
+      },
     },
     {
       name: 'excerpt',
@@ -120,7 +136,7 @@ export default {
       media: 'featuredImage',
       published: 'published',
     },
-    prepare(selection: any) {
+    prepare(selection: { title?: string; published?: boolean }) {
       const { title, published } = selection;
       return {
         title: title,
@@ -129,3 +145,5 @@ export default {
     },
   },
 };
+
+export default blog;

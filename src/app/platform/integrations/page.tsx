@@ -1,0 +1,231 @@
+"use client";
+
+import { useState } from "react";
+import { CtaSection } from "@/components/cta-section";
+import { Footer } from "@/components/footer";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Search, Filter, Layers, Shield } from "lucide-react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+// Integration Data
+type Category = "SaaS Applications" | "Cloud Providers" | "Identity Providers" | "Data Platforms" | "Developer & DevOps" | "Security & Monitoring";
+
+interface Integration {
+  name: string;
+  category: Category;
+  logo: string;
+  description: string;
+  featured?: boolean;
+}
+
+const categories: Category[] = [
+  "SaaS Applications",
+  "Cloud Providers",
+  "Identity Providers",
+  "Data Platforms",
+  "Developer & DevOps",
+  "Security & Monitoring"
+];
+
+const integrations: Integration[] = [
+  // Cloud Providers
+  { name: "Google Cloud Platform", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/google_cloud-icon 1.svg", description: "Cloud IAM & Resource Monitoring", featured: true },
+  { name: "Microsoft Azure", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/Microsoft_Entra_ID_color_icon 1.svg", description: "Azure AD & Infrastructure", featured: true },
+  { name: "AWS", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/Logo.svg", description: "IAM & Organization Security" },
+  
+  // Identity Providers
+  { name: "Microsoft Entra ID", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/Microsoft_Entra_ID_color_icon 1.svg", description: "Identity Governance & Administration", featured: true },
+  { name: "Google Workspace", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/Google__G__logo 2.svg", description: "Directory & Access Management", featured: true },
+  { name: "Okta", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/Logo-4.svg", description: "Single Sign-On & Lifecycle" },
+  
+  // SaaS Applications
+  { name: "Salesforce", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-1.svg", description: "CRM Access & Permissions" },
+  { name: "Slack", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-2.svg", description: "Collaboration Security" },
+  { name: "ServiceNow", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-5.svg", description: "ITSM & Workflow Automation" },
+  { name: "Jira", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-3.svg", description: "Project Tracking Access" },
+  { name: "Zoom", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo.svg", description: "Communication Security" },
+  { name: "Zendesk", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-6.svg", description: "Customer Service Access" },
+
+  // Developer & DevOps
+  { name: "GitHub", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/Logo-3.svg", description: "Source Code & Repository Access", featured: true },
+  { name: "GitLab", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/Logo-1.svg", description: "DevSecOps Platform" },
+  { name: "Bitbucket", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/Logo-2.svg", description: "Source Control Security" },
+
+  // Data Platforms
+  { name: "Snowflake", category: "Data Platforms", logo: "/CYDENTI DASHBOARD P 2/Logo-6.svg", description: "Data Warehouse Access" },
+  { name: "Databricks", category: "Data Platforms", logo: "/CYDENTI DASHBOARD P 2/Logo-5.svg", description: "Lakehouse Security" },
+
+  // Security & Monitoring
+  { name: "Splunk", category: "Security & Monitoring", logo: "/CYDENTI DASHBOARD P 2/Logo-4.svg", description: "SIEM & Log Analysis" },
+  { name: "CrowdStrike", category: "Security & Monitoring", logo: "/CYDENTI DASHBOARD P 2/Logo.svg", description: "Endpoint Security Integration" },
+];
+
+export default function Page() {
+  const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredIntegrations = integrations.filter((item) => {
+    const matchesCategory = activeCategory === "All" || item.category === activeCategory;
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  return (
+    <main className="flex min-h-screen flex-col items-center w-full bg-slate-50">
+      
+      {/* Hero Section */}
+      <section className="w-full bg-white pt-24 pb-12 border-b border-slate-100">
+        <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
+              Built to Connect Where <span className="text-blue-600">Identity Lives</span>
+            </h1>
+            <p className="text-xl text-slate-600 leading-relaxed mb-8 max-w-3xl mx-auto">
+              Cydenti integrates seamlessly across SaaS, cloud, identity providers, and security tools — without disrupting production environments.
+            </p>
+            <div className="flex justify-center">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-8 py-6 text-lg font-semibold shadow-lg shadow-blue-500/20">
+                Get a Demo
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Context Section */}
+      <section className="w-full py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-4xl mx-auto bg-slate-50 border border-slate-100 rounded-2xl p-8 md:p-10 shadow-sm">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-blue-600" />
+                  Unified Visibility
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Modern identity risk spans dozens of systems. Cydenti connects to them agentlessly and read-only, building a unified identity graph without requiring invasive deployment, custom scripting, or service interruption.
+                </p>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-emerald-600" />
+                  Safe & Scalable
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Integrations are designed to be fast to deploy, safe by default, and easy to scale across your entire ecosystem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integration Grid Section */}
+      <section className="w-full py-20 bg-slate-50 min-h-[800px]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Supported Integrations</h2>
+            <p className="text-slate-500">Explore our growing library of connectors.</p>
+          </div>
+
+          {/* Controls */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 max-w-7xl mx-auto">
+            
+            {/* Tabs */}
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                onClick={() => setActiveCategory("All")}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                  activeCategory === "All"
+                    ? "bg-slate-900 text-white shadow-md"
+                    : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                )}
+              >
+                All
+              </button>
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    activeCategory === cat
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                  )}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Search */}
+            <div className="relative w-full md:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input 
+                type="text" 
+                placeholder="Search integrations..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white"
+              />
+            </div>
+          </div>
+
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {filteredIntegrations.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="group bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all duration-300 flex flex-col items-center text-center h-full"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-5 p-3 group-hover:scale-110 transition-transform duration-300">
+                  <Image 
+                    src={item.logo} 
+                    alt={item.name} 
+                    width={48} 
+                    height={48} 
+                    className="object-contain w-full h-full"
+                  />
+                </div>
+                
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.name}</h3>
+                
+                <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 mb-3">
+                  {item.category}
+                </div>
+                
+                <p className="text-sm text-slate-500 line-clamp-2">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {filteredIntegrations.length === 0 && (
+            <div className="text-center py-20">
+              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Filter className="w-8 h-8 text-slate-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900">No integrations found</h3>
+              <p className="text-slate-500">Try adjusting your search or filters.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <CtaSection />
+      <Footer />
+    </main>
+  );
+}
+

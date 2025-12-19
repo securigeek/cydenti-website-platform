@@ -3,11 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Globe } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[#020617] text-slate-400 py-24 border-t border-slate-800 relative overflow-hidden w-full">
+    <footer className="bg-slate-950 text-slate-400 py-24 border-t border-slate-800 relative overflow-hidden w-full">
       {/* Background CYDENTI Text */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] pointer-events-none select-none">
         <h1 className="text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap bg-gradient-to-b from-transparent to-white/10 bg-clip-text" 

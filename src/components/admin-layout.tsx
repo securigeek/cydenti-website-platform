@@ -8,23 +8,24 @@ import { Button } from './ui/button';
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-      router.push('/admin');
-    } else {
-      setLoading(false);
-    }
-  }, [router]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAuthenticated(Boolean(localStorage.getItem('adminToken')));
+  }, []);
+
+  useEffect(() => {
+    if (authenticated === false) router.push('/admin');
+  }, [authenticated, router]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
+    setAuthenticated(false);
     router.push('/admin');
   };
 
-  if (loading) {
+  if (authenticated !== true) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 

@@ -1,4 +1,6 @@
-export default {
+import type { Rule } from 'sanity'
+
+const announcement = {
   name: 'announcement',
   title: 'Announcement Strip',
   type: 'document',
@@ -7,7 +9,7 @@ export default {
       name: 'message',
       title: 'Message',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'linkText',
@@ -39,3 +41,5 @@ export default {
     },
   ],
 };
+
+export default announcement;

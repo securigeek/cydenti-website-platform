@@ -21,6 +21,6 @@ export const sanityWriteClient = createClient({
   useCdn: false,
 });
 
-export function urlFor(source: any) {
-  return imageUrlBuilder({ projectId, dataset }).image(source);
+export function urlFor(source: unknown) {
+  return imageUrlBuilder({ projectId, dataset }).image(source as never);
 }

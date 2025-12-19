@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, Rocket, Code2, Globe2, Lightbulb } from "lucide-react";
+import { Rocket, Code2, Globe2, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
 
 const roadmapData = [

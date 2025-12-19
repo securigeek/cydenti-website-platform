@@ -5,8 +5,7 @@ import {
   Sparkles, 
   Rocket, 
   TrendingUp, 
-  Globe,
-  CheckCircle2
+  Globe
 } from "lucide-react";
 
 export function WhyCydentiSection() {

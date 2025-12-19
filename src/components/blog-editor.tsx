@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -8,6 +10,10 @@ import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Switch } from './ui/switch';
 import { Check, Loader2 } from 'lucide-react';
+
+import { RichTextEditor } from './rich-text-editor';
+import { Eye, Edit2 } from 'lucide-react';
+import { urlFor } from '@/lib/sanity';
 
 interface BlogEditorProps {
   blogId?: string;
@@ -22,27 +28,111 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     title: '',
     slug: { current: '' },
     excerpt: '',
-    content: [] as any[],
-    featuredImage: null as any,
+    content: [] as unknown[],
+    featuredImage: null as unknown,
+    category: 'Cloud Technologies',
     seoTitle: '',
     seoDescription: '',
     published: false,
     publishedAt: new Date().toISOString(),
   });
-  const [contentText, setContentText] = useState('');
   const [imageFileName, setImageFileName] = useState('');
 
   // Auto-save states
   const [savingStatus, setSavingStatus] = useState<'saved' | 'saving' | 'unsaved'>('saved');
   const [isDirty, setIsDirty] = useState(false);
   const [currentId, setCurrentId] = useState(blogId);
+  const [previewMode, setPreviewMode] = useState(false);
+
+  type BlogDoc = {
+    _id: string
+    title?: string
+    slug?: { current: string }
+    excerpt?: string
+    content?: unknown[]
+    featuredImage?: unknown
+    category?: string
+    seoTitle?: string
+    seoDescription?: string
+    published?: boolean
+    publishedAt?: string
+  }
+
+  const fetchBlog = useCallback(async (id: string) => {
+    const token = localStorage.getItem('adminToken');
+    const res = await fetch('/api/admin/blog', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.ok) {
+      const blogs: BlogDoc[] = await res.json();
+      const blog = blogs.find((b) => b._id === id);
+      if (blog) {
+        setFormData({
+          title: blog.title || '',
+          slug: blog.slug || { current: '' },
+          excerpt: blog.excerpt || '',
+          content: blog.content || [],
+          featuredImage: blog.featuredImage || null,
+          category: (blog.category as any) || 'Cloud Technologies',
+          seoTitle: blog.seoTitle || '',
+          seoDescription: blog.seoDescription || '',
+          published: blog.published || false,
+          publishedAt: blog.publishedAt || new Date().toISOString(),
+        });
+      }
+    }
+  }, []);
+
+  const performSave = useCallback(async (isAutoSave = false) => {
+    if (isAutoSave) setSavingStatus('saving');
+    else setLoading(true);
+
+    try {
+      const token = localStorage.getItem('adminToken');
+      const payload = { ...formData, content: formData.content };
+
+      const res = await fetch('/api/admin/blog', {
+        method: currentId ? 'PATCH' : 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(currentId ? { _id: currentId, ...payload } : payload),
+      });
+
+      if (res.ok) {
+        if (!isAutoSave) {
+            // If manual save (create or update)
+            if (!currentId) {
+                const newBlog = await res.json();
+                setCurrentId(newBlog._id); // Switch to edit mode
+                // Optionally update URL without reload
+                window.history.replaceState(null, '', `/admin/blogs/edit/${newBlog._id}`);
+                alert('Blog created successfully! Auto-save is now active.');
+            } else {
+                router.push('/admin/blogs');
+            }
+        }
+        setSavingStatus('saved');
+        setIsDirty(false);
+      } else {
+        if (!isAutoSave) alert('Failed to save blog');
+        setSavingStatus('unsaved');
+      }
+    } catch {
+      if (!isAutoSave) alert('An error occurred');
+      setSavingStatus('unsaved');
+    } finally {
+      if (!isAutoSave) setLoading(false);
+    }
+  }, [formData, currentId, router]);
 
   useEffect(() => {
     if (blogId) {
       setCurrentId(blogId);
       fetchBlog(blogId);
     }
-  }, [blogId]);
+  }, [blogId, fetchBlog]);
 
   // Debounced Auto-save
   useEffect(() => {
@@ -53,7 +143,7 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     }, 2000);
 
     return () => clearTimeout(timeoutId);
-  }, [formData, contentText, isDirty, currentId]);
+  }, [formData, isDirty, currentId, performSave]);
 
   const handleChange = (updater: (prev: typeof formData) => typeof formData) => {
     setFormData(updater);
@@ -61,36 +151,7 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     setSavingStatus('unsaved');
   };
 
-  const handleContentChange = (text: string) => {
-    setContentText(text);
-    setIsDirty(true);
-    setSavingStatus('unsaved');
-  };
-
-  const fetchBlog = async (id: string) => {
-    const token = localStorage.getItem('adminToken');
-    const res = await fetch('/api/admin/blog', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (res.ok) {
-      const blogs = await res.json();
-      const blog = blogs.find((b: any) => b._id === id);
-      if (blog) {
-        setFormData({
-          title: blog.title || '',
-          slug: blog.slug || { current: '' },
-          excerpt: blog.excerpt || '',
-          content: blog.content || [],
-          featuredImage: blog.featuredImage || null,
-          seoTitle: blog.seoTitle || '',
-          seoDescription: blog.seoDescription || '',
-          published: blog.published || false,
-          publishedAt: blog.publishedAt || new Date().toISOString(),
-        });
-        setContentText(blog.content ? JSON.stringify(blog.content, null, 2) : '');
-      }
-    }
-  };
+  
 
   const generateSlug = (title: string) => {
     return title
@@ -137,68 +198,14 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
           },
         }));
       }
-    } catch (error) {
+    } catch {
       alert('Failed to upload image');
     } finally {
       setUploading(false);
     }
   };
 
-  const performSave = async (isAutoSave = false) => {
-    if (isAutoSave) setSavingStatus('saving');
-    else setLoading(true);
-
-    try {
-      let content;
-      try {
-        content = JSON.parse(contentText);
-      } catch {
-        content = [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: contentText }],
-          },
-        ];
-      }
-
-      const token = localStorage.getItem('adminToken');
-      const payload = { ...formData, content };
-
-      const res = await fetch('/api/admin/blog', {
-        method: currentId ? 'PATCH' : 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(currentId ? { _id: currentId, ...payload } : payload),
-      });
-
-      if (res.ok) {
-        if (!isAutoSave) {
-            // If manual save (create or update)
-            if (!currentId) {
-                const newBlog = await res.json();
-                setCurrentId(newBlog._id); // Switch to edit mode
-                // Optionally update URL without reload
-                window.history.replaceState(null, '', `/admin/blogs/edit/${newBlog._id}`);
-                alert('Blog created successfully! Auto-save is now active.');
-            } else {
-                router.push('/admin/blogs');
-            }
-        }
-        setSavingStatus('saved');
-        setIsDirty(false);
-      } else {
-        if (!isAutoSave) alert('Failed to save blog');
-        setSavingStatus('unsaved');
-      }
-    } catch (error) {
-      if (!isAutoSave) alert('An error occurred');
-      setSavingStatus('unsaved');
-    } finally {
-      if (!isAutoSave) setLoading(false);
-    }
-  };
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -260,19 +267,79 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
       </div>
 
       <div>
-        <Label htmlFor="content">Content (Portable Text JSON) *</Label>
-        <Textarea
-          id="content"
-          value={contentText}
-          onChange={(e) => handleContentChange(e.target.value)}
-          rows={10}
-          className="mt-1 font-mono text-sm"
-          placeholder='[{"_type":"block","children":[{"_type":"span","text":"Your content here"}]}]'
-        />
-        <p className="text-xs text-muted-foreground mt-1">
-          Enter Portable Text JSON or plain text. 
-          {currentId && " Changes will auto-save."}
-        </p>
+        <div className="flex items-center justify-between mb-2">
+          <Label>Content *</Label>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => setPreviewMode(!previewMode)}
+          >
+            {previewMode ? (
+              <>
+                <Edit2 className="h-4 w-4 mr-2" />
+                Edit
+              </>
+            ) : (
+              <>
+                <Eye className="h-4 w-4 mr-2" />
+                Preview
+              </>
+            )}
+          </Button>
+        </div>
+
+        {previewMode ? (
+          <div className="border rounded-md p-6 bg-white prose max-w-none min-h-[300px]">
+            <h1 className="text-3xl font-bold mb-4">{formData.title}</h1>
+            {Boolean(formData.featuredImage) && (
+               <div className="relative aspect-video w-full mb-6 rounded-lg overflow-hidden bg-gray-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    src={urlFor(formData.featuredImage).url()} 
+                    alt="Cover" 
+                    className="object-cover w-full h-full"
+                  />
+               </div>
+            )}
+            <div className="text-sm text-muted-foreground mb-6">
+              {new Date(formData.publishedAt).toLocaleDateString()} • {formData.category}
+            </div>
+            
+            {/* Simple Preview Render */}
+            {(formData.content as any[])?.map((block: any, i: number) => {
+              if (block._type !== 'block') return null;
+              
+              const style = block.style || 'normal';
+              const text = block.children?.map((c: any) => c.text).join('') || '';
+              
+              if (style === 'h1') return <h1 key={i} className="text-3xl font-bold mt-6 mb-4">{text}</h1>;
+              if (style === 'h2') return <h2 key={i} className="text-2xl font-bold mt-5 mb-3">{text}</h2>;
+              if (style === 'h3') return <h3 key={i} className="text-xl font-bold mt-4 mb-2">{text}</h3>;
+              if (style === 'blockquote') return <blockquote key={i} className="border-l-4 pl-4 italic my-4">{text}</blockquote>;
+              
+              return (
+                <p key={i} className="mb-4">
+                  {block.children?.map((child: any, ci: number) => {
+                     let childText = <span key={ci}>{child.text}</span>;
+                     if (child.marks?.includes('strong')) childText = <strong key={ci}>{childText}</strong>;
+                     if (child.marks?.includes('em')) childText = <em key={ci}>{childText}</em>;
+                     return childText;
+                  })}
+                </p>
+              );
+            })}
+          </div>
+        ) : (
+          <RichTextEditor
+            initialValue={formData.content as any[]}
+            onChange={(val) => {
+                setFormData(prev => ({ ...prev, content: val }));
+                setIsDirty(true);
+                setSavingStatus('unsaved');
+            }}
+          />
+        )}
       </div>
 
       <div>
@@ -290,17 +357,17 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
             type="button"
             variant="outline"
             disabled={uploading}
-            onClick={() => {
-              const el = fileInputRef.current;
-              if (!el) return;
-              const anyEl = el as any;
-              if (typeof anyEl.showPicker === 'function') {
-                anyEl.showPicker.call(anyEl);
-              } else {
-                el.click();
-              }
-            }}
-          >
+          onClick={() => {
+            const el = fileInputRef.current;
+            if (!el) return;
+            const pickerInput = el as HTMLInputElement & { showPicker?: () => void };
+            if (typeof pickerInput.showPicker === 'function') {
+              pickerInput.showPicker.call(pickerInput);
+            } else {
+              el.click();
+            }
+          }}
+        >
             {uploading ? 'Uploading...' : 'Choose File'}
           </Button>
           <span className="text-sm text-muted-foreground">

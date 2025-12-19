@@ -3,13 +3,8 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { 
-  AlertTriangle, 
-  Settings, 
   CloudFog, 
-  Link2, 
   Ghost, 
-  FileWarning,
-  EyeOff,
   Unlock,
   ClipboardList,
   UserX,

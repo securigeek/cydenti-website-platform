@@ -26,12 +26,13 @@ export async function GET(req: NextRequest) {
         published,
         publishedAt,
         featuredImage,
+        category,
         seoTitle,
         seoDescription
       }`
     );
     return NextResponse.json(blogs);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 });
   }
 }
@@ -79,8 +80,9 @@ export async function POST(req: NextRequest) {
     };
     const result = await sanityWriteClient.create(payload);
     return NextResponse.json(result);
-  } catch (error: any) {
-    return NextResponse.json({ error: error?.message || 'Failed to create blog' }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to create blog';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 
@@ -103,7 +105,7 @@ export async function PATCH(req: NextRequest) {
       );
       if (conflict) {
         let i = 2;
-        let candidate = nextSlug;
+        const candidate = nextSlug;
         while (true) {
           const test = `${candidate}-${i}`;
           const taken = await sanityWriteClient.fetch(
@@ -124,8 +126,9 @@ export async function PATCH(req: NextRequest) {
     }
     const result = await sanityWriteClient.patch(_id).set(data).commit();
     return NextResponse.json(result);
-  } catch (error: any) {
-    return NextResponse.json({ error: error?.message || 'Failed to update blog' }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Failed to update blog';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 
@@ -142,7 +145,7 @@ export async function DELETE(req: NextRequest) {
     }
     await sanityWriteClient.delete(id);
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to delete blog' }, { status: 500 });
   }
 }

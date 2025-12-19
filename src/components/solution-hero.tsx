@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight, MessageSquare } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -53,7 +53,7 @@ export function SolutionHero() {
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#1A1A1A] mb-8 leading-[1.1]"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-8 leading-[1.1]"
           >
             Identity Security Solutions for <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cydenti-primary to-cydenti-secondary">
@@ -63,7 +63,7 @@ export function SolutionHero() {
 
           <motion.p 
             variants={itemVariants}
-            className="max-w-3xl mx-auto text-lg text-gray-600 md:text-xl lg:text-2xl mb-12 leading-relaxed font-normal"
+            className="max-w-3xl mx-auto text-lg text-slate-600 md:text-xl lg:text-2xl mb-12 leading-relaxed font-normal"
           >
             AI-powered visibility and automation to stop identity threats, secure SaaS configurations, and control cloud exposure — all in one platform.
           </motion.p>
@@ -78,7 +78,7 @@ export function SolutionHero() {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base rounded-full border-gray-200 hover:bg-gray-50 hover:text-cydenti-primary">
+            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base rounded-full border-slate-200 hover:bg-slate-50 hover:text-cydenti-primary">
               <Link href="/demo">
                 Get a Demo
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -95,7 +95,7 @@ export function SolutionHero() {
             transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
             className="relative transform-style-3d will-change-transform"
           >
-             <div className="relative rounded-xl overflow-hidden shadow-2xl border border-gray-200/50 bg-white">
+             <div className="relative rounded-xl overflow-hidden shadow-2xl border border-slate-200/50 bg-white">
                 <Image
                   src="/dashboard.png"
                   alt="Cydenti Dashboard Interface"

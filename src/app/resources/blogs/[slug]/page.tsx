@@ -1,5 +1,6 @@
 import { sanityClient, sanityWriteClient, urlFor } from '@/lib/sanity';
-import { PortableText } from '@portabletext/react';
+import { PortableText, type PortableTextReactComponents } from '@portabletext/react';
+import type { PortableTextBlock } from '@portabletext/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Footer } from '@/components/footer';
@@ -9,8 +10,8 @@ interface Blog {
   title: string;
   slug: { current: string };
   excerpt: string;
-  content: any;
-  featuredImage?: any;
+  content: PortableTextBlock[];
+  featuredImage?: { asset?: unknown; alt?: string };
   seoTitle?: string;
   seoDescription?: string;
   publishedAt: string;
@@ -18,10 +19,14 @@ interface Blog {
 
 async function getBlog(slug: string): Promise<Blog | null> {
   try {
-    const publishedQuery = `*[_type == "blog" && slug.current == $slug && published == true][0] {
+    const publishedQuery = `*[
+      _type == "blog" &&
+      lower(coalesce(slug.current, slug)) == lower($slug) &&
+      published == true
+    ][0] {
       _id,
       title,
-      slug,
+      "slug": { "current": coalesce(slug.current, slug) },
       excerpt,
       content,
       featuredImage,
@@ -29,10 +34,13 @@ async function getBlog(slug: string): Promise<Blog | null> {
       seoDescription,
       publishedAt
     }`;
-    const anyQuery = `*[_type == "blog" && slug.current == $slug][0] {
+    const anyQuery = `*[
+      _type == "blog" &&
+      lower(coalesce(slug.current, slug)) == lower($slug)
+    ][0] {
       _id,
       title,
-      slug,
+      "slug": { "current": coalesce(slug.current, slug) },
       excerpt,
       content,
       featuredImage,
@@ -61,10 +69,9 @@ async function getBlog(slug: string): Promise<Blog | null> {
           published
         }`
       );
-      result = (all || []).find((b: any) => b?.slug?.current?.toLowerCase() === slug) || null;
+      result = (all || []).find((b: { slug?: { current?: string } }) => b?.slug?.current?.toLowerCase() === slug) || null;
     }
 
-    console.log('Fetched blog for slug:', slug, result);
     return result;
   } catch (error) {
     console.error('Error fetching blog:', error);
@@ -73,7 +80,8 @@ async function getBlog(slug: string): Promise<Blog | null> {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const normalizedSlug = decodeURIComponent(params.slug).replace(/\/+$/, "").toLowerCase();
+  const { slug } = await Promise.resolve(params);
+  const normalizedSlug = decodeURIComponent(slug).replace(/\/+$/, '').trim();
   const blog = await getBlog(normalizedSlug);
   
   if (!blog) return {};
@@ -104,15 +112,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
+export const runtime = 'nodejs';
 
 
-const portableTextComponents = {
+const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
-    image: ({ value }: any) => (
+    image: ({ value }) => (
       <div className="relative w-full aspect-video my-8 rounded-lg overflow-hidden">
         <Image
           src={urlFor(value).width(1200).url()}
-          alt={value.alt || ''}
+          alt={(value as { alt?: string })?.alt || ''}
           fill
           className="object-cover"
         />
@@ -120,35 +129,40 @@ const portableTextComponents = {
     ),
   },
   block: {
-    h1: ({ children }: any) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-3xl font-bold mt-8 mb-4">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>,
-    normal: ({ children }: any) => <p className="mb-4 leading-7">{children}</p>,
-    blockquote: ({ children }: any) => (
+    h1: ({ children }) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-3xl font-bold mt-8 mb-4">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>,
+    normal: ({ children }) => <p className="mb-4 leading-7">{children}</p>,
+    blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-cydenti-primary pl-4 italic my-6">{children}</blockquote>
     ),
   },
   marks: {
-    link: ({ children, value }: any) => (
+    link: ({ children, value }) => (
       <a href={value.href} className="text-cydenti-primary hover:underline" target="_blank" rel="noopener noreferrer">
         {children}
       </a>
     ),
-    strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
-    em: ({ children }: any) => <em className="italic">{children}</em>,
-    code: ({ children }: any) => (
+    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    code: ({ children }) => (
       <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
     ),
   },
 };
 
 export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const normalizedSlug = decodeURIComponent(params.slug).replace(/\/+$/, "").toLowerCase();
+  const { slug } = await Promise.resolve(params);
+  const normalizedSlug = decodeURIComponent(slug).replace(/\/+$/, '').trim();
   const blog = await getBlog(normalizedSlug);
 
   if (!blog) {
     notFound();
   }
+
+  const hasFeaturedImage = Boolean(
+    blog.featuredImage && (blog.featuredImage as { asset?: unknown }).asset
+  );
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -184,11 +198,11 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
           )}
         </header>
 
-        {blog.featuredImage && blog.featuredImage.asset && (
+        {hasFeaturedImage && (
           <div className="relative w-full aspect-video mb-12 rounded-lg overflow-hidden">
             <Image
               src={urlFor(blog.featuredImage).width(1200).url()}
-              alt={blog.featuredImage.alt || blog.title}
+              alt={(blog.featuredImage as { alt?: string })?.alt || blog.title}
               fill
               className="object-cover"
               priority

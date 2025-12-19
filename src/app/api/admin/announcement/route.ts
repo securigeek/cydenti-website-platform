@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
       `*[_type == "announcement"] | order(_createdAt desc)`
     );
     return NextResponse.json(announcements[0] || null);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch announcement' }, { status: 500 });
   }
 }
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     }
     
     return NextResponse.json(result);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to save announcement' }, { status: 500 });
   }
 }
