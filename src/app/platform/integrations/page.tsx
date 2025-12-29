@@ -32,34 +32,33 @@ const categories: Category[] = [
 const integrations: Integration[] = [
   // Cloud Providers
   { name: "Google Cloud Platform", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/google_cloud-icon 1.svg", description: "Cloud IAM & Resource Monitoring", featured: true },
-  { name: "Microsoft Azure", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/Microsoft_Entra_ID_color_icon 1.svg", description: "Azure AD & Infrastructure", featured: true },
-  { name: "AWS", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/Logo.svg", description: "IAM & Organization Security" },
+  { name: "Microsoft Azure", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/azure.svg", description: "Azure AD & Infrastructure", featured: true },
+  { name: "AWS", category: "Cloud Providers", logo: "/CYDENTI DASHBOARD P 2/aws.svg", description: "IAM & Organization Security" },
   
   // Identity Providers
   { name: "Microsoft Entra ID", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/Microsoft_Entra_ID_color_icon 1.svg", description: "Identity Governance & Administration", featured: true },
   { name: "Google Workspace", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/Google__G__logo 2.svg", description: "Directory & Access Management", featured: true },
-  { name: "Okta", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/Logo-4.svg", description: "Single Sign-On & Lifecycle" },
+  { name: "Okta", category: "Identity Providers", logo: "/CYDENTI DASHBOARD P 2/okta-logo.png", description: "Single Sign-On & Lifecycle" },
   
   // SaaS Applications
-  { name: "Salesforce", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-1.svg", description: "CRM Access & Permissions" },
-  { name: "Slack", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-2.svg", description: "Collaboration Security" },
-  { name: "ServiceNow", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-5.svg", description: "ITSM & Workflow Automation" },
-  { name: "Jira", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-3.svg", description: "Project Tracking Access" },
-  { name: "Zoom", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo.svg", description: "Communication Security" },
-  { name: "Zendesk", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Logo-6.svg", description: "Customer Service Access" },
+  { name: "Salesforce", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/salesforce.svg", description: "CRM Access & Permissions" },
+  { name: "Slack", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/Slack_icon_2019.svg", description: "Collaboration Security" },
+  { name: "ServiceNow", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/servicenow.svg", description: "ITSM & Workflow Automation" },
+  { name: "Atlassian", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/atlassian.svg", description: "Suite Access Management" },
+  { name: "Microsoft 365", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/M365.svg", description: "Productivity Suite Security" },
+  { name: "Zendesk", category: "SaaS Applications", logo: "/CYDENTI DASHBOARD P 2/zendesk.png", description: "Customer Service Access" },
 
   // Developer & DevOps
-  { name: "GitHub", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/Logo-3.svg", description: "Source Code & Repository Access", featured: true },
-  { name: "GitLab", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/Logo-1.svg", description: "DevSecOps Platform" },
-  { name: "Bitbucket", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/Logo-2.svg", description: "Source Control Security" },
+  { name: "GitHub", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/GitHub-Mark-ea2971cee799.png", description: "Source Code & Repository Access", featured: true },
+  { name: "GitLab", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/gitlab.png", description: "DevSecOps Platform" },
+  { name: "Bitbucket", category: "Developer & DevOps", logo: "/CYDENTI DASHBOARD P 2/bitbucket.svg.png", description: "Source Control Security" },
 
   // Data Platforms
-  { name: "Snowflake", category: "Data Platforms", logo: "/CYDENTI DASHBOARD P 2/Logo-6.svg", description: "Data Warehouse Access" },
-  { name: "Databricks", category: "Data Platforms", logo: "/CYDENTI DASHBOARD P 2/Logo-5.svg", description: "Lakehouse Security" },
+  { name: "Databricks", category: "Data Platforms", logo: "/CYDENTI DASHBOARD P 2/128px-Databricks-c40eaf44.png", description: "Lakehouse Security" },
 
   // Security & Monitoring
   { name: "Splunk", category: "Security & Monitoring", logo: "/CYDENTI DASHBOARD P 2/Logo-4.svg", description: "SIEM & Log Analysis" },
-  { name: "CrowdStrike", category: "Security & Monitoring", logo: "/CYDENTI DASHBOARD P 2/Logo.svg", description: "Endpoint Security Integration" },
+  { name: "CrowdStrike", category: "Security & Monitoring", logo: "/CYDENTI DASHBOARD P 2/crowdstrike.png", description: "Endpoint Security Integration" },
 ];
 
 export default function Page() {
@@ -76,7 +75,7 @@ export default function Page() {
     <main className="flex min-h-screen flex-col items-center w-full bg-slate-50">
       
       {/* Hero Section */}
-      <section className="w-full bg-white pt-24 pb-12 border-b border-slate-100">
+      <section className="w-full bg-white pt-32 pb-12 md:pt-40 border-b border-slate-100">
         <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -84,7 +83,7 @@ export default function Page() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
-              Built to Connect Where <span className="text-blue-600">Identity Lives</span>
+              Built to Connect Where <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Identity Lives</span>
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed mb-8 max-w-3xl mx-auto">
               Cydenti integrates seamlessly across SaaS, cloud, identity providers, and security tools — without disrupting production environments.
@@ -136,7 +135,7 @@ export default function Page() {
           </div>
 
           {/* Controls */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 max-w-7xl mx-auto">
+          <div className="flex flex-col items-center gap-8 mb-12 max-w-7xl mx-auto">
             
             {/* Tabs */}
             <div className="flex flex-wrap justify-center gap-2">
@@ -168,14 +167,14 @@ export default function Page() {
             </div>
 
             {/* Search */}
-            <div className="relative w-full md:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <div className="relative w-full max-w-md">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
               <input 
                 type="text" 
                 placeholder="Search integrations..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white"
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white shadow-sm"
               />
             </div>
           </div>

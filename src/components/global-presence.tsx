@@ -63,7 +63,7 @@ export function GlobalPresence() {
 
           {/* Other presence dots */}
           {[
-            { top: '35%', left: '22%', label: 'North America' }, 
+            { top: '35%', left: '28%', label: 'North America' }, 
             { top: '30%', left: '52%', label: 'Europe' },        
             { top: '55%', left: '52%', label: 'Africa' },        
             { top: '35%', left: '72%', label: 'Asia' },          

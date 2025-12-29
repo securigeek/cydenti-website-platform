@@ -25,8 +25,8 @@ const team = [
     image: "/pascal.png",
   },
   {
-    name: "Audric",
-    role: "Product Manager",
+    name: "Audric Tohungba",
+    role: "Advisory Board and Product Manager",
     bio: "Product strategist focused on building user-centric security solutions for modern enterprises.",
     image: "/Audric.png",
   },

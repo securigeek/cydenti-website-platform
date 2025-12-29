@@ -38,7 +38,7 @@ export default function Navbar() {
       <div className="flex h-16 w-full max-w-7xl items-center justify-between rounded-full border border-slate-200/50 bg-white/80 px-6 backdrop-blur-md shadow-sm transition-all hover:shadow-md">
         <Link href="/" className="flex items-center gap-2">
           {/* Brandmark (Colored) */}
-          <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
+          <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={24} height={24} priority />
           <span className="text-xl font-bold tracking-tight text-slate-900">Cydenti</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
@@ -96,9 +96,6 @@ export default function Navbar() {
                           </DropdownMenuItem>
                           <DropdownMenuItem asChild>
                             <Link href="/platform/integrations" className="w-full cursor-pointer font-medium text-slate-700">Integrations</Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href="/platform/apis-automation" className="w-full cursor-pointer font-medium text-slate-700">APIs & Automation</Link>
                           </DropdownMenuItem>
                         </div>
                       </div>
@@ -171,7 +168,6 @@ export default function Navbar() {
                   <Link href="/platform/identity-graph" onClick={() => setOpen(false)} className="px-2 py-1">Identity Graph</Link>
                   <Link href="/platform/ai-risk-engine" onClick={() => setOpen(false)} className="px-2 py-1">AI Risk Engine</Link>
                   <Link href="/platform/integrations" onClick={() => setOpen(false)} className="px-2 py-1">Integrations</Link>
-                  <Link href="/platform/apis-automation" onClick={() => setOpen(false)} className="px-2 py-1">APIs & Automation</Link>
                 </div>
                 <Link href="/solution" onClick={() => setOpen(false)} className="px-2 py-1">Solution</Link>
                 <div className="grid gap-1">

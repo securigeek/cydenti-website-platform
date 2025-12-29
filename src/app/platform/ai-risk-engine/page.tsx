@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <main className="flex min-h-screen flex-col items-center w-full bg-white">
       {/* Hero Section */}
-      <section className="w-full bg-white py-24 relative overflow-hidden">
+      <section className="w-full bg-white pt-32 pb-24 md:pt-40 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-transparent to-transparent" />
         <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl relative z-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700 mb-6">

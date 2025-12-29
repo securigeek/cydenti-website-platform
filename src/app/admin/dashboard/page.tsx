@@ -30,6 +30,16 @@ export default function AdminDashboard() {
               <Link href="/admin/announcement">Edit Announcement</Link>
             </Button>
           </div>
+
+          <div className="p-6 bg-white rounded-lg border">
+            <h2 className="text-xl font-semibold mb-4">Product Updates</h2>
+            <p className="text-muted-foreground mb-4">
+              Manage product updates, features, and changelog
+            </p>
+            <Button asChild>
+              <Link href="/admin/updates">Manage Updates</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </AdminLayout>

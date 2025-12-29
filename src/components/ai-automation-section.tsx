@@ -27,6 +27,12 @@ const circuitStyles = `
 `;
 
 export function AiAutomationSection() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="py-32 bg-[#0B1120] relative overflow-hidden text-white rounded-[60px] mx-4 mb-4">
        <style jsx global>{circuitStyles}</style>
@@ -77,7 +83,7 @@ export function AiAutomationSection() {
 
         {/* Binary Rain Effect (Subtle) */}
         <div className="absolute inset-0 opacity-10 flex justify-between px-10 pointer-events-none select-none overflow-hidden">
-             {Array.from({ length: 10 }).map((_, i) => {
+             {mounted && Array.from({ length: 10 }).map((_, i) => {
                  const pr = (k: number) => {
                      const x = Math.sin((i + 1) * 12.9898 + k * 78.233) * 43758.5453;
                      return x - Math.floor(x);
@@ -423,8 +429,8 @@ export function AiAutomationSection() {
                                   <Users className="w-4 h-4 text-slate-500" />
                               </div>
                               <div className="text-left">
-                                  <div className="text-sm font-bold text-slate-500">Admins</div>
-                                  <div className="text-[10px] text-slate-600 uppercase tracking-wider">Group</div>
+                                  <div className="text-sm font-bold text-slate-500">Admin</div>
+                                  <div className="text-[10px] text-slate-600 uppercase tracking-wider">Role</div>
                               </div>
                           </div>
                       </div>

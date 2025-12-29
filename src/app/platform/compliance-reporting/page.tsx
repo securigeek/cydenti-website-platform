@@ -5,7 +5,7 @@ import { ComplianceReportingContent } from "@/components/compliance-reporting-co
 export default function Page() {
   return (
     <main className="flex min-h-screen flex-col items-center w-full">
-      <section className="w-full bg-white py-24">
+      <section className="w-full bg-white pt-32 pb-24 md:pt-40">
         <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700 mb-6">Core Capabilities</div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">

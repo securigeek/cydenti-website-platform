@@ -335,9 +335,17 @@ function ContentItem({
   const rad = (angle * Math.PI) / 180;
   const x = cx + r * Math.cos(rad);
   const y = cy + r * Math.sin(rad);
+  const itemWidth = 104;
+  const itemHeight = 78;
   
   return (
-    <foreignObject x={x - 30} y={y - 30} width="60" height="60">
+    <foreignObject
+      x={x - itemWidth / 2}
+      y={y - itemHeight / 2}
+      width={itemWidth}
+      height={itemHeight}
+      overflow="visible"
+    >
       <motion.div 
         className="flex flex-col items-center justify-center h-full"
         initial={{ opacity: 0, scale: 0 }}

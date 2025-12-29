@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Bold, Italic, Heading1, Heading2, Quote } from "lucide-react";
+import { Bold, Italic, Heading1, Heading2, Heading3, Quote, ListCollapse, ListChecks } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface PortableTextSpan {
@@ -131,6 +131,11 @@ export function RichTextEditor({ initialValue, onChange }: RichTextEditorProps) 
        // editorRef.current.focus(); 
     }
   };
+  const insertHtml = (e: React.MouseEvent, html: string) => {
+    e.preventDefault();
+    document.execCommand("insertHTML", false, html);
+    handleInput();
+  };
 
   return (
     <div className="border rounded-md overflow-hidden bg-white">
@@ -148,11 +153,27 @@ export function RichTextEditor({ initialValue, onChange }: RichTextEditorProps) 
         <Button variant="ghost" size="icon" onMouseDown={(e) => execCommand(e, "formatBlock", "H2")} type="button" title="Heading 2">
           <Heading2 className="h-4 w-4" />
         </Button>
+        <Button variant="ghost" size="icon" onMouseDown={(e) => execCommand(e, "formatBlock", "H3")} type="button" title="Heading 3">
+          <Heading3 className="h-4 w-4" />
+        </Button>
         <Button variant="ghost" size="icon" onMouseDown={(e) => execCommand(e, "formatBlock", "p")} type="button" title="Paragraph">
           <span className="font-serif font-bold">P</span>
         </Button>
          <Button variant="ghost" size="icon" onMouseDown={(e) => execCommand(e, "formatBlock", "blockquote")} type="button" title="Quote">
           <Quote className="h-4 w-4" />
+        </Button>
+        <div className="w-px h-6 bg-gray-300 mx-1" />
+        <Button variant="ghost" size="icon" onMouseDown={(e) => insertHtml(e, "<h2>Outline</h2><h3>Section 1</h3><p><br/></p><h3>Section 2</h3><p><br/></p>")} type="button" title="Insert Outline">
+          <ListCollapse className="h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon" onMouseDown={(e) => insertHtml(e, "<h2>FAQ</h2><p>Q: </p><p>A: </p><p><br/></p>")} type="button" title="Insert FAQ">
+          <ListChecks className="h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon" onMouseDown={(e) => insertHtml(e, "<h2>Key Takeaways</h2><p>• </p><p>• </p><p>• </p>")} type="button" title="Insert Key Takeaways">
+          <span className="font-serif font-bold">KT</span>
+        </Button>
+        <Button variant="ghost" size="icon" onMouseDown={(e) => insertHtml(e, "<h2>TL;DR</h2><p><br/></p>")} type="button" title="Insert TL;DR">
+          <span className="font-serif font-bold">TL</span>
         </Button>
       </div>
       <div

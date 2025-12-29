@@ -119,6 +119,52 @@ const blog = {
       rows: 2,
     },
     {
+      name: 'focusKeyword',
+      title: 'Focus Keyword',
+      type: 'string',
+    },
+    {
+      name: 'index',
+      title: 'Allow Indexing',
+      type: 'boolean',
+      initialValue: true,
+    },
+    {
+      name: 'canonicalUrl',
+      title: 'Canonical URL',
+      type: 'url',
+    },
+    {
+      name: 'schemaArticle',
+      title: 'Article Schema',
+      type: 'boolean',
+      initialValue: true,
+    },
+    {
+      name: 'schemaFAQ',
+      title: 'FAQ Schema',
+      type: 'boolean',
+      initialValue: false,
+    },
+    {
+      name: 'schemaHowTo',
+      title: 'How-To Schema',
+      type: 'boolean',
+      initialValue: false,
+    },
+    {
+      name: 'schemaAuthor',
+      title: 'Author Schema',
+      type: 'boolean',
+      initialValue: false,
+    },
+    {
+      name: 'previousSlugs',
+      title: 'Previous Slugs',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
       name: 'published',
       title: 'Published',
       type: 'boolean',

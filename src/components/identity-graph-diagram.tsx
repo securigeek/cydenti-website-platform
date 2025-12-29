@@ -20,7 +20,7 @@ export function IdentityGraphDiagram() {
     { id: "l2_3", label: "Service Account", sub: "USER", type: "user", x: 650, y: 220 },
 
     // Level 3 - Aligned under parents
-    { id: "l3_1", label: "Admins", sub: "GROUP", type: "group", x: 150, y: 380 },
+    { id: "l3_1", label: "Admin", sub: "ROLE", type: "group", x: 150, y: 380 },
     { id: "l3_2", label: "AWS Keys", sub: "CRITICAL ASSET", type: "critical", x: 320, y: 380, alert: true },
     { id: "l3_3", label: "Prod DB", sub: "RESOURCE", type: "resource", x: 480, y: 380 },
     { id: "l3_4", label: "Contractor", sub: "USER", type: "user", x: 650, y: 380 },

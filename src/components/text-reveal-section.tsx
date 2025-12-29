@@ -10,33 +10,26 @@ interface TextRevealProps {
 
 // Define the sentence structure with highlights
 const sentence = [
-  { text: "Cydenti", highlight: false },
-  { text: "provides", highlight: false },
-  { text: "the", highlight: false },
-  { text: "sovereign", highlight: true },
-  { text: "intelligence", highlight: true },
-  { text: "layer", highlight: true },
-  { text: "for", highlight: false },
-  { text: "your", highlight: false },
+  { text: "In", highlight: false },
   { text: "SaaS", highlight: true },
-  { text: "and", highlight: false },
-  { text: "identity", highlight: true },
-  { text: "blind", highlight: true },
-  { text: "spots.", highlight: true },
-  { text: "We", highlight: false },
-  { text: "reveal", highlight: false },
-  { text: "risky", highlight: true },
+  { text: "environments,", highlight: true },
+  { text: "breaches", highlight: false },
+  { text: "start", highlight: false },
+  { text: "with", highlight: false },
+  { text: "identity.", highlight: true },
+  { text: "Hidden", highlight: false },
   { text: "permissions,", highlight: true },
-  { text: "non-human", highlight: true },
-  { text: "identities,", highlight: true },
+  { text: "service", highlight: true },
+  { text: "accounts,", highlight: true },
   { text: "and", highlight: false },
-  { text: "Shadow", highlight: true },
   { text: "AI", highlight: true },
-  { text: "agents", highlight: true },
+  { text: "workflows", highlight: true },
+  { text: "silently", highlight: false },
+  { text: "expand", highlight: false },
+  { text: "risk", highlight: false },
   { text: "across", highlight: false },
   { text: "your", highlight: false },
-  { text: "entire", highlight: false },
-  { text: "stack.", highlight: false },
+  { text: "stack.", highlight: true },
 ];
 
 function TextReveal({ className }: TextRevealProps) {
@@ -49,7 +42,7 @@ function TextReveal({ className }: TextRevealProps) {
   });
 
   return (
-    <div ref={container} className={cn("h-[300vh] relative", className)}>
+    <div ref={container} className={cn("h-[200vh] relative", className)}>
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10">
         <div className="max-w-5xl px-4 md:px-8 flex flex-wrap justify-center gap-x-3 gap-y-2 md:gap-x-4 md:gap-y-3 leading-relaxed">
           {sentence.map((wordObj, i) => {

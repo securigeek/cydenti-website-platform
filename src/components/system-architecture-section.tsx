@@ -11,7 +11,6 @@ import {
   Network, 
   Siren, 
   AlertOctagon,
-  LayoutDashboard,
   ArrowRight
 } from "lucide-react";
 import Image from "next/image";
@@ -110,20 +109,20 @@ const GlassCard = ({
          </div>
       </div>
 
-      <div className="p-5 flex flex-col items-center text-center h-full justify-center relative z-10">
+      <div className="p-3 flex flex-col items-center text-center h-full justify-center relative z-10">
         {Icon && (
-          <div className="mb-4 relative group-hover:scale-110 transition-transform duration-300">
+          <div className="mb-3 relative group-hover:scale-110 transition-transform duration-300">
              {/* Icon Back Glow */}
              <div className={`absolute inset-0 bg-${glowColor}-500/20 blur-xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
              
              {/* 3D Icon Container */}
-             <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${gradients[glowColor] || gradients.blue} shadow-lg ${shadowColors[glowColor] || shadowColors.blue} flex items-center justify-center border-t border-white/20`}>
+             <div className={`relative w-10 h-10 rounded-xl bg-gradient-to-br ${gradients[glowColor] || gradients.blue} shadow-lg ${shadowColors[glowColor] || shadowColors.blue} flex items-center justify-center border-t border-white/20`}>
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-white/20 to-transparent opacity-50" />
-                <Icon className="w-6 h-6 text-white drop-shadow-md relative z-10" />
+                <Icon className="w-5 h-5 text-white drop-shadow-md relative z-10" />
              </div>
           </div>
         )}
-        {title && <h3 className="font-semibold text-slate-800 tracking-tight text-sm mb-1">{title}</h3>}
+        {title && <h3 className="font-semibold text-slate-800 tracking-tight text-xs mb-1">{title}</h3>}
         {children}
       </div>
     </div>
@@ -155,13 +154,13 @@ export function SystemArchitectureSection() {
           
           {/* Top Row: Input Sources */}
           <div className="grid grid-cols-3 gap-8 mb-0 relative z-20 max-w-4xl mx-auto">
-            <GlassCard title="SaaS Apps" icon={Cloud} glowColor="blue" className="h-24" pattern="grid" />
-            <GlassCard title="OAuth Apps" icon={Key} glowColor="purple" className="h-24" pattern="hex" />
-            <GlassCard title="IdP" icon={Shield} glowColor="teal" className="h-24" pattern="circuit" />
+            <GlassCard title="SaaS Apps" icon={Cloud} glowColor="blue" className="h-20" pattern="grid" />
+            <GlassCard title="OAuth Apps" icon={Key} glowColor="purple" className="h-20" pattern="hex" />
+            <GlassCard title="Identity Provider" icon={Shield} glowColor="teal" className="h-20" pattern="circuit" />
           </div>
 
           {/* Connection Lines: Inputs to Platform */}
-          <div className="relative h-40 w-full max-w-4xl mx-auto overflow-visible -mt-1 -mb-1 z-0">
+          <div className="relative h-24 w-full max-w-4xl mx-auto overflow-visible -mt-1 -mb-1 z-0">
             <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
                  <defs>
                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -232,14 +231,14 @@ export function SystemArchitectureSection() {
             {/* Glow under the platform */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-purple-100 to-teal-100 blur-3xl opacity-50 -z-10" />
             
-            <div className="backdrop-blur-2xl bg-white/60 border border-white/60 rounded-[2.5rem] p-8 lg:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] ring-1 ring-slate-900/5 relative z-10">
+            <div className="backdrop-blur-2xl bg-white/60 border border-white/60 rounded-[2.5rem] p-6 lg:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] ring-1 ring-slate-900/5 relative z-10">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-1.5 rounded-full border border-slate-100 text-slate-800 font-bold tracking-wider text-xs shadow-lg uppercase z-30 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 Cydenti Platform
               </div>
 
               {/* Platform Internals - Horizontal Flow */}
-              <div className="flex flex-col lg:flex-row items-stretch justify-between gap-6 relative mt-4">
+              <div className="flex flex-col lg:flex-row items-stretch justify-between gap-4 relative mt-4">
                   
                   {/* Step 1: Ingestion */}
                   <div className="flex flex-col justify-center gap-4 w-full lg:w-1/5">
@@ -249,7 +248,7 @@ export function SystemArchitectureSection() {
 
                   {/* Arrow */}
                   <div className="hidden lg:flex items-center justify-center text-slate-300">
-                    <ArrowRight className="w-6 h-6 text-slate-400" />
+                    <ArrowRight className="w-4 h-4 text-slate-400" />
                   </div>
 
                   {/* Step 2: Graph */}
@@ -257,32 +256,32 @@ export function SystemArchitectureSection() {
                       <div className="h-full relative group">
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <GlassCard title="Identity Graph" icon={Network} glowColor="indigo" className="h-full border-indigo-100 bg-indigo-50/30" pattern="circuit">
-                            <div className="text-xs text-slate-500 mt-2 leading-relaxed">Unified Data Model<br/>Real-time Context</div>
+                            <div className="text-[10px] text-slate-500 mt-2 leading-relaxed">Unified Data Model<br/>Real-time Context</div>
                         </GlassCard>
                       </div>
                   </div>
 
                   {/* Arrow */}
                   <div className="hidden lg:flex items-center justify-center text-slate-300">
-                    <ArrowRight className="w-6 h-6 text-slate-400" />
+                    <ArrowRight className="w-4 h-4 text-slate-400" />
                   </div>
 
                   {/* Step 3: Detection */}
                   <div className="w-full lg:w-1/4 flex flex-col justify-center">
                       <GlassCard title="Detection Logic" icon={Siren} glowColor="red" className="h-full border-red-100 bg-red-50/30" pattern="waves">
-                          <div className="text-xs text-slate-500 mt-2">ITDR & Threat Analysis</div>
+                          <div className="text-[10px] text-slate-500 mt-2">ITDR & Threat Analysis</div>
                       </GlassCard>
                   </div>
 
                   {/* Arrow */}
                   <div className="hidden lg:flex items-center justify-center text-slate-300">
-                    <ArrowRight className="w-6 h-6 text-slate-400" />
+                    <ArrowRight className="w-4 h-4 text-slate-400" />
                   </div>
 
                   {/* Step 4: Risk */}
                   <div className="w-full lg:w-1/5 flex flex-col justify-center">
                       <GlassCard title="Risk Engine" icon={AlertOctagon} glowColor="orange" className="h-full border-orange-100 bg-orange-50/30" pattern="hex">
-                          <div className="text-xs text-slate-500 mt-2">Scoring & Prioritization</div>
+                          <div className="text-[10px] text-slate-500 mt-2">Scoring & Prioritization</div>
                       </GlassCard>
                   </div>
 
@@ -325,13 +324,13 @@ export function SystemArchitectureSection() {
                    {/* Image Container - Taller */}
                    <div className="relative h-[600px] w-full bg-slate-50 flex items-start justify-center overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
                       <Image 
-                        src="/dashboard.png" 
+                        src="/dashboard2.png" 
                         alt="Cydenti Dashboard" 
                         fill
                         className="object-cover object-top transition-transform duration-1000 hover:scale-[1.01]"
                       />
                       
-                      {/* Floating Badge */}
+                      {/* Floating Badge
                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
                            <motion.div 
                              initial={{ y: 20, opacity: 0 }}
@@ -346,7 +345,7 @@ export function SystemArchitectureSection() {
                                <span className="text-[10px] text-slate-500">Real-time Security Posture</span>
                              </div>
                            </motion.div>
-                       </div>
+                       </div> */}
                    </div>
                 </div>
           </div>

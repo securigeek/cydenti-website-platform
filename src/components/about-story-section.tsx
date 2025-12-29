@@ -106,10 +106,14 @@ export function AboutStorySection() {
 
                 <div className="mt-10 pt-8 border-t border-white/10 flex items-center gap-4">
                   <div className="flex -space-x-4">
-                    {[1,2,3].map((i) => (
+                    {["/addy sharma.png", "/christophe.png", "/pascal.png", "/Audric.png"].map((src, i) => (
                       <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0B1120] bg-slate-700 overflow-hidden relative">
-                         {/* Placeholder avatars */}
-                         <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-teal-400 opacity-80" />
+                         <Image
+                           src={src}
+                           alt={`Team Member ${i + 1}`}
+                           fill
+                           className="object-cover"
+                         />
                       </div>
                     ))}
                   </div>

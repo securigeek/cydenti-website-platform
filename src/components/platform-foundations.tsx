@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Network, BrainCircuit, Blocks, Terminal } from "lucide-react";
+import { Network, BrainCircuit, Blocks } from "lucide-react";
 
 const foundations = [
   {
@@ -51,21 +51,6 @@ const foundations = [
     bg: "bg-emerald-50",
     border: "border-emerald-100",
     gradient: "from-emerald-500/10 via-teal-500/5 to-transparent"
-  },
-  {
-    title: "APIs & Automation",
-    subtitle: "Designed for Security Operations",
-    description: "REST APIs for search, risk, and reporting",
-    points: [
-      "Integrates with SIEM, SOAR, and ticketing tools",
-      "Enables automated identity workflows"
-    ],
-    footer: "Cydenti fits into your existing security ecosystem — not the other way around.",
-    icon: Terminal,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-    border: "border-blue-100",
-    gradient: "from-blue-500/10 via-indigo-500/5 to-transparent"
   }
 ];
 

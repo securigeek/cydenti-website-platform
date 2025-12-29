@@ -38,36 +38,56 @@ export function Footer() {
           {/* Links Columns */}
           <div className="md:col-span-8 lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
             
-            {/* Product */}
+            {/* Platform */}
             <div className="space-y-4">
-              <h3 className="text-white font-semibold text-sm tracking-wide">Product</h3>
+              <h3 className="text-white font-semibold text-sm tracking-wide">Platform</h3>
               <ul className="space-y-3 text-sm">
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Identity Threat Detection</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">SaaS Security Posture</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Cloud Config Mgmt</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Access Intelligence</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Compliance & Reporting</Link></li>
+                <li><Link href="/platform/itdr" className="hover:text-blue-400 transition-colors">Identity Threat Detection</Link></li>
+                <li><Link href="/platform/sspm" className="hover:text-blue-400 transition-colors">SaaS Security Posture</Link></li>
+                <li><Link href="/platform/cloud-identity-exposure" className="hover:text-blue-400 transition-colors">Cloud Identity Exposure</Link></li>
+                <li><Link href="/platform/oauth-risk-management" className="hover:text-blue-400 transition-colors">Third-Party & OAuth Risk</Link></li>
+                <li><Link href="/platform/identity-risk-scoring" className="hover:text-blue-400 transition-colors">Identity Risk Scoring</Link></li>
+                <li><Link href="/platform/compliance-reporting" className="hover:text-blue-400 transition-colors">Compliance & Reporting</Link></li>
+                <li><Link href="/platform/identity-graph" className="hover:text-blue-400 transition-colors">Identity Graph</Link></li>
+                <li><Link href="/platform/ai-risk-engine" className="hover:text-blue-400 transition-colors">AI Risk Engine</Link></li>
+                <li><Link href="/platform/integrations" className="hover:text-blue-400 transition-colors">Integrations</Link></li>
               </ul>
             </div>
 
-            {/* Company */}
-            <div className="space-y-4">
-              <h3 className="text-white font-semibold text-sm tracking-wide">Company</h3>
-              <ul className="space-y-3 text-sm">
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">About Cydenti</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Careers</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Trust & Security</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Contact</Link></li>
-              </ul>
+            {/* Solution & Resources */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h3 className="text-white font-semibold text-sm tracking-wide">Solution</h3>
+                <ul className="space-y-3 text-sm">
+                  <li><Link href="/solution" className="hover:text-blue-400 transition-colors">Our Solution</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-white font-semibold text-sm tracking-wide">Resources</h3>
+                <ul className="space-y-3 text-sm">
+                  <li><Link href="/resources/documentation" className="hover:text-blue-400 transition-colors">Documentation</Link></li>
+                  <li><Link href="/resources/blogs" className="hover:text-blue-400 transition-colors">Blogs</Link></li>
+                </ul>
+              </div>
             </div>
 
-            {/* Legal */}
-            <div className="space-y-4">
-              <h3 className="text-white font-semibold text-sm tracking-wide">Legal</h3>
-              <ul className="space-y-3 text-sm">
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Terms of Use</Link></li>
-              </ul>
+            {/* Company & Legal */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h3 className="text-white font-semibold text-sm tracking-wide">Company</h3>
+                <ul className="space-y-3 text-sm">
+                  <li><Link href="/company/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
+                  <li><Link href="/company/updates" className="hover:text-blue-400 transition-colors">New Feature/Update</Link></li>
+                  <li><Link href="/demo" className="hover:text-blue-400 transition-colors">Get a Demo</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-white font-semibold text-sm tracking-wide">Legal</h3>
+                <ul className="space-y-3 text-sm">
+                  <li><Link href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="#" className="hover:text-blue-400 transition-colors">Terms of Use</Link></li>
+                </ul>
+              </div>
             </div>
 
           </div>

@@ -21,7 +21,7 @@ export default function DocumentationPage() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll("section[id]");
-      const scrollPosition = window.scrollY + 100; // Offset for header
+      const scrollPosition = window.scrollY + 120; // Offset for header
 
       sections.forEach((section) => {
         const sectionTop = (section as HTMLElement).offsetTop;
@@ -45,7 +45,7 @@ export default function DocumentationPage() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Header offset
+      const offset = 120; // Header offset
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -350,7 +350,7 @@ export default function DocumentationPage() {
       {/* Header Background */}
       <div className="absolute top-0 left-0 w-full h-80 bg-slate-50 -z-10 border-b border-slate-100" />
       
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-6 pt-28 pb-12 md:pt-36 md:pb-20">
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 text-blue-600 font-bold tracking-widest text-xs uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100 mb-6">
             Documentation
@@ -392,23 +392,7 @@ export default function DocumentationPage() {
                 ))}
               </nav>
 
-              <div className="mt-8 pt-8 border-t border-slate-100 px-4">
-                <p className="text-xs text-slate-400 uppercase font-semibold tracking-wider mb-4">Resources</p>
-                <div className="space-y-3">
-                  <a href="#" className="flex items-center gap-2 text-sm text-slate-600 hover:text-blue-600 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                    API Reference
-                  </a>
-                  <a href="#" className="flex items-center gap-2 text-sm text-slate-600 hover:text-blue-600 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                    Support Center
-                  </a>
-                  <a href="#" className="flex items-center gap-2 text-sm text-slate-600 hover:text-blue-600 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                    Status Page
-                  </a>
-                </div>
-              </div>
+
             </div>
           </aside>
 

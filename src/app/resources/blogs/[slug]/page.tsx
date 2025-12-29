@@ -2,7 +2,7 @@ import { sanityClient, sanityWriteClient, urlFor } from '@/lib/sanity';
 import { PortableText, type PortableTextReactComponents } from '@portabletext/react';
 import type { PortableTextBlock } from '@portabletext/types';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { Footer } from '@/components/footer';
 
 interface Blog {
@@ -14,7 +14,15 @@ interface Blog {
   featuredImage?: { asset?: unknown; alt?: string };
   seoTitle?: string;
   seoDescription?: string;
+  focusKeyword?: string;
+  index?: boolean;
+  canonicalUrl?: string;
+  schemaArticle?: boolean;
+  schemaFAQ?: boolean;
+  schemaHowTo?: boolean;
+  schemaAuthor?: boolean;
   publishedAt: string;
+  previousSlugs?: string[];
 }
 
 async function getBlog(slug: string): Promise<Blog | null> {
@@ -32,6 +40,14 @@ async function getBlog(slug: string): Promise<Blog | null> {
       featuredImage,
       seoTitle,
       seoDescription,
+      focusKeyword,
+      index,
+      canonicalUrl,
+      schemaArticle,
+      schemaFAQ,
+      schemaHowTo,
+      schemaAuthor,
+      previousSlugs,
       publishedAt
     }`;
     const anyQuery = `*[
@@ -46,6 +62,14 @@ async function getBlog(slug: string): Promise<Blog | null> {
       featuredImage,
       seoTitle,
       seoDescription,
+      focusKeyword,
+      index,
+      canonicalUrl,
+      schemaArticle,
+      schemaFAQ,
+      schemaHowTo,
+      schemaAuthor,
+      previousSlugs,
       publishedAt
     }`;
 
@@ -93,6 +117,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: blog.seoTitle || blog.title,
     description: blog.seoDescription || blog.excerpt,
+    robots: blog.index === false ? { index: false, follow: true } : { index: true, follow: true },
+    alternates: {
+      canonical: blog.canonicalUrl || undefined,
+    },
     openGraph: {
       title: blog.seoTitle || blog.title,
       description: blog.seoDescription || blog.excerpt,
@@ -159,12 +187,15 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
   if (!blog) {
     notFound();
   }
+  if (blog.previousSlugs && blog.previousSlugs.includes(normalizedSlug) && blog.slug?.current && blog.slug.current !== normalizedSlug) {
+    redirect(`/resources/blogs/${encodeURIComponent(blog.slug.current)}/`);
+  }
 
   const hasFeaturedImage = Boolean(
     blog.featuredImage && (blog.featuredImage as { asset?: unknown }).asset
   );
 
-  const jsonLd = {
+  const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: blog.title,
@@ -176,12 +207,35 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
       name: 'Cydenti',
     },
   };
+  const ld: Array<Record<string, unknown>> = [jsonLd];
+  if (blog.schemaFAQ) {
+    ld.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: []
+    });
+  }
+  if (blog.schemaHowTo) {
+    ld.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: blog.title,
+      description: blog.excerpt
+    });
+  }
+  if (blog.schemaAuthor) {
+    ld.push({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Author'
+    });
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
       />
       <article className="mx-auto max-w-4xl px-6 py-24">
         <header className="mb-12">

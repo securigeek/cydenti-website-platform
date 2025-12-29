@@ -28,7 +28,15 @@ export async function GET(req: NextRequest) {
         featuredImage,
         category,
         seoTitle,
-        seoDescription
+        seoDescription,
+        focusKeyword,
+        index,
+        canonicalUrl,
+        schemaArticle,
+        schemaFAQ,
+        schemaHowTo,
+        schemaAuthor,
+        previousSlugs
       }`
     );
     return NextResponse.json(blogs);
@@ -94,6 +102,15 @@ export async function PATCH(req: NextRequest) {
   try {
     const { _id, ...data } = await req.json();
     let nextSlug: string | undefined = data?.slug?.current;
+    let appendPrevious = false;
+    let currentDocSlug: string | null = null;
+    try {
+      const currentDoc = await sanityWriteClient.fetch(
+        `*[_type=="blog" && _id==$id][0]{slug}`,
+        { id: _id }
+      );
+      currentDocSlug = currentDoc?.slug?.current || null;
+    } catch {}
     if (nextSlug) {
       nextSlug = nextSlug
         .toLowerCase()
@@ -120,11 +137,18 @@ export async function PATCH(req: NextRequest) {
         }
       }
       data.slug = { _type: 'slug', current: nextSlug };
+      if (currentDocSlug && currentDocSlug !== nextSlug) {
+        appendPrevious = true;
+      }
     }
     if (!data.publishedAt) {
       data.publishedAt = new Date().toISOString();
     }
-    const result = await sanityWriteClient.patch(_id).set(data).commit();
+    let patch = sanityWriteClient.patch(_id).set(data);
+    if (appendPrevious && currentDocSlug) {
+      patch = patch.append('previousSlugs', [currentDocSlug]);
+    }
+    const result = await patch.commit();
     return NextResponse.json(result);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Failed to update blog';

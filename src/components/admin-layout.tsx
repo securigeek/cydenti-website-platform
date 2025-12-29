@@ -60,6 +60,14 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
               >
                 Announcement
               </Link>
+              <Link
+                href="/admin/keywords"
+                className={`px-3 py-2 rounded-md ${
+                  pathname === '/admin/keywords' ? 'bg-gray-100' : 'hover:bg-gray-50'
+                }`}
+              >
+                Keywords
+              </Link>
             </div>
           </div>
           <Button onClick={handleLogout} variant="outline">
