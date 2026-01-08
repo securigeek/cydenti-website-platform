@@ -23,10 +23,10 @@ const faqData: FAQCategory[] = [
         answer: (
           <>
             <p className="mb-4">
-              Cydenti is a SaaS Identity Security platform that helps organizations understand, monitor, and protect identities, permissions, and integrations across their SaaS environment. It focuses on risks that traditional security tools miss—such as non-human identities, OAuth applications, excessive privileges, and identity-driven attack paths—while providing actionable detections and compliance-ready visibility.
+              Cydenti is a SaaS Identity Security platform that unifies Identity Security Posture Management (ISPM) and Identity Threat Detection &amp; Response (ITDR). It maps identities, permissions, and integrations across SaaS so you can see who has access to what and where risk can spread.
             </p>
             <p>
-              Cydenti continuously analyzes SaaS configurations, identity relationships, and activity signals to identify exposure, misuse, and abuse of access before it turns into an incident.
+              By continuously analyzing configurations and activity, Cydenti helps you minimize blast radius, detect identity-driven threats earlier, and keep SaaS access aligned with least privilege.
             </p>
           </>
         ),
@@ -39,15 +39,10 @@ const faqData: FAQCategory[] = [
               No—Cydenti is designed to <strong>augment your SIEM, not replace it</strong>.
             </p>
             <p className="mb-4">
-              A SIEM is excellent at storage, correlation, and SOC workflows—but it still needs:
+              A SIEM is excellent at storage, correlation, and SOC workflows, but it still needs high-quality SaaS identity signals.
             </p>
-            <ul className="list-disc pl-5 mb-4 space-y-1">
-              <li>clean SaaS signals,</li>
-              <li>SaaS-specific context (identities, permissions, OAuth grants, integrations),</li>
-              <li>and ready-to-use detection logic for SaaS identity threats.</li>
-            </ul>
             <p>
-              Cydenti provides that SaaS identity context and curated detections, and can forward alerts and events into your SIEM or ticketing tools so your SOC can investigate and respond using existing workflows.
+              Cydenti provides SaaS identity context, risk scoring, and curated detections, and can forward alerts and events into your SIEM or ticketing tools so your SOC can investigate and respond using existing workflows.
             </p>
           </>
         ),
@@ -63,27 +58,7 @@ const faqData: FAQCategory[] = [
               Cydenti is purpose-built for <strong>SaaS identity security</strong>. It deeply understands SaaS-specific identity models, OAuth consent frameworks, non-human identities, and third-party integrations that cloud security tools typically do not analyze in detail.
             </p>
             <p>
-              The two approaches are complementary: CNAPP secures infrastructure, while Cydenti secures how identities and integrations operate across SaaS platforms.
-            </p>
-          </>
-        ),
-      },
-      {
-        question: "What problem does Cydenti solve that \"cloud security\" tools miss?",
-        answer: (
-          <>
-            <p className="mb-4">
-              Cloud security tools often lack visibility into:
-            </p>
-            <ul className="list-disc pl-5 mb-4 space-y-1">
-              <li>SaaS-native permission models</li>
-              <li>OAuth tokens and scopes</li>
-              <li>Third-party app access</li>
-              <li>Service accounts and automation identities</li>
-              <li>Cross-SaaS identity blast radius</li>
-            </ul>
-            <p>
-              Cydenti addresses these gaps by mapping identity relationships and access paths across SaaS applications, enabling security teams to detect real-world identity abuse scenarios that would otherwise go unnoticed.
+              The approaches are complementary: CNAPP secures cloud infrastructure, while Cydenti secures how identities and integrations operate across SaaS platforms and limits blast radius.
             </p>
           </>
         ),
@@ -114,7 +89,7 @@ const faqData: FAQCategory[] = [
               Cydenti inventories OAuth applications and third-party integrations across supported SaaS platforms, analyzing granted scopes, privilege levels, and usage patterns.
             </p>
             <p>
-              The platform highlights risky OAuth grants, unused or over-privileged apps, and abnormal behavior—helping teams understand which integrations expand their attack surface and which ones pose real risk.
+              The platform highlights risky OAuth grants, unused or over-privileged apps, and abnormal behavior so teams can see which integrations expand their attack surface and which ones pose real risk.
             </p>
           </>
         ),
@@ -127,26 +102,7 @@ const faqData: FAQCategory[] = [
               Yes. Cydenti maps identity relationships, permissions, and integrations to show how access can propagate if an identity is compromised.
             </p>
             <p>
-              This includes understanding which SaaS apps, data, and administrative actions could be reached through a single user, service account, or OAuth token—allowing teams to prioritize remediation based on potential impact.
-            </p>
-          </>
-        ),
-      },
-      {
-        question: "What detections and use cases do you provide in ITDR?",
-        answer: (
-          <>
-            <p className="mb-4">
-              Cydenti includes detection logic aligned with common identity attack behaviors (often described using MITRE-style patterns). Examples include:
-            </p>
-            <ul className="list-disc pl-5 mb-4 space-y-1">
-              <li>suspicious sign-in patterns and anomalous behavior,</li>
-              <li>risky privilege changes,</li>
-              <li>unusual access by service accounts or OAuth apps,</li>
-              <li>and high-risk administrative actions.</li>
-            </ul>
-            <p>
-              Detections are enriched with SaaS context to reduce false positives and alert fatigue, making them easier for SOC teams to act on.
+              This includes understanding which SaaS apps, data, and administrative actions could be reached through a single user, service account, or OAuth token so you can prioritize remediation based on potential blast radius.
             </p>
           </>
         ),

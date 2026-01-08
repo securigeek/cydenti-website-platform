@@ -502,6 +502,7 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     return Math.round((keywordWords / totalWords) * 1000) / 10;
   })();
   const densityStatus = density > 2.5 ? 'red' : density > 1.5 ? 'yellow' : 'green';
+  const focusKeyword = (formData as any).focusKeyword as string | undefined;
   useEffect(() => {
     const kwTokens = keywordList.flatMap(k => normalizeForMatch(k).split(/\s+/)).filter(Boolean);
     const titleTokens = normalizeForMatch(formData.title || '').split(/\s+/).filter(Boolean);
@@ -517,7 +518,7 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
       .sort((a,b)=>b.score - a.score)
       .slice(0,5);
     setLinkSuggestions(suggestions);
-  }, [primaryKeyword, (formData as any).focusKeyword, formData.title, allPosts, currentId]);
+  }, [primaryKeyword, focusKeyword, formData.title, allPosts, currentId, keywordList]);
 
   const handleAiFix = async (action: string, context?: any) => {
     const kw = (formData as any).focusKeyword;

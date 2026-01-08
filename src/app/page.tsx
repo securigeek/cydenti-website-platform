@@ -5,15 +5,16 @@ import { TextRevealSection } from "@/components/text-reveal-section";
 import { IdentityFlowchartSection } from "@/components/identity-flowchart-section";
 import { SystemArchitectureSection } from "@/components/system-architecture-section";
 import { AiAutomationSection } from "@/components/ai-automation-section";
+import { BlastRadiusSection } from "@/components/blast-radius-section";
 import { IntegrationsSection } from "@/components/integrations-section";
+import { GalleryPreviewSection } from "@/components/gallery-preview-section";
 import { FaqSection } from "@/components/faq-section";
 import { WhyCydentiSection } from "@/components/why-cydenti-section";
-import { UseCasesSection } from "@/components/use-cases-section";
 
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col w-full">
       <Hero />
@@ -24,10 +25,12 @@ export default function Home() {
       <SystemArchitectureSection />
       <AiAutomationSection />
       
+      <BlastRadiusSection />
+
       <WhyCydentiSection />
-      <UseCasesSection />
 
       <IntegrationsSection />
+      <GalleryPreviewSection />
       <FaqSection />
       <CtaSection />
       <Footer />

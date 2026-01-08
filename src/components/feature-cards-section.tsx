@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, Bot, Cpu, ArrowRight } from "lucide-react";
+import { Shield, ArrowRight, Settings2, CloudFog } from "lucide-react";
 import Link from "next/link";
 
 export function FeatureCardsSection() {
@@ -21,29 +21,29 @@ export function FeatureCardsSection() {
         {/* Cards Container */}
         <div className="relative flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 mt-10">
           
-          {/* LEFT CARD: AI/LLM & RAG */}
+          {/* LEFT CARD: ISPM */}
           <div className="w-full max-w-sm lg:w-[380px] z-10 lg:transform lg:-rotate-6 lg:translate-x-12 lg:translate-y-8 transition-all duration-500 hover:z-30 hover:rotate-0 hover:scale-105">
             <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 h-full min-h-[420px] flex flex-col">
               <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6">
-                <Cpu className="w-7 h-7 text-indigo-600" />
+                <Settings2 className="w-7 h-7 text-indigo-600" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Sovereign AI & RAG</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">ISPM</h3>
               <p className="text-slate-600 mb-6 flex-grow">
-                Privacy-first intelligence that reasons over your identity graph. Summarize risks and automate remediation without customer data ever leaving your boundary.
+                Identity Security Posture Management. Proactively manage your identity attack surface and gain visibility into permissions and configurations.
               </p>
               <div className="pt-6 border-t border-slate-100">
                 <ul className="space-y-3 text-sm text-slate-600">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                    In-house privacy-focused LLMs
+                    Continuous posture assessment
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                    Automated context & reasoning
+                    Misconfiguration detection
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                    Data sovereignty guaranteed
+                    Least privilege enforcement
                   </li>
                 </ul>
               </div>
@@ -96,29 +96,29 @@ export function FeatureCardsSection() {
             </div>
           </div>
 
-          {/* RIGHT CARD: AI Agents */}
+          {/* RIGHT CARD: Blast Radius & Exposure */}
           <div className="w-full max-w-sm lg:w-[380px] z-10 lg:transform lg:rotate-6 lg:-translate-x-12 lg:translate-y-8 transition-all duration-500 hover:z-30 hover:rotate-0 hover:scale-105">
             <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 h-full min-h-[420px] flex flex-col">
               <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">
-                <Bot className="w-7 h-7 text-purple-600" />
+                <CloudFog className="w-7 h-7 text-purple-600" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">AI Agent Security</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Blast Radius & Exposure</h3>
               <p className="text-slate-600 mb-6 flex-grow">
-                Secure your non-human workforce. Monitor agent-initiated actions, prevent unintended automations, and gain visibility into shadow AI workflows.
+                Visualize and reduce the impact of potential breaches. Map identity relationships and limit lateral movement paths to critical assets.
               </p>
               <div className="pt-6 border-t border-slate-100">
                 <ul className="space-y-3 text-sm text-slate-600">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Agent behavior monitoring
+                    Identity graph visualization
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Shadow AI detection
+                    Lateral movement analysis
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Cross-app workflow oversight
+                    Impact radius reduction
                   </li>
                 </ul>
               </div>

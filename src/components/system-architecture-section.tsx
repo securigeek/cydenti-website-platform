@@ -150,32 +150,38 @@ export function SystemArchitectureSection() {
           </p>
         </div>
 
-        <div className="relative w-full max-w-7xl mx-auto">
+        <div className="relative w-full max-w-5xl mx-auto">
           
           {/* Top Row: Input Sources */}
-          <div className="grid grid-cols-3 gap-8 mb-0 relative z-20 max-w-4xl mx-auto">
-            <GlassCard title="SaaS Apps" icon={Cloud} glowColor="blue" className="h-20" pattern="grid" />
-            <GlassCard title="OAuth Apps" icon={Key} glowColor="purple" className="h-20" pattern="hex" />
-            <GlassCard title="Identity Provider" icon={Shield} glowColor="teal" className="h-20" pattern="circuit" />
+          <div className="grid grid-cols-3 gap-0 mb-0 relative z-20 max-w-3xl mx-auto">
+            <div className="px-3">
+              <GlassCard title="SaaS Apps" icon={Cloud} glowColor="blue" className="h-16" pattern="grid" />
+            </div>
+            <div className="px-3">
+              <GlassCard title="OAuth Apps" icon={Key} glowColor="purple" className="h-16" pattern="hex" />
+            </div>
+            <div className="px-3">
+              <GlassCard title="Identity Provider" icon={Shield} glowColor="teal" className="h-16" pattern="circuit" />
+            </div>
           </div>
 
           {/* Connection Lines: Inputs to Platform */}
-          <div className="relative h-24 w-full max-w-4xl mx-auto overflow-visible -mt-1 -mb-1 z-0">
-            <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
+          <div className="relative h-20 w-full max-w-3xl mx-auto overflow-visible -mt-1 -mb-1 z-0 opacity-80">
+            <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
                  <defs>
                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                     <stop offset="0%" stopColor="#CBD5E1" stopOpacity="0.4" />
-                     <stop offset="50%" stopColor="#94A3B8" stopOpacity="1" />
-                     <stop offset="100%" stopColor="#CBD5E1" stopOpacity="0.4" />
+                     <stop offset="0%" stopColor="#475569" stopOpacity="0.6" />
+                     <stop offset="50%" stopColor="#334155" stopOpacity="1" />
+                     <stop offset="100%" stopColor="#475569" stopOpacity="0.6" />
                    </linearGradient>
                  </defs>
                  
                  {/* Left Path Base Line */}
-                 <path d="M16.5%,0 L16.5%,50% L50%,50% L50%,100%" fill="none" stroke="#E2E8F0" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                 <path d="M16.66 0 L16.66 50 L50 50 L50 100" fill="none" stroke="#475569" strokeWidth="1" vectorEffect="non-scaling-stroke" />
                  {/* Center Path Base Line */}
-                 <path d="M50%,0 L50%,100%" fill="none" stroke="#E2E8F0" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                 <path d="M50 0 L50 100" fill="none" stroke="#475569" strokeWidth="1" vectorEffect="non-scaling-stroke" />
                  {/* Right Path Base Line */}
-                 <path d="M83.5%,0 L83.5%,50% L50%,50% L50%,100%" fill="none" stroke="#E2E8F0" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                 <path d="M83.33 0 L83.33 50 L50 50 L50 100" fill="none" stroke="#475569" strokeWidth="1" vectorEffect="non-scaling-stroke" />
             </svg>
             
             {/* Overlaying robust particles that don't distort */}
@@ -184,17 +190,24 @@ export function SystemArchitectureSection() {
                 {/* Left Particle */}
                 <motion.div
                   className="absolute w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                  style={{ transform: 'translate(-50%, -50%)' }}
                   animate={{ 
                     top: ["0%", "50%", "50%", "100%"],
-                    left: ["16.5%", "16.5%", "50%", "50%"],
+                    left: ["16.66%", "16.66%", "50%", "50%"],
                     opacity: [0, 1, 1, 0]
                   }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "linear",
+                    times: [0, 0.3, 0.6, 1] 
+                  }}
                 />
                 
                 {/* Center Particles - Flowing more frequently */}
                 <motion.div
                   className="absolute w-2 h-2 bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)]"
+                  style={{ transform: 'translate(-50%, -50%)' }}
                   animate={{ 
                     top: ["0%", "100%"],
                     left: ["50%", "50%"],
@@ -204,6 +217,7 @@ export function SystemArchitectureSection() {
                 />
                 <motion.div
                   className="absolute w-2 h-2 bg-blue-400 rounded-full shadow-[0_0_8px_rgba(96,165,250,0.8)]"
+                  style={{ transform: 'translate(-50%, -50%)' }}
                   animate={{ 
                     top: ["0%", "100%"],
                     left: ["50%", "50%"],
@@ -215,12 +229,19 @@ export function SystemArchitectureSection() {
                 {/* Right Particle */}
                 <motion.div
                   className="absolute w-2 h-2 bg-teal-500 rounded-full shadow-[0_0_8px_rgba(20,184,166,0.8)]"
+                  style={{ transform: 'translate(-50%, -50%)' }}
                   animate={{ 
                     top: ["0%", "50%", "50%", "100%"],
-                    left: ["83.5%", "83.5%", "50%", "50%"],
+                    left: ["83.33%", "83.33%", "50%", "50%"],
                     opacity: [0, 1, 1, 0]
                   }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 2 }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "linear", 
+                    delay: 2,
+                    times: [0, 0.3, 0.6, 1]
+                  }}
                 />
              </div>
 
@@ -231,8 +252,8 @@ export function SystemArchitectureSection() {
             {/* Glow under the platform */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-purple-100 to-teal-100 blur-3xl opacity-50 -z-10" />
             
-            <div className="backdrop-blur-2xl bg-white/60 border border-white/60 rounded-[2.5rem] p-6 lg:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] ring-1 ring-slate-900/5 relative z-10">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-1.5 rounded-full border border-slate-100 text-slate-800 font-bold tracking-wider text-xs shadow-lg uppercase z-30 flex items-center gap-2">
+            <div className="backdrop-blur-2xl bg-slate-200 border border-slate-300 rounded-[2.5rem] p-5 lg:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.1)] ring-1 ring-slate-900/10 relative z-10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white px-6 py-1.5 rounded-full border border-slate-200 text-slate-800 font-bold tracking-wider text-xs shadow-lg uppercase z-30 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 Cydenti Platform
               </div>
@@ -290,17 +311,18 @@ export function SystemArchitectureSection() {
           </div>
 
           {/* Connection Platform -> Dashboard */}
-          <div className="h-12 w-full flex justify-center relative overflow-visible opacity-60">
-            <div className="h-full w-px bg-gradient-to-b from-slate-300 to-transparent" />
+          <div className="h-12 w-full flex justify-center relative overflow-visible opacity-80">
+            <div className="h-full w-px bg-gradient-to-b from-slate-600 to-transparent" />
              <motion.div 
-                className="absolute top-0 w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_10px_#10B981]"
+                className="absolute top-0 left-1/2 w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_10px_#10B981]"
+                style={{ transform: 'translateX(-50%)' }}
                 animate={{ top: ["0%", "100%"], opacity: [1, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
              />
           </div>
 
           {/* Dashboard Image - Larger View */}
-          <div className="relative mx-auto max-w-5xl z-20 group perspective-1000 mt-12">
+          <div className="relative mx-auto max-w-4xl z-20 group perspective-1000 mt-12">
                 
                 <div 
                   className="bg-white border-x border-t border-slate-200/60 rounded-t-2xl overflow-hidden shadow-[0_-20px_60px_rgba(0,0,0,0.1)] ring-1 ring-slate-900/5 transform transition-transform duration-700 hover:-translate-y-2"
@@ -322,7 +344,7 @@ export function SystemArchitectureSection() {
                    </div>
                    
                    {/* Image Container - Taller */}
-                   <div className="relative h-[600px] w-full bg-slate-50 flex items-start justify-center overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
+                   <div className="relative h-[450px] w-full bg-slate-50 flex items-start justify-center overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
                       <Image 
                         src="/dashboard2.png" 
                         alt="Cydenti Dashboard" 

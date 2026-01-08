@@ -19,7 +19,7 @@ const roadmapData = [
       {
         date: "Late 2022",
         title: "Decision to develop software",
-        description: "The decision was made to move beyond consulting services and develop a dedicated software solution. Initial R&D began to conceptualize a platform covering both configuration (SSPM) and identity threats (ITDR)."
+        description: "The decision was made to move beyond consulting services and develop a dedicated software solution. Initial R&D began to conceptualize a platform covering both configuration (ISPM) and identity threats (ITDR)."
       }
     ]
   },
@@ -53,19 +53,14 @@ const roadmapData = [
         description: "MVP was ready. The team began presenting at public forums including FIC (Forum International de la Cybersécurité), establishing connections with partners like Hexatrust."
       },
       {
-        date: "Innovation Recognition",
-        title: "Jeune Entreprise Innovante",
-        description: "Received recognition as a 'Jeune Entreprise Innovante' (Young Innovative Company), acknowledging proprietary Machine Learning algorithms for detecting user behavior anomalies."
-      },
-      {
         date: "September 2024",
-        title: "Official Creation",
-        description: "Cydenti was officially created as a distinct software publisher, hosting the SSPM and ITDR platforms."
+        title: "Official Cydenti Structure Creation",
+        description: "Cydenti was officially created as a distinct software publisher, hosting the ISPM and ITDR platforms."
       }
     ]
   },
   {
-    year: "2025",
+    year: "And the Road Ahead....",
     title: "Product Market Fit & Expansion",
     icon: <Globe2 className="w-6 h-6 text-white" />,
     color: "bg-gradient-to-br from-blue-600 to-cyan-500",

@@ -92,7 +92,7 @@ const Word = ({
             "relative inline-block font-bold tracking-tight transition-colors duration-500",
             "text-2xl md:text-4xl lg:text-5xl", 
             highlight 
-                ? "text-transparent bg-clip-text bg-gradient-to-r from-cydenti-primary via-cydenti-secondary to-purple-500" 
+                ? "text-gradient-primary" 
                 : "text-slate-900 dark:text-white"
         )}
       >

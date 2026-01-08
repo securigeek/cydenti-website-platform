@@ -3,45 +3,16 @@
 import React from 'react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { TypewriterLoop } from "@/components/ui/typewriter-effect";
 import { 
   ArrowRight, 
-  FileText
+  PlayCircle
 } from 'lucide-react';
-
-const gradientClass = "text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer";
-const defaultClass = "text-slate-900";
-
-const wordsArray = [
-  [
-    { text: "Your", className: defaultClass },
-    { text: "SaaS", className: gradientClass },
-    { text: "and", className: defaultClass },
-    { text: "Identity", className: gradientClass },
-    { text: "Blind", className: defaultClass },
-    { text: "Spots", className: defaultClass },
-  ],
-  [
-    { text: "Your", className: defaultClass },
-    { text: "AI", className: gradientClass },
-    { text: "Agents", className: gradientClass },
-    { text: "and", className: defaultClass },
-    { text: "Non-Human", className: gradientClass },
-    { text: "Identities,", className: gradientClass },
-  ],
-  [
-    { text: "Permissions,", className: gradientClass },
-    { text: "SaaS", className: gradientClass },
-    { text: "Sprawl,", className: gradientClass },
-    { text: "and", className: defaultClass },
-    { text: "Risks", className: gradientClass },
-  ],
-];
+import { LivingIntelligenceCore } from "@/components/living-intelligence-core";
 
 export function Hero() {
 
   return (
-    <section className="relative w-full overflow-visible bg-white pt-24 pb-12 lg:pt-32 lg:pb-12">
+    <section className="relative w-full overflow-hidden bg-white pt-12 pb-12 lg:pt-24 lg:pb-24 -mt-4 md:-mt-6 lg:-mt-8">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Grid Pattern */}
@@ -62,70 +33,63 @@ export function Hero() {
         </div>
       </div>
       
-      <div className="container relative z-10 mx-auto px-4 md:px-6 flex flex-col items-center">
-        
-        {/* 1. Centered Header Content */}
-        <div 
-          className="max-w-5xl text-center mb-16"
-        >
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm px-4 py-1.5 shadow-sm mb-10 transition-all hover:border-gray-300 hover:shadow-md">
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Text Content */}
+          <div className="flex flex-col items-start text-left max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm px-4 py-1.5 shadow-sm mb-8 transition-all hover:border-gray-300 hover:shadow-md">
               <span className="flex h-2 w-2 rounded-full bg-cydenti-secondary animate-pulse"></span>
-              <span className="text-sm font-medium text-gray-600">The Future of Identity Security</span>
+              <span className="text-sm font-medium text-gray-600">Adversaries don't hack their way in—they log in.</span>
             </div>
-          </div>
 
-          <h1 
-            className="text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1] md:leading-[1.05]"
-          >
-            The Sovereign <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Intelligence Layer</span> for<br />
-            <TypewriterLoop wordsArray={wordsArray} className="inline-block text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] md:leading-[1.05]" cursorClassName="bg-blue-500 h-10 md:h-12 lg:h-16 w-1 align-middle" wait={1500} />
-          </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1] md:leading-[1.05]">
+              Secure Your SaaS Stack in <span className="text-gradient-primary">30 Minutes</span>.
+            </h1>
 
-          <p 
-            className="max-w-3xl mx-auto text-lg text-slate-600 md:text-xl lg:text-2xl mb-12 leading-relaxed font-normal"
-          >
-            Instantly reveal risky permissions, non-human identities, and Shadow AI agents across Microsoft 365, Salesforce, and the rest of your SaaS stack.
-          </p>
+            <p className="text-base text-slate-600 md:text-lg lg:text-l mb-10 leading-relaxed font-normal">
+              Eliminate the critical blind spots of <strong className="font-semibold text-slate-900">Non-Human Identities</strong> and complex permissions with the first European-sovereign platform for <strong className="font-semibold text-slate-900">SaaS Authorization Management</strong> and <strong className="font-semibold text-slate-900">Identity Threat Detection</strong>. Stop guessing who can access your most sensitive data and start seeing the full picture.
+            </p>
 
-          <div 
-            className="relative z-20 flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto items-center"
-          >
-            <div className="relative group p-[2px] rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-[length:200%_auto] animate-gradient-x shadow-[0_0_20px_-5px_rgba(6,182,212,0.3)] transition-all duration-300 group-hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.6)] group-hover:-translate-y-0.5">
+            <div className="relative z-20 flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center sm:items-start">
+              <div className="relative group p-[2px] rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-[length:200%_auto] animate-gradient-x shadow-[0_0_20px_-5px_rgba(6,182,212,0.3)] transition-all duration-300 group-hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.6)] group-hover:-translate-y-0.5 w-full sm:w-auto">
+                <Button 
+                  asChild
+                  size="lg" 
+                  className="relative rounded-full bg-slate-950 hover:bg-slate-900 text-white font-semibold px-8 h-[52px] w-full text-lg transition-colors duration-300 border-none"
+                >
+                  <Link href="/demo">
+                    <span className="relative z-10 flex items-center justify-center">
+                      Book a Demo
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-cyan-400" />
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] z-0" />
+                  </Link>
+                </Button>
+              </div>
+
               <Button 
                 asChild
+                variant="outline"
                 size="lg" 
-                className="relative rounded-full bg-slate-950 hover:bg-slate-900 text-white font-semibold px-8 h-[52px] w-full text-lg transition-colors duration-300 border-none"
+                className="rounded-full border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-semibold px-8 h-14 text-lg transition-all duration-300 w-full sm:w-auto"
               >
-                <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer">
-                  <span className="relative z-10 flex items-center">
-                    Get a Demo
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-cyan-400" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] z-0" />
-                </a>
+                <Link href="/resources/gallery">
+                  <PlayCircle className="mr-2 h-4 w-4" />
+                  See a 5-Minute Product Walkthrough
+                </Link>
               </Button>
             </div>
 
-            <Button 
-              asChild
-              variant="outline"
-              size="lg" 
-              className="rounded-full border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-semibold px-8 h-14 text-lg transition-all duration-300"
-            >
-              <Link href="/resources/documentation">
-                <FileText className="mr-2 h-4 w-4" />
-                Read Documentation
-              </Link>
-            </Button>
+            <p className="text-xs md:text-sm text-slate-500 font-mono mt-8 tracking-wide font-medium">
+              Start with a comprehensive, privacy-preserving audit — deployed in minutes.
+            </p>
           </div>
 
-          <p 
-            className="text-xs md:text-sm text-slate-500 font-mono mt-8 tracking-wide font-medium"
-          >
-            Start with a comprehensive, privacy-preserving audit — deployed in minutes.
-          </p>
-
+          {/* Right Column: Living Intelligence Core Illustration */}
+          <div className="relative w-full h-full min-h-[500px] flex items-center justify-center lg:justify-end lg:translate-x-12">
+            <LivingIntelligenceCore />
+          </div>
         </div>
       </div>
     </section>

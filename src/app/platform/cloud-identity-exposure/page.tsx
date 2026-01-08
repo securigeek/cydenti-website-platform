@@ -69,7 +69,7 @@ export default function Page() {
             variants={fadeInUp}
             className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 tracking-tight leading-tight"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 animate-gradient-x">Cloud Identity Exposure Monitoring</span>
+            <span className="text-gradient-primary">Cloud Identity Exposure Monitoring</span>
           </motion.h1>
           
           <motion.p 

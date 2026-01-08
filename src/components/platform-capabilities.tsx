@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 import { 
   ShieldAlert, 
   CloudFog, 
@@ -38,8 +37,8 @@ const capabilities = [
     ]
   },
   {
-    id: "sspm",
-    title: "SaaS Security Posture",
+    id: "ispm",
+    title: "Identity Security Posture Management",
     icon: Settings2,
     color: "text-cyan-600",
     bg: "bg-cyan-50",

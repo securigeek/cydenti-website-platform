@@ -54,7 +54,8 @@ export default function Page() {
               <h3 className="font-semibold text-slate-900 mb-6">Traditional security tools struggle to detect:</h3>
               <ul className="space-y-4">
                 {[
-                  "Credential misuse that looks “normal”",
+                  "Credential stuffing & brute force attempts",
+                  "MFA fatigue & push bombing attacks",
                   "Privilege escalation using legitimate permissions",
                   "Abuse of service accounts and machine identities",
                   "SaaS and cloud access outside of expected behavior"
@@ -293,6 +294,37 @@ export default function Page() {
                 <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Integration Section */}
+      <section className="w-full py-24 bg-slate-50 border-y border-slate-200">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl text-center">
+          <div className="inline-flex items-center gap-2 text-indigo-600 font-semibold mb-4 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+            <GitMerge className="w-4 h-4" />
+            Seamless Integration
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+            Works With Your Existing Stack
+          </h2>
+          <p className="text-xl text-slate-600 leading-relaxed mb-12">
+            Cydenti doesn&apos;t just detect threats—it triggers automated responses through your existing SIEM and SOAR tools.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <h3 className="font-bold text-slate-900 mb-2">SIEM Integration</h3>
+              <p className="text-slate-600 text-sm">Send high-fidelity alerts to Splunk, Datadog, or Microsoft Sentinel for centralized monitoring.</p>
+            </div>
+             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <h3 className="font-bold text-slate-900 mb-2">SOAR Automation</h3>
+              <p className="text-slate-600 text-sm">Trigger automated playbooks in Tines, Torq, or Cortex XSOAR to contain threats instantly.</p>
+            </div>
+             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <h3 className="font-bold text-slate-900 mb-2">Ticketing & Chat</h3>
+              <p className="text-slate-600 text-sm">Push notifications to Slack, Teams, or Jira for immediate visibility and tracking.</p>
+            </div>
           </div>
         </div>
       </section>

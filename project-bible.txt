@@ -106,7 +106,7 @@ Misconfiguration & exposure detection
 
 Risk prioritization powered by AI/LLMs
 
-SaaS Security Posture Management (SSPM)
+Identity Security Posture Management (ISPM)
 
 Identity Threat Detection & Response (ITDR)
 
@@ -219,7 +219,7 @@ privilege escalation paths
 
 Goal: Stop identity threats before they become incidents.
 
-Pillar 2 — SaaS & Cloud Posture Management (SSPM)
+Pillar 2 — SaaS & Cloud Posture Management (ISPM)
 
 Continuously detect:
 
@@ -255,7 +255,7 @@ Goal: Give teams clarity and confidence in every security decision.
 
 6. SOLUTIONS WE OFFER
 • Identity Threat Detection (ITDR)
-• SaaS Security Posture Management (SSPM)
+• Identity Security Posture Management (ISPM)
 • Cloud IAM Exposure Analysis
 • Shadow AI & AI Agent Monitoring
 • OAuth & Third-Party Integration Oversight

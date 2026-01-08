@@ -29,7 +29,7 @@ export default function Page() {
             <span>Core Capabilities</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-8 tracking-tight leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 animate-gradient-x">SaaS Security Posture Management</span>
+            <span className="text-gradient-primary">Identity Security Posture Management</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Continuously analyze SaaS configurations and permissions for security posture.
@@ -429,10 +429,10 @@ export default function Page() {
          </div>
       </section>
 
-      {/* Where SSPM Fits */}
+      {/* Where ISPM Fits */}
       <section className="w-full py-24 bg-white border-t border-slate-100">
          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16">Where SSPM Fits in the Platform</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-16">Where ISPM Fits in the Platform</h2>
             
             <div className="grid md:grid-cols-3 gap-8 relative">
                {/* Connecting lines for desktop */}
@@ -451,7 +451,7 @@ export default function Page() {
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white shadow-lg shadow-blue-300">
                      <ShieldAlert className="w-8 h-8" />
                   </div>
-                  <h3 className="font-bold text-lg mb-3 text-slate-900">SSPM</h3>
+                  <h3 className="font-bold text-lg mb-3 text-slate-900">ISPM</h3>
                   <p className="text-sm text-slate-600">Feeds context to the entire platform.</p>
                </div>
 

@@ -1,6 +1,5 @@
 import { AboutHero } from "@/components/about-hero";
 import { AboutStorySection } from "@/components/about-story-section";
-import { MissionVision } from "@/components/mission-vision";
 import { LeadershipTeam } from "@/components/leadership-team";
 import { RoadmapTimeline } from "@/components/roadmap-timeline";
 import { GlobalPresence } from "@/components/global-presence";
@@ -12,7 +11,6 @@ export default function AboutPage() {
     <main className="flex min-h-screen flex-col w-full bg-white">
       <AboutHero />
       <AboutStorySection />
-      <MissionVision />
       <LeadershipTeam />
       <RoadmapTimeline />
       <GlobalPresence />

@@ -2,39 +2,50 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { User, Users, Key, Database } from "lucide-react";
+import { User, Users, Key, Database, FileKey } from "lucide-react";
 
 export function IdentityGraphDiagram() {
   // SVG dimensions
   const width = 800;
   const height = 500;
 
-  // Node data with positions - Centered layout
+  // Node data with positions - Complex relationship flow
   const nodes = [
     // Level 1 (Root) - Centered
-    { id: "root", label: "Luka Horvat", sub: "IDENTITY", type: "identity", x: 400, y: 60 },
+    { id: "root", label: "Luka Horvat", sub: "IDENTITY", type: "identity", x: 400, y: 50 },
     
-    // Level 2 - Balanced left/right
-    { id: "l2_1", label: "DevOps Team", sub: "GROUP", type: "group", x: 150, y: 220 },
-    { id: "l2_2", label: "Luka Horvat", sub: "COMPROMISED", type: "compromised", x: 400, y: 220 },
-    { id: "l2_3", label: "Service Account", sub: "USER", type: "user", x: 650, y: 220 },
+    // Level 2 - Primary Groups/Roles
+    { id: "l2_1", label: "DevOps Team", sub: "GROUP", type: "group", x: 150, y: 180 },
+    { id: "l2_2", label: "Interns", sub: "GROUP", type: "group", x: 400, y: 180 },
+    { id: "l2_3", label: "Service Account", sub: "USER", type: "user", x: 650, y: 180 },
 
-    // Level 3 - Aligned under parents
-    { id: "l3_1", label: "Admin", sub: "ROLE", type: "group", x: 150, y: 380 },
-    { id: "l3_2", label: "AWS Keys", sub: "CRITICAL ASSET", type: "critical", x: 320, y: 380, alert: true },
-    { id: "l3_3", label: "Prod DB", sub: "RESOURCE", type: "resource", x: 480, y: 380 },
-    { id: "l3_4", label: "Contractor", sub: "USER", type: "user", x: 650, y: 380 },
+    // Level 3 - Licenses & Nested Groups
+    { id: "l3_1", label: "Admin", sub: "ROLE", type: "group", x: 150, y: 310 },
+    { id: "l3_2", label: "Jira License", sub: "LICENSE", type: "license", x: 300, y: 310 },
+    { id: "l3_3", label: "Engineering", sub: "GROUP", type: "group", x: 500, y: 310 },
+
+    // Level 4 - Critical Access & Resources
+    { id: "l4_1", label: "AWS Keys", sub: "CRITICAL ASSET", type: "critical", x: 400, y: 440, alert: true },
+    { id: "l4_2", label: "Prod DB", sub: "RESOURCE", type: "resource", x: 600, y: 440 },
   ];
 
   // Connections (source -> target)
   const connections = [
+    // Root connections
     { from: "root", to: "l2_1" },
     { from: "root", to: "l2_2" },
     { from: "root", to: "l2_3" },
+    
+    // DevOps flow
     { from: "l2_1", to: "l3_1" },
-    { from: "l2_2", to: "l3_2", highlight: true },
-    { from: "l2_2", to: "l3_3" },
-    { from: "l2_3", to: "l3_4" },
+    
+    // Intern flow (Complex)
+    { from: "l2_2", to: "l3_2" }, // Intern -> License
+    { from: "l2_2", to: "l3_3" }, // Intern -> Engineering Group (Nesting)
+    
+    // Engineering flow to Critical Assets
+    { from: "l3_3", to: "l4_1", highlight: true }, // Engineering -> AWS Keys (Critical)
+    { from: "l3_3", to: "l4_2" }, // Engineering -> Prod DB
   ];
 
   return (
@@ -104,6 +115,7 @@ export function IdentityGraphDiagram() {
                     ${node.type === 'identity' ? 'bg-white border-teal-200 shadow-teal-100' : ''}
                     ${node.type === 'compromised' ? 'bg-white border-blue-200 shadow-blue-100' : ''}
                     ${node.type === 'critical' ? 'bg-white border-red-200 shadow-red-100' : ''}
+                    ${node.type === 'license' ? 'bg-white border-purple-200 shadow-purple-100' : ''}
                     ${['group', 'user', 'resource'].includes(node.type) ? 'bg-white border-slate-200 shadow-slate-100' : ''}
                   `}
                   initial={{ scale: 0, opacity: 0 }}
@@ -124,6 +136,7 @@ export function IdentityGraphDiagram() {
                       ${node.type === 'identity' ? 'bg-teal-50 text-teal-600 border-teal-100' : ''}
                       ${node.type === 'compromised' ? 'bg-blue-50 text-blue-600 border-blue-100' : ''}
                       ${node.type === 'critical' ? 'bg-red-50 text-red-600 border-red-100' : ''}
+                      ${node.type === 'license' ? 'bg-purple-50 text-purple-600 border-purple-100' : ''}
                       ${['group', 'user', 'resource'].includes(node.type) ? 'bg-slate-50 text-slate-500 border-slate-100' : ''}
                     `}>
                       {node.type === 'identity' && <User size={18} />}
@@ -132,18 +145,21 @@ export function IdentityGraphDiagram() {
                       {node.type === 'user' && <User size={18} />}
                       {node.type === 'critical' && <Key size={18} />}
                       {node.type === 'resource' && <Database size={18} />}
+                      {node.type === 'license' && <FileKey size={18} />}
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className={`text-xs font-bold truncate leading-tight mb-0.5
                         ${node.type === 'identity' ? 'text-teal-900' : ''}
                         ${node.type === 'compromised' ? 'text-blue-900' : ''}
                         ${node.type === 'critical' ? 'text-red-900' : ''}
+                        ${node.type === 'license' ? 'text-purple-900' : ''}
                         ${['group', 'user', 'resource'].includes(node.type) ? 'text-slate-700' : ''}
                       `}>{node.label}</span>
                       <span className={`text-[9px] font-bold tracking-wider uppercase truncate
                         ${node.type === 'identity' ? 'text-teal-500' : ''}
                         ${node.type === 'compromised' ? 'text-blue-500' : ''}
                         ${node.type === 'critical' ? 'text-red-500' : ''}
+                        ${node.type === 'license' ? 'text-purple-500' : ''}
                         ${['group', 'user', 'resource'].includes(node.type) ? 'text-slate-400' : ''}
                       `}>{node.sub}</span>
                     </div>

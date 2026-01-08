@@ -34,7 +34,7 @@ const team = [
 
 export function LeadershipTeam() {
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
+    <section className="pt-0 pb-24 bg-slate-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(#e2e8f0_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.4] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
       

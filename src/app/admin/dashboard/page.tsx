@@ -40,6 +40,16 @@ export default function AdminDashboard() {
               <Link href="/admin/updates">Manage Updates</Link>
             </Button>
           </div>
+
+          <div className="p-6 bg-white rounded-lg border">
+            <h2 className="text-xl font-semibold mb-4">LinkedIn Posts</h2>
+            <p className="text-muted-foreground mb-4">
+              Manage LinkedIn posts shown on the homepage
+            </p>
+            <Button asChild>
+              <Link href="/admin/linkedin">Manage LinkedIn</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </AdminLayout>

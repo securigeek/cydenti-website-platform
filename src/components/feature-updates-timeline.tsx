@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Zap, CheckCircle2, AlertCircle, Megaphone, Calendar, Tag } from "lucide-react";
+import { Zap, CheckCircle2, AlertCircle, Megaphone, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type UpdateCategory = "Feature" | "Improvement" | "Fix" | "Announcement" | "Product";
@@ -258,11 +259,14 @@ export function FeatureUpdatesTimeline({ items = [] }: FeatureUpdatesTimelinePro
                           {/* Image (Optional) */}
                           {update.image && (
                             <div className="w-full mt-4 overflow-hidden border border-zinc-100 bg-zinc-50 p-2">
-                              <img
-                                src={update.image}
-                                alt={update.title}
-                                className="w-full h-auto object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                              />
+                              <div className="relative w-full h-56">
+                                <Image
+                                  src={update.image}
+                                  alt={update.title}
+                                  fill
+                                  className="object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                                />
+                              </div>
                             </div>
                           )}
                         </div>

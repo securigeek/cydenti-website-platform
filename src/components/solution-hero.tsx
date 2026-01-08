@@ -56,7 +56,7 @@ export function SolutionHero() {
             className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-8 leading-[1.1]"
           >
             Identity Security Solutions for <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cydenti-primary to-cydenti-secondary">
+            <span className="text-gradient-primary">
               SaaS & Cloud
             </span>
           </motion.h1>

@@ -1,15 +1,24 @@
 "use client";
 
 import React from "react";
-import { 
-  BrainCircuit, 
+import Link from "next/link";
+import {
+  BrainCircuit,
   CheckCircle2,
   Zap,
   Search,
   User,
   Users,
   Key,
-  Globe
+  FileKey,
+  Database,
+  Activity,
+  Shield,
+  Eye,
+  Globe,
+  ArrowRight,
+  ShieldAlert,
+  AlertTriangle
 } from "lucide-react";
 
 // CSS for the circuit animation
@@ -307,13 +316,110 @@ export function AiAutomationSection() {
 
         {/* Spacer */}
         <div className="h-32 md:h-48" />
+
+        {/* Feature: Threat Detection & Response */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+             {/* Content */}
+             <div className="space-y-8">
+                  <div className="inline-flex items-center gap-2 text-rose-400 font-bold tracking-widest text-xs uppercase bg-rose-900/20 px-3 py-1 rounded-full border border-rose-800/30 backdrop-blur-sm shadow-[0_0_15px_rgba(244,63,94,0.2)]">
+                      <ShieldAlert className="w-3 h-3" />
+                      Identity Detection
+                  </div>
+
+                  <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                    Stop Threats That<br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">Others Miss.</span>
+                  </h2>
+
+                  <p className="text-slate-400 text-lg leading-relaxed">
+                    Cydenti observes authentication events, applies behavioral analytics, and flags anomalies in real-time. From credential stuffing to MFA fatigue, stop attacks before they become incidents.
+                  </p>
+                  
+                  <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center text-rose-400 border border-rose-500/30">
+                              <Activity className="w-4 h-4" />
+                          </div>
+                          <span className="text-slate-300 font-medium">Real-time Anomaly Detection</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                           <div className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 border border-orange-500/30">
+                              <Zap className="w-4 h-4" />
+                          </div>
+                          <span className="text-slate-300 font-medium">Automated Response (SIEM/SOAR)</span>
+                      </div>
+                  </div>
+
+                  <div className="pt-4">
+                       <Link href="/platform/itdr" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-rose-600 text-white font-semibold hover:bg-rose-500 transition-colors shadow-lg shadow-rose-900/20">
+                           Learn more about Identity Detection
+                           <ArrowRight className="w-4 h-4" />
+                       </Link>
+                  </div>
+             </div>
+
+             {/* Visual */}
+             <div className="relative">
+                  <div className="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group/threat transition-all duration-500 hover:border-rose-500/50 hover:shadow-[0_0_30px_rgba(244,63,94,0.1)]">
+                      <div className="absolute inset-0 bg-rose-500/5 group-hover/threat:bg-rose-500/10 transition-colors" />
+                      
+                      {/* Fake Alert List */}
+                      <div className="space-y-4">
+                          <div className="bg-slate-800/50 p-4 rounded-xl border border-rose-500/30 flex items-start gap-4 shadow-lg">
+                              <div className="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center shrink-0 animate-pulse">
+                                  <AlertTriangle className="w-5 h-5 text-rose-500" />
+                              </div>
+                              <div className="flex-1">
+                                  <div className="flex items-center justify-between mb-1">
+                                      <span className="text-rose-400 font-bold text-sm">MFA Fatigue Detected</span>
+                                      <span className="text-xs text-slate-500">Just now</span>
+                                  </div>
+                                  <p className="text-xs text-slate-400 mb-2">User &quot;jdoe&quot; denied 15 push notifications in 2 minutes.</p>
+                                  <div className="flex items-center gap-2">
+                                      <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-300 border border-slate-600">Okta</span>
+                                      <span className="text-[10px] px-2 py-0.5 rounded bg-rose-900/30 text-rose-300 border border-rose-800/30">High Severity</span>
+                                  </div>
+                              </div>
+                          </div>
+
+                           <div className="bg-slate-800/50 p-4 rounded-xl border border-orange-500/30 flex items-start gap-4 opacity-70">
+                              <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0">
+                                  <Globe className="w-5 h-5 text-orange-500" />
+                              </div>
+                              <div className="flex-1">
+                                  <div className="flex items-center justify-between mb-1">
+                                      <span className="text-orange-400 font-bold text-sm">Impossible Travel</span>
+                                      <span className="text-xs text-slate-500">5m ago</span>
+                                  </div>
+                                  <p className="text-xs text-slate-400 mb-2">Logins from NY and Tokyo within 1 hour.</p>
+                                  <div className="flex items-center gap-2">
+                                      <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-300 border border-slate-600">Azure AD</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      {/* Automated Response Badge */}
+                      <div className="mt-6 flex items-center justify-between border-t border-slate-700/50 pt-4">
+                          <span className="text-xs text-slate-400">Automated Action:</span>
+                          <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold bg-emerald-900/20 px-2 py-1 rounded border border-emerald-800/30">
+                              <CheckCircle2 className="w-3 h-3" />
+                              Account Suspended
+                          </div>
+                      </div>
+                  </div>
+             </div>
+        </div>
+
+        {/* Spacer */}
+        <div className="h-32 md:h-48" />
         
         {/* Feature 3: Access Explorer */}
         <div className="relative w-full">
           <div className="text-center mb-16">
                <div className="inline-flex items-center gap-2 text-indigo-400 font-bold tracking-widest text-xs uppercase bg-indigo-900/20 px-3 py-1 rounded-full border border-indigo-800/30 backdrop-blur-sm mb-6">
                   <Search className="w-3 h-3" />
-                  Deep Visibility
+                  Identity Graph
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
                   Access Explorer
@@ -321,6 +427,110 @@ export function AiAutomationSection() {
                 <p className="text-slate-400 max-w-2xl mx-auto">
                   Visualize every connection, permission, and identity path in real-time.
                 </p>
+          </div>
+
+          {/* Identity Lifecycle Wave Flow */}
+          <div className="w-full max-w-5xl mx-auto mb-20 relative px-4">
+            {/* Connecting Wave Line */}
+            <div className="absolute top-[2rem] left-0 w-full h-24 -translate-y-1/2 pointer-events-none hidden md:block z-0">
+              <svg className="w-full h-full overflow-visible" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="waveGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
+                    <stop offset="20%" stopColor="#3b82f6" stopOpacity="0.5" />
+                    <stop offset="50%" stopColor="#06b6d4" stopOpacity="1" />
+                    <stop offset="80%" stopColor="#3b82f6" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
+                  </linearGradient>
+                </defs>
+                {/* Sine Wave Path - Adjusted to align with icons */}
+                <path 
+                  d="M120,50 C250,50 250,20 370,20 S500,80 620,80 S750,50 880,50" 
+                  fill="none" 
+                  stroke="url(#waveGradient2)" 
+                  strokeWidth="2" 
+                  className="opacity-60"
+                  vectorEffect="non-scaling-stroke"
+                />
+                {/* Animated Particles */}
+                <circle r="3" fill="#06b6d4">
+                  <animateMotion 
+                    dur="4s" 
+                    repeatCount="indefinite" 
+                    path="M120,50 C250,50 250,20 370,20 S500,80 620,80 S750,50 880,50" 
+                  />
+                </circle>
+                <circle r="3" fill="#3b82f6">
+                  <animateMotion 
+                    dur="4s" 
+                    begin="2s"
+                    repeatCount="indefinite" 
+                    path="M120,50 C250,50 250,20 370,20 S500,80 620,80 S750,50 880,50" 
+                  />
+                </circle>
+              </svg>
+            </div>
+
+            {/* Steps Container */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10">
+              
+              {/* Step 1: Discover */}
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+                   {/* Rotatable Container */}
+                   <div className="absolute inset-0 rounded-2xl bg-slate-900 border border-slate-700 shadow-lg group-hover:rotate-45 group-hover:border-blue-500 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all duration-500 ease-out z-0"></div>
+                   {/* Icon - Stationary */}
+                   <div className="relative z-10 text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                     <Globe className="w-7 h-7" />
+                   </div>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Discover</h3>
+                <p className="text-sm text-slate-400">Ingest identity signals & build the graph</p>
+              </div>
+
+              {/* Step 2: Assess */}
+              <div className="flex flex-col items-center text-center group md:-translate-y-8">
+                <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+                   {/* Rotatable Container */}
+                   <div className="absolute inset-0 rounded-2xl bg-slate-900 border border-slate-700 shadow-lg group-hover:rotate-45 group-hover:border-cyan-500 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all duration-500 ease-out z-0"></div>
+                   {/* Icon - Stationary */}
+                   <div className="relative z-10 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">
+                     <Activity className="w-7 h-7" />
+                   </div>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Assess</h3>
+                <p className="text-sm text-slate-400">Score risk & map hidden paths</p>
+              </div>
+
+              {/* Step 3: Remediate */}
+              <div className="flex flex-col items-center text-center group md:translate-y-8">
+                <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+                   {/* Rotatable Container */}
+                   <div className="absolute inset-0 rounded-2xl bg-slate-900 border border-slate-700 shadow-lg group-hover:rotate-45 group-hover:border-indigo-500 group-hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all duration-500 ease-out z-0"></div>
+                   {/* Icon - Stationary */}
+                   <div className="relative z-10 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
+                     <Shield className="w-7 h-7" />
+                   </div>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Remediate</h3>
+                <p className="text-sm text-slate-400">Fix permissions & guide owners</p>
+              </div>
+
+              {/* Step 4: Monitor */}
+              <div className="flex flex-col items-center text-center group">
+                <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+                   {/* Rotatable Container */}
+                   <div className="absolute inset-0 rounded-2xl bg-slate-900 border border-slate-700 shadow-lg group-hover:rotate-45 group-hover:border-emerald-500 group-hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-all duration-500 ease-out z-0"></div>
+                   {/* Icon - Stationary */}
+                   <div className="relative z-10 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300">
+                     <Eye className="w-7 h-7" />
+                   </div>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">Monitor</h3>
+                <p className="text-sm text-slate-400">Continuous drift detection</p>
+              </div>
+
+            </div>
           </div>
 
           <div className="relative w-full h-[600px] bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden group/explorer">
@@ -340,30 +550,37 @@ export function AiAutomationSection() {
                           </linearGradient>
                       </defs>
                       
-                      {/* Connections from Root to Level 2 */}
-                      <path d="M 500,100 C 500,180 200,180 200,250" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
-                      <path d="M 500,100 C 500,180 500,180 500,250" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
-                      <path d="M 500,100 C 500,180 800,180 800,250" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      {/* L1 -> L2 */}
+                      <path d="M 500,120 C 500,175 200,175 200,230" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      <path d="M 500,120 C 500,175 500,175 500,230" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      <path d="M 500,120 C 500,175 800,175 800,230" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
 
-                      {/* Connections from Level 2 to Level 3 */}
-                      <path d="M 200,310 C 200,360 100,360 100,420" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
-                      <path d="M 500,310 C 500,360 350,360 350,420" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
-                      <path d="M 500,310 C 500,360 650,360 650,420" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
-                      <path d="M 800,310 C 800,360 900,360 900,420" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      {/* L2 -> L3 */}
+                      <path d="M 200,260 C 200,315 200,315 200,370" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      <path d="M 500,260 C 500,315 420,315 420,370" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      <path d="M 500,260 C 500,315 580,315 580,370" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
                       
-                      {/* Active Threat Path Animation (Root -> User -> AWS Keys) */}
-                      {/* Segment 1: Root to User (Middle) */}
-                      <path d="M 500,100 C 500,180 500,180 500,250" stroke="url(#pathGradient)" strokeWidth="2" fill="none" className="animate-pulse" />
+                      {/* L3 -> L4 */}
+                      <path d="M 580,400 C 580,455 500,455 500,510" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                      <path d="M 580,400 C 580,455 660,455 660,510" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+
+                      {/* Active Threat Path Animation */}
+                      {/* Root -> Interns */}
+                      <path d="M 500,120 C 500,175 500,175 500,230" stroke="url(#pathGradient)" strokeWidth="2" fill="none" className="animate-pulse" />
+                      {/* Interns -> Engineering */}
+                      <path d="M 500,260 C 500,315 580,315 580,370" stroke="url(#pathGradient)" strokeWidth="2" fill="none" className="animate-pulse" />
+                      {/* Engineering -> AWS Keys */}
+                      <path d="M 580,400 C 580,455 500,455 500,510" stroke="url(#pathGradient)" strokeWidth="2" fill="none" className="animate-pulse" />
                       
-                      {/* Segment 2: User to AWS Keys (Left-Middle) */}
-                      <path d="M 500,310 C 500,360 350,360 350,420" stroke="url(#pathGradient)" strokeWidth="2" fill="none" className="animate-pulse" />
-                      
-                      {/* Animated Particles moving along the threat path */}
+                      {/* Particles */}
                       <circle r="3" fill="#60a5fa">
-                          <animateMotion dur="2s" repeatCount="indefinite" path="M 500,100 C 500,180 500,180 500,250" />
+                          <animateMotion dur="2s" repeatCount="indefinite" path="M 500,120 C 500,175 500,175 500,230" />
                       </circle>
                       <circle r="3" fill="#60a5fa">
-                          <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M 500,310 C 500,360 350,360 350,420" />
+                          <animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M 500,260 C 500,315 580,315 580,370" />
+                      </circle>
+                      <circle r="3" fill="#60a5fa">
+                          <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M 580,400 C 580,455 500,455 500,510" />
                       </circle>
                   </svg>
 
@@ -371,7 +588,7 @@ export function AiAutomationSection() {
                   <div className="relative w-full h-full max-w-5xl mx-auto p-8 z-10">
                       
                       {/* Level 1: Root Node (Identity) */}
-                      <div className="absolute top-[60px] left-1/2 -translate-x-1/2">
+                      <div className="absolute top-[80px] left-1/2 -translate-x-1/2">
                           <div className="bg-slate-900/90 backdrop-blur-md border border-teal-500/50 rounded-full py-2 px-4 flex items-center gap-3 shadow-[0_0_20px_rgba(20,184,166,0.2)] animate-float">
                               <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center">
                                   <User className="w-4 h-4 text-teal-400" />
@@ -384,7 +601,8 @@ export function AiAutomationSection() {
                       </div>
 
                       {/* Level 2 Nodes */}
-                      <div className="absolute top-[250px] left-[20%] -translate-x-1/2">
+                      {/* DevOps */}
+                      <div className="absolute top-[220px] left-[20%] -translate-x-1/2">
                           <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-2 px-4 flex items-center gap-3 opacity-50">
                               <div className="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center">
                                   <Users className="w-4 h-4 text-slate-400" />
@@ -396,21 +614,22 @@ export function AiAutomationSection() {
                           </div>
                       </div>
 
-                      {/* Compromised User Node (Middle) */}
-                      <div className="absolute top-[250px] left-1/2 -translate-x-1/2">
+                      {/* Interns (Middle - Active Path) */}
+                      <div className="absolute top-[220px] left-1/2 -translate-x-1/2">
                           <div className="bg-slate-900/80 backdrop-blur-md border border-blue-500/50 rounded-full py-2 px-4 flex items-center gap-3 shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:scale-105 transition-transform">
                               <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center relative">
-                                  <User className="w-4 h-4 text-blue-400" />
+                                  <Users className="w-4 h-4 text-blue-400" />
                                   <div className="absolute inset-0 bg-blue-500/20 rounded-full animate-ping" />
                               </div>
                               <div className="text-left">
-                                  <div className="text-sm font-bold text-white">Luka Horvat</div>
-                                  <div className="text-[10px] text-blue-400 uppercase tracking-wider">Compromised</div>
+                                  <div className="text-sm font-bold text-white">Interns</div>
+                                  <div className="text-[10px] text-blue-400 uppercase tracking-wider">Group</div>
                               </div>
                           </div>
                       </div>
 
-                      <div className="absolute top-[250px] left-[80%] -translate-x-1/2">
+                      {/* Service Account */}
+                      <div className="absolute top-[220px] left-[80%] -translate-x-1/2">
                           <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-2 px-4 flex items-center gap-3 opacity-50">
                               <div className="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center">
                                   <User className="w-4 h-4 text-slate-400" />
@@ -423,7 +642,8 @@ export function AiAutomationSection() {
                       </div>
 
                       {/* Level 3 Nodes */}
-                      <div className="absolute top-[420px] left-[10%] -translate-x-1/2">
+                      {/* Admin (under DevOps) */}
+                      <div className="absolute top-[360px] left-[20%] -translate-x-1/2">
                            <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-2 px-4 flex items-center gap-3 opacity-40">
                               <div className="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center">
                                   <Users className="w-4 h-4 text-slate-500" />
@@ -435,8 +655,35 @@ export function AiAutomationSection() {
                           </div>
                       </div>
 
-                       {/* High Threat Node (AWS Keys) */}
-                       <div className="absolute top-[420px] left-[35%] -translate-x-1/2">
+                      {/* Jira License (under Interns) */}
+                      <div className="absolute top-[360px] left-[42%] -translate-x-1/2">
+                           <div className="bg-slate-900/80 backdrop-blur-md border border-purple-500/50 rounded-full py-2 px-4 flex items-center gap-3 opacity-80">
+                              <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center">
+                                  <FileKey className="w-4 h-4 text-purple-400" />
+                              </div>
+                              <div className="text-left">
+                                  <div className="text-sm font-bold text-slate-300">Jira License</div>
+                                  <div className="text-[10px] text-purple-400 uppercase tracking-wider">License</div>
+                              </div>
+                          </div>
+                      </div>
+
+                      {/* Engineering (under Interns - Active Path) */}
+                      <div className="absolute top-[360px] left-[58%] -translate-x-1/2">
+                           <div className="bg-slate-900/80 backdrop-blur-md border border-blue-500/50 rounded-full py-2 px-4 flex items-center gap-3 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                              <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center relative">
+                                  <Users className="w-4 h-4 text-blue-400" />
+                              </div>
+                              <div className="text-left">
+                                  <div className="text-sm font-bold text-white">Engineering</div>
+                                  <div className="text-[10px] text-blue-400 uppercase tracking-wider">Group</div>
+                              </div>
+                          </div>
+                      </div>
+
+                      {/* Level 4 Nodes */}
+                       {/* AWS Keys (under Engineering - Critical) */}
+                       <div className="absolute top-[500px] left-[50%] -translate-x-1/2">
                            <div className="bg-slate-900/90 backdrop-blur-md border border-blue-500 rounded-full py-2 px-4 flex items-center gap-3 shadow-[0_0_30px_rgba(59,130,246,0.4)] animate-pulse-slow">
                               <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
                                   <Key className="w-4 h-4 text-blue-400" />
@@ -450,26 +697,15 @@ export function AiAutomationSection() {
                           </div>
                       </div>
 
-                      <div className="absolute top-[420px] left-[65%] -translate-x-1/2">
+                      {/* Prod DB (under Engineering) */}
+                      <div className="absolute top-[500px] left-[66%] -translate-x-1/2">
                            <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-2 px-4 flex items-center gap-3 opacity-40">
                               <div className="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center">
-                                  <Globe className="w-4 h-4 text-slate-500" />
+                                  <Database className="w-4 h-4 text-slate-500" />
                               </div>
                               <div className="text-left">
                                   <div className="text-sm font-bold text-slate-500">Prod DB</div>
                                   <div className="text-[10px] text-slate-600 uppercase tracking-wider">Resource</div>
-                              </div>
-                          </div>
-                      </div>
-
-                       <div className="absolute top-[420px] left-[90%] -translate-x-1/2">
-                           <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-2 px-4 flex items-center gap-3 opacity-40">
-                              <div className="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center">
-                                  <User className="w-4 h-4 text-slate-500" />
-                              </div>
-                              <div className="text-left">
-                                  <div className="text-sm font-bold text-slate-500">Contractor</div>
-                                  <div className="text-[10px] text-slate-600 uppercase tracking-wider">User</div>
                               </div>
                           </div>
                       </div>

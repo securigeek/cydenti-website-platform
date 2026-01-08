@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Zap, Database, UserCheck, RefreshCw, Unplug, CheckCircle2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Zap, Unplug } from "lucide-react";
 
 export function OAuthRiskVisual() {
   return (

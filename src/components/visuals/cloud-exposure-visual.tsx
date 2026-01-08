@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Zap, ArrowRight, Activity, Users, Globe, Lock, Layers } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Activity, Users, Globe, Lock } from "lucide-react";
 
 // CSS for the circuit animation
 const circuitStyles = `

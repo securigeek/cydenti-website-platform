@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Cydenti - Identity Security Platform",
-  description: "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
+  description:
+    "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
   icons: {
     icon: "/cydenti-brandmark.svg",
   },

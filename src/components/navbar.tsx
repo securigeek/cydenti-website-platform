@@ -61,6 +61,9 @@ export default function Navbar() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start" className="w-48 p-2">
                     <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2 focus:bg-slate-100">
+                      <Link href="/resources/gallery" className="w-full">Gallery</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2 focus:bg-slate-100">
                       <Link href="/resources/documentation" className="w-full">Documentation</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2 focus:bg-slate-100">
@@ -105,7 +108,7 @@ export default function Navbar() {
                   <Link href="/platform" onClick={() => setOpen(false)} className="px-2 py-1 font-medium">Platform</Link>
                   {/* <div className="pl-2 text-xs text-gray-500">Core Capabilities</div>
                   <Link href="/platform/itdr" onClick={() => setOpen(false)} className="px-2 py-1">Identity Threat Detection (ITDR)</Link>
-                  <Link href="/platform/sspm" onClick={() => setOpen(false)} className="px-2 py-1">SaaS Security Posture Management (SSPM)</Link>
+                  <Link href="/platform/ispm" onClick={() => setOpen(false)} className="px-2 py-1">Identity Security Posture Management (ISPM)</Link>
                   <Link href="/platform/cloud-identity-exposure" onClick={() => setOpen(false)} className="px-2 py-1">Cloud Identity Exposure Monitoring</Link>
                   <Link href="/platform/oauth-risk-management" onClick={() => setOpen(false)} className="px-2 py-1">Third-Party & OAuth Risk Management</Link>
                   <Link href="/platform/identity-risk-scoring" onClick={() => setOpen(false)} className="px-2 py-1">Identity Risk Scoring & Prioritization</Link>
@@ -118,6 +121,7 @@ export default function Navbar() {
                 {/* <Link href="/solution" onClick={() => setOpen(false)} className="px-2 py-1">Solution</Link> */}
                 <div className="grid gap-1">
                   <div className="font-medium">Resources</div>
+                  <Link href="/resources/gallery" onClick={() => setOpen(false)} className="px-2 py-1">Gallery</Link>
                   <Link href="/resources/documentation" onClick={() => setOpen(false)} className="px-2 py-1">Documentation</Link>
                   <Link href="/resources/blogs" onClick={() => setOpen(false)} className="px-2 py-1">Blogs</Link>
                 </div>

@@ -28,7 +28,7 @@ export default function Page() {
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
             The Core of <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-cydenti-primary)] to-[var(--color-cydenti-secondary)]">
+            <span className="text-gradient-primary">
               Modern Identity Security
             </span>
           </h1>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, type SVGProps } from "react";
+import { useState, useRef, type SVGProps } from "react";
 import { cn } from "@/lib/utils";
 import { Network, BrainCircuit, Blocks, CheckCircle2, Globe, Lock, Database } from "lucide-react";
 import { IdentityGraphDiagram } from "@/components/identity-graph-diagram";
@@ -223,7 +223,7 @@ export function PlatformFoundations() {
 
   return (
     <section ref={containerRef} className="relative bg-white lg:h-[300vh]">
-      <div className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-center overflow-hidden py-24 lg:py-0">
+      <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:overflow-y-auto no-scrollbar overflow-visible py-24">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />

@@ -34,7 +34,7 @@ export default function Page() {
              Core Capabilities
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 animate-gradient-x">
+            <span className="text-gradient-primary">
               Third-Party & OAuth Risk Management
             </span>
           </h1>

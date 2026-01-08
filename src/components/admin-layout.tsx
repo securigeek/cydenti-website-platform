@@ -53,6 +53,14 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                 Blogs
               </Link>
               <Link
+                href="/admin/resources"
+                className={`px-3 py-2 rounded-md ${
+                  pathname?.startsWith('/admin/resources') ? 'bg-gray-100' : 'hover:bg-gray-50'
+                }`}
+              >
+                Resources
+              </Link>
+              <Link
                 href="/admin/announcement"
                 className={`px-3 py-2 rounded-md ${
                   pathname === '/admin/announcement' ? 'bg-gray-100' : 'hover:bg-gray-50'
@@ -67,6 +75,14 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                 }`}
               >
                 Updates
+              </Link>
+              <Link
+                href="/admin/linkedin"
+                className={`px-3 py-2 rounded-md ${
+                  pathname?.startsWith('/admin/linkedin') ? 'bg-gray-100' : 'hover:bg-gray-50'
+                }`}
+              >
+                LinkedIn
               </Link>
               <Link
                 href="/admin/keywords"

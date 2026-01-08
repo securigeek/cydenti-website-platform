@@ -25,7 +25,7 @@ export function IdentityFlowchartSection() {
             </div>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1]">
               One Intelligence Layer.<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500">Three Pillars of Defense.</span>
+              <span className="text-gradient-primary">Three Pillars of Defense.</span>
             </h2>
           </div>
           <p className="text-slate-500 text-lg leading-relaxed max-w-sm md:text-right font-medium">
@@ -154,15 +154,15 @@ export function IdentityFlowchartSection() {
                <div className="bg-slate-900 p-3.5 rounded-lg border border-slate-700 shadow-sm flex items-center gap-3 relative group hover:border-blue-500 transition-all z-20">
                   <div className="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center text-blue-400 border border-slate-700"><Globe className="w-4 h-4"/></div>
                   <div>
-                     <span className="font-bold text-white text-sm block">SSPM</span>
-                     <span className="text-[10px] text-slate-400">SaaS Security Posture Mgmt</span>
+                     <span className="font-bold text-white text-sm block">ISPM</span>
+                     <span className="text-[10px] text-slate-400">Identity Security Posture Mgmt</span>
                   </div>
                </div>
                
                <div className="bg-slate-900 p-3.5 rounded-lg border border-slate-700 shadow-sm flex items-center gap-3 relative group hover:border-blue-500 transition-all z-20">
                   <div className="w-9 h-9 bg-slate-800 rounded-md flex items-center justify-center text-blue-400 border border-slate-700"><Zap className="w-4 h-4"/></div>
                   <div>
-                     <span className="font-bold text-white text-sm block">Exposure</span>
+                     <span className="font-bold text-white text-sm block">Blast Radius</span>
                      <span className="text-[10px] text-slate-400">Risk Intelligence</span>
                   </div>
                </div>

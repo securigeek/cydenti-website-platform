@@ -27,7 +27,7 @@ export default function Page() {
             Platform Foundations
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
-            <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">
+            <span className="text-gradient-primary">
               AI Risk Engine
             </span>
           </h1>
