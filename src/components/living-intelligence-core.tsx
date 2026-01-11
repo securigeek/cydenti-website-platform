@@ -188,11 +188,11 @@ export function LivingIntelligenceCore() {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[600px] flex items-center justify-center overflow-visible">
+    <div className="relative w-full h-full min-h-[280px] sm:min-h-[420px] lg:min-h-[600px] flex items-center justify-center overflow-hidden">
       
       {/* 3D Perspective Container */}
       <div 
-        className="relative w-[600px] h-[600px]" 
+        className="relative w-full max-w-[280px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[600px] aspect-square" 
         style={{ 
           transform: "rotateX(25deg) rotateY(-10deg) scale(0.9)", 
           transformStyle: "preserve-3d" 

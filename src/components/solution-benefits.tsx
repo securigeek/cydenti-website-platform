@@ -95,7 +95,7 @@ const benefits = [
 
 export function SolutionBenefits() {
   return (
-    <section className="py-32 bg-[#0B1120] relative overflow-hidden text-white rounded-[60px] mx-4 mb-4">
+    <section className="py-16 md:py-32 bg-[#0B1120] relative overflow-hidden text-white rounded-none md:rounded-[60px] mx-0 md:mx-4 mb-0 md:mb-4">
       {/* Background Effects */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 blur-[100px]" />

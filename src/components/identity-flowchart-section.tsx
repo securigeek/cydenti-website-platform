@@ -12,7 +12,7 @@ import Image from "next/image";
 
 export function IdentityFlowchartSection() {
   return (
-    <section className="pt-0 pb-32 relative overflow-visible">
+    <section className="pt-0 pb-32 relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         

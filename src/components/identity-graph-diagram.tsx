@@ -1,16 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Users, Key, Database, FileKey } from "lucide-react";
 
 export function IdentityGraphDiagram() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // SVG dimensions
-  const width = 800;
-  const height = 500;
+  const width = isMobile ? 400 : 800;
+  const height = isMobile ? 800 : 500;
 
   // Node data with positions - Complex relationship flow
-  const nodes = [
+  const desktopNodes = [
     // Level 1 (Root) - Centered
     { id: "root", label: "Luka Horvat", sub: "IDENTITY", type: "identity", x: 400, y: 50 },
     
@@ -28,6 +37,27 @@ export function IdentityGraphDiagram() {
     { id: "l4_1", label: "AWS Keys", sub: "CRITICAL ASSET", type: "critical", x: 400, y: 440, alert: true },
     { id: "l4_2", label: "Prod DB", sub: "RESOURCE", type: "resource", x: 600, y: 440 },
   ];
+
+  const mobileNodes = [
+    // Level 1 (Root) - Centered
+    { id: "root", label: "Luka Horvat", sub: "IDENTITY", type: "identity", x: 200, y: 50 },
+    
+    // Level 2 - Primary Groups/Roles
+    { id: "l2_1", label: "DevOps Team", sub: "GROUP", type: "group", x: 100, y: 160 },
+    { id: "l2_2", label: "Interns", sub: "GROUP", type: "group", x: 300, y: 160 },
+    { id: "l2_3", label: "Service Account", sub: "USER", type: "user", x: 200, y: 260 },
+
+    // Level 3 - Licenses & Nested Groups
+    { id: "l3_1", label: "Admin", sub: "ROLE", type: "group", x: 100, y: 360 },
+    { id: "l3_2", label: "Jira License", sub: "LICENSE", type: "license", x: 300, y: 360 },
+    { id: "l3_3", label: "Engineering", sub: "GROUP", type: "group", x: 300, y: 460 },
+
+    // Level 4 - Critical Access & Resources
+    { id: "l4_1", label: "AWS Keys", sub: "CRITICAL ASSET", type: "critical", x: 200, y: 580, alert: true },
+    { id: "l4_2", label: "Prod DB", sub: "RESOURCE", type: "resource", x: 200, y: 680 },
+  ];
+
+  const nodes = isMobile ? mobileNodes : desktopNodes;
 
   // Connections (source -> target)
   const connections = [

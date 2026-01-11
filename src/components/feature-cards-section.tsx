@@ -4,11 +4,11 @@ import Link from "next/link";
 
 export function FeatureCardsSection() {
   return (
-    <section className="py-32 bg-transparent relative overflow-visible z-0">
+    <section className="py-20 md:py-32 bg-transparent relative overflow-hidden z-0">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Total Visibility. <br/>
             <span className="text-blue-600">Intelligent Defense.</span>

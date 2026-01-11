@@ -323,10 +323,7 @@ export function PlatformFoundations() {
                   {activeTab === 0 && (
                      // Identity Graph Visual - scaled to fit container
                      <div className="w-full h-full flex items-center justify-center relative">
-                        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm lg:hidden z-10 flex items-center justify-center">
-                             <p className="text-sm font-medium text-slate-400">View on Desktop for Interactive Diagram</p>
-                        </div>
-                        <div className="w-full transform scale-90 lg:scale-100 origin-center">
+                        <div className="w-full origin-center">
                             <IdentityGraphDiagram />
                         </div>
                      </div>

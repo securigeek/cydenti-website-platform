@@ -7,7 +7,16 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function IntegrationsSection() {
-  const integrations = [
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const allIntegrations = [
     { alt: "CrowdStrike", src: "/CYDENTI DASHBOARD P 2/crowdstrike.png" },
     { alt: "GitLab", src: "/CYDENTI DASHBOARD P 2/gitlab.png" },
     { alt: "GitHub", src: "/CYDENTI DASHBOARD P 2/GitHub-Mark-ea2971cee799.png" },
@@ -26,6 +35,12 @@ export function IntegrationsSection() {
     { alt: "Azure", src: "/CYDENTI DASHBOARD P 2/azure.svg" },
     { alt: "Google Cloud", src: "/CYDENTI DASHBOARD P 2/google_cloud-icon 1.svg" },
   ];
+
+  // On mobile, show a focused subset (7 items centered around Cydenti) to prevent overcrowding
+  // Indices 5 to 11: ServiceNow, Slack, Salesforce, Cydenti, Atlassian, M365, Google Workspace
+  const integrations = isMobile 
+    ? allIntegrations.slice(5, 12) 
+    : allIntegrations;
 
   const getBezierPoint = (t: number) => {
     // P0=(0,70), P1=(30,20), P2=(70,20), P3=(100,70)

@@ -344,12 +344,12 @@ export function SystemArchitectureSection() {
                    </div>
                    
                    {/* Image Container - Taller */}
-                   <div className="relative h-[450px] w-full bg-slate-50 flex items-start justify-center overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
+                   <div className="relative h-[250px] md:h-[450px] w-full bg-slate-50 flex items-start justify-center overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
                       <Image 
                         src="/dashboard2.png" 
                         alt="Cydenti Dashboard" 
                         fill
-                        className="object-cover object-top transition-transform duration-1000 hover:scale-[1.01]"
+                        className="object-contain md:object-cover object-top transition-transform duration-1000 hover:scale-[1.01]"
                       />
                       
                       {/* Floating Badge

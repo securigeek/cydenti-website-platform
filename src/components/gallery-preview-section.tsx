@@ -52,8 +52,8 @@ export async function GalleryPreviewSection() {
     <section className="py-24 bg-slate-50 relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-3xl mix-blend-multiply opacity-70" />
-        <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-indigo-100/50 rounded-full blur-3xl mix-blend-multiply opacity-70" />
+        <div className="hidden sm:block absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-3xl mix-blend-multiply opacity-70" />
+        <div className="hidden sm:block absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-indigo-100/50 rounded-full blur-3xl mix-blend-multiply opacity-70" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -81,7 +81,7 @@ export async function GalleryPreviewSection() {
         </div>
 
         <Tabs defaultValue="insights" className="w-full">
-            <TabsList className="grid w-full md:w-[400px] grid-cols-2 mb-8 bg-slate-100 p-1 rounded-full">
+            <TabsList className="grid w-full sm:max-w-sm grid-cols-2 mb-8 bg-slate-100 p-1 rounded-full">
                 <TabsTrigger value="insights" className="rounded-full data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm">Latest Insights</TabsTrigger>
                 <TabsTrigger value="community" className="rounded-full data-[state=active]:bg-white data-[state=active]:text-[#0A66C2] data-[state=active]:shadow-sm">Community Pulse</TabsTrigger>
             </TabsList>

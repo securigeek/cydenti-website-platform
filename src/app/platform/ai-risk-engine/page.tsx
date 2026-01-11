@@ -101,7 +101,7 @@ export default function Page() {
                 <p className="text-slate-300 text-lg mb-8">
                   A complete, continuously updated <span className="text-white font-semibold">Identity Graph</span>.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
                     <div className="text-cyan-400 font-bold text-lg mb-1">Context</div>
                     <div className="text-sm text-slate-400">Deep relationship mapping</div>
@@ -357,7 +357,7 @@ export default function Page() {
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 flex flex-col items-center justify-center text-center h-48">
                 <Users className="w-10 h-10 text-blue-400 mb-4" />
                 <div className="text-3xl font-bold text-white mb-1">10k+</div>
@@ -417,4 +417,3 @@ export default function Page() {
     </main>
   );
 }
-

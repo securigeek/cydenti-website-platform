@@ -51,7 +51,7 @@ export function WhyCydentiSection() {
   ];
 
   return (
-    <section className="py-24 bg-white relative rounded-[60px] mx-4 my-4 border border-slate-100 shadow-sm">
+    <section className="py-16 md:py-24 bg-white relative rounded-none md:rounded-[60px] mx-0 md:mx-4 my-0 md:my-4 border-y md:border border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}

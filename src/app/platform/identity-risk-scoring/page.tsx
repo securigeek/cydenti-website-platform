@@ -88,7 +88,7 @@ export default function Page() {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 opacity-60">
                 <div className="text-slate-400 font-bold mb-2 uppercase text-xs">Most Tools</div>
                 <div className="text-xl font-semibold text-slate-700">Score Risk in Isolation</div>
@@ -360,7 +360,7 @@ export default function Page() {
             Risk isn’t a snapshot. Cydenti automatically recalculates risk — without manual tuning or thresholds.
           </p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {[
               { label: "Permissions change", icon: Lock },
               { label: "Integrations evolve", icon: Network },

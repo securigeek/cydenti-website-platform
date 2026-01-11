@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 export function BlastRadiusSection() {
   return (
-    <section className="py-24 bg-[#0B1120] relative overflow-hidden text-white rounded-[60px] mx-4 mb-4 border border-slate-800">
+    <section className="py-16 md:py-24 bg-[#0B1120] relative overflow-hidden text-white rounded-none md:rounded-[60px] mx-0 md:mx-4 mb-0 md:mb-4 border-y md:border border-slate-800">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-rose-900/10 rounded-full blur-[100px]" />

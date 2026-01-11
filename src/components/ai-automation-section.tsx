@@ -37,13 +37,18 @@ const circuitStyles = `
 
 export function AiAutomationSection() {
   const [mounted, setMounted] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <section className="py-32 bg-[#0B1120] relative overflow-hidden text-white rounded-[60px] mx-4 mb-4">
+    <section className="py-16 md:py-32 bg-[#0B1120] relative overflow-hidden text-white rounded-none md:rounded-[60px] mx-0 md:mx-4 mb-0 md:mb-4">
        <style jsx global>{circuitStyles}</style>
       
       {/* 
@@ -533,13 +538,154 @@ export function AiAutomationSection() {
             </div>
           </div>
 
-          <div className="relative w-full h-[600px] bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden group/explorer">
+          <div className={`relative w-full ${isMobile ? 'h-[800px]' : 'h-[600px]'} bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden group/explorer`}>
                {/* Grid Background */}
                <div className="absolute inset-0 bg-[linear-gradient(rgba(30,41,59,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(30,41,59,0.5)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
                
                {/* Interactive Graph Container - Centered */}
                <div className="absolute inset-0 flex items-center justify-center">
                   
+                  {isMobile ? (
+                    // MOBILE LAYOUT
+                    <>
+                      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid meet">
+                          <defs>
+                              <linearGradient id="pathGradientMobile" x1="0%" y1="0%" x2="0%" y2="100%">
+                                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                                  <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
+                                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
+                              </linearGradient>
+                          </defs>
+                          
+                          {/* Paths */}
+                          {/* Root -> DevOps */}
+                          <path d="M 200,80 C 200,120 80,120 80,160" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                          {/* Root -> Interns */}
+                          <path d="M 200,80 C 200,120 200,120 200,160" stroke="#60a5fa" strokeWidth="2" fill="none" className="opacity-80" />
+                          {/* Root -> Service Account */}
+                          <path d="M 200,80 C 200,120 320,120 320,160" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+
+                          {/* DevOps -> Admin */}
+                          <path d="M 80,200 L 80,280" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                          {/* Interns -> Engineering */}
+                          <path d="M 200,200 L 200,280" stroke="#60a5fa" strokeWidth="2" fill="none" className="opacity-80" />
+                          {/* Interns -> Jira */}
+                          <path d="M 200,200 C 200,240 320,240 320,280" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+                          
+                          {/* Engineering -> AWS Keys */}
+                          <path d="M 200,320 L 200,400" stroke="#60a5fa" strokeWidth="2" fill="none" className="opacity-80" />
+                          {/* Engineering -> Prod DB */}
+                          <path d="M 200,320 C 200,360 320,360 320,400" stroke="#334155" strokeWidth="2" fill="none" className="opacity-50" />
+
+                          {/* Particles */}
+                          <circle r="3" fill="#60a5fa">
+                              <animateMotion dur="2s" repeatCount="indefinite" path="M 200,80 C 200,120 200,120 200,160" />
+                          </circle>
+                          <circle r="3" fill="#60a5fa">
+                              <animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M 200,200 L 200,280" />
+                          </circle>
+                          <circle r="3" fill="#60a5fa">
+                              <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M 200,320 L 200,400" />
+                          </circle>
+                      </svg>
+
+                      <div className="relative w-full h-full max-w-[400px] mx-auto p-4 z-10">
+                          {/* Root */}
+                          <div className="absolute top-[40px] left-1/2 -translate-x-1/2 w-[180px] flex justify-center">
+                              <div className="bg-slate-900/90 backdrop-blur-md border border-teal-500/50 rounded-full py-1.5 px-3 flex items-center gap-2 shadow-[0_0_20px_rgba(20,184,166,0.2)] animate-float scale-90">
+                                  <div className="w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center">
+                                      <User className="w-3 h-3 text-teal-400" />
+                                  </div>
+                                  <div className="text-left">
+                                      <div className="text-xs font-bold text-white">Luka Horvat</div>
+                                      <div className="text-[8px] text-teal-400 uppercase tracking-wider">Identity</div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          {/* L2 Row */}
+                          {/* DevOps */}
+                          <div className="absolute top-[160px] left-[20%] -translate-x-1/2 w-[100px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-1.5 px-2 flex items-center gap-2 opacity-50 scale-75">
+                                  <Users className="w-3 h-3 text-slate-400" />
+                                  <div className="text-xs font-bold text-slate-400">DevOps</div>
+                              </div>
+                          </div>
+                          {/* Interns */}
+                          <div className="absolute top-[160px] left-1/2 -translate-x-1/2 w-[160px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-blue-500/50 rounded-full py-1.5 px-3 flex items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.3)] scale-90">
+                                  <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center relative">
+                                      <Users className="w-3 h-3 text-blue-400" />
+                                      <div className="absolute inset-0 bg-blue-500/20 rounded-full animate-ping" />
+                                  </div>
+                                  <div className="text-left">
+                                      <div className="text-xs font-bold text-white">Interns</div>
+                                      <div className="text-[8px] text-blue-400 uppercase tracking-wider">Group</div>
+                                  </div>
+                              </div>
+                          </div>
+                          {/* Service Account */}
+                          <div className="absolute top-[160px] left-[80%] -translate-x-1/2 w-[100px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-1.5 px-2 flex items-center gap-2 opacity-50 scale-75">
+                                  <User className="w-3 h-3 text-slate-400" />
+                                  <div className="text-xs font-bold text-slate-400">Svc Acct</div>
+                              </div>
+                          </div>
+
+                          {/* L3 Row */}
+                          {/* Admin */}
+                          <div className="absolute top-[280px] left-[20%] -translate-x-1/2 w-[100px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-1.5 px-2 flex items-center gap-2 opacity-40 scale-75">
+                                  <Users className="w-3 h-3 text-slate-500" />
+                                  <div className="text-xs font-bold text-slate-500">Admin</div>
+                              </div>
+                          </div>
+                          {/* Engineering */}
+                          <div className="absolute top-[280px] left-1/2 -translate-x-1/2 w-[160px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-blue-500/50 rounded-full py-1.5 px-3 flex items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.3)] scale-90">
+                                  <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center relative">
+                                      <Users className="w-3 h-3 text-blue-400" />
+                                  </div>
+                                  <div className="text-left">
+                                      <div className="text-xs font-bold text-white">Engineering</div>
+                                      <div className="text-[8px] text-blue-400 uppercase tracking-wider">Group</div>
+                                  </div>
+                              </div>
+                          </div>
+                          {/* Jira */}
+                          <div className="absolute top-[280px] left-[80%] -translate-x-1/2 w-[100px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-purple-500/50 rounded-full py-1.5 px-2 flex items-center gap-2 opacity-80 scale-75">
+                                  <FileKey className="w-3 h-3 text-purple-400" />
+                                  <div className="text-xs font-bold text-slate-300">Jira</div>
+                              </div>
+                          </div>
+
+                          {/* L4 Row */}
+                          {/* AWS Keys */}
+                          <div className="absolute top-[400px] left-1/2 -translate-x-1/2 w-[180px] flex justify-center">
+                              <div className="bg-slate-900/90 backdrop-blur-md border border-blue-500 rounded-full py-1.5 px-3 flex items-center gap-2 shadow-[0_0_30px_rgba(59,130,246,0.4)] animate-pulse-slow scale-90">
+                                  <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                      <Key className="w-3 h-3 text-blue-400" />
+                                  </div>
+                                  <div className="text-left">
+                                      <div className="text-xs font-bold text-white">AWS Keys</div>
+                                      <div className="text-[8px] text-blue-400 uppercase tracking-wider font-bold">Critical</div>
+                                  </div>
+                                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[8px] font-bold text-white border border-slate-900 animate-pulse">!</div>
+                              </div>
+                          </div>
+                          {/* Prod DB */}
+                          <div className="absolute top-[400px] left-[80%] -translate-x-1/2 w-[100px] flex justify-center">
+                              <div className="bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-full py-1.5 px-2 flex items-center gap-2 opacity-40 scale-75">
+                                  <Database className="w-3 h-3 text-slate-500" />
+                                  <div className="text-xs font-bold text-slate-500">DB</div>
+                              </div>
+                          </div>
+                      </div>
+                    </>
+                  ) : (
+                  // DESKTOP LAYOUT
+                  <>
                   {/* SVG Connections Layer */}
                   <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1000 600" preserveAspectRatio="none">
                       <defs>
@@ -710,6 +856,8 @@ export function AiAutomationSection() {
                           </div>
                       </div>
                   </div>
+                  </>
+                  )}
                </div>
           </div>
         </div>

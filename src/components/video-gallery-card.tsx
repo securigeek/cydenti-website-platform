@@ -64,7 +64,7 @@ export function VideoGalleryCard({ video }: VideoGalleryCardProps) {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[800px] p-0 bg-black border-slate-800 overflow-hidden">
+        <DialogContent className="max-w-screen-sm sm:max-w-screen-md p-0 bg-black border-slate-800 overflow-hidden">
           <DialogHeader className="sr-only">
             <DialogTitle>{video.title}</DialogTitle>
           </DialogHeader>
