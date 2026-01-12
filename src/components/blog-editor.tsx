@@ -521,7 +521,7 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
       .sort((a,b)=>b.score - a.score)
       .slice(0,5);
     setLinkSuggestions(suggestions);
-  }, [primaryKeyword, focusKeyword, formData.title, allPosts, currentId, keywordList]);
+  }, [focusKeyword, formData.title, allPosts, currentId]);
 
   const handleAiFix = async (action: string, context?: any) => {
     const kw = (formData as any).focusKeyword;
