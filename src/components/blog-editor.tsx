@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -472,7 +472,11 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     const ratio = imgs.length ? Math.round(withAlt.length / imgs.length * 100) : 100;
     return { ratio, featuredOk };
   };
-  const keywordList = parseFocusKeywords(((formData as any).focusKeyword || '').trim());
+  const focusKeyword = (formData as any).focusKeyword as string | undefined;
+  const keywordList = useMemo(
+    () => parseFocusKeywords((focusKeyword || '').trim()),
+    [focusKeyword]
+  );
   const primaryKeyword = keywordList[0] || '';
   const titleHasKw = keywordList.length ? matchAnyKeywordInText(formData.title, keywordList) : false;
   const slugHasKw = keywordList.length ? matchAnyKeywordInSlug(formData.slug.current, keywordList) : false;
@@ -502,7 +506,6 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     return Math.round((keywordWords / totalWords) * 1000) / 10;
   })();
   const densityStatus = density > 2.5 ? 'red' : density > 1.5 ? 'yellow' : 'green';
-  const focusKeyword = (formData as any).focusKeyword as string | undefined;
   useEffect(() => {
     const kwTokens = keywordList.flatMap(k => normalizeForMatch(k).split(/\s+/)).filter(Boolean);
     const titleTokens = normalizeForMatch(formData.title || '').split(/\s+/).filter(Boolean);
