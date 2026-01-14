@@ -1090,26 +1090,42 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
               {new Date(formData.publishedAt).toLocaleDateString()} • {formData.category}
             </div>
             
-            {/* Simple Preview Render */}
             {(formData.content as any[])?.map((block: any, i: number) => {
               if (block._type !== 'block') return null;
-              
+
               const style = block.style || 'normal';
-              const text = block.children?.map((c: any) => c.text).join('') || '';
-              
-              if (style === 'h1') return <h1 key={i} className="text-3xl font-bold mt-6 mb-4">{text}</h1>;
-              if (style === 'h2') return <h2 key={i} className="text-2xl font-bold mt-5 mb-3">{text}</h2>;
-              if (style === 'h3') return <h3 key={i} className="text-xl font-bold mt-4 mb-2">{text}</h3>;
-              if (style === 'blockquote') return <blockquote key={i} className="border-l-4 pl-4 italic my-4">{text}</blockquote>;
-              
+              const isBullet = block.listItem === 'bullet';
+
+              const renderChildren = () =>
+                (block.children || []).map((child: any, ci: number) => {
+                  let childNode = <span key={ci}>{child.text}</span>;
+                  if (child.marks?.includes('strong')) childNode = <strong key={ci}>{childNode}</strong>;
+                  if (child.marks?.includes('em')) childNode = <em key={ci}>{childNode}</em>;
+                  return childNode;
+                });
+
+              if (isBullet) {
+                return (
+                  <ul key={i} className="list-disc pl-6 mb-3">
+                    <li>{renderChildren()}</li>
+                  </ul>
+                );
+              }
+
+              if (style === 'h1') return <h1 key={i} className="text-3xl font-bold mt-6 mb-4">{renderChildren()}</h1>;
+              if (style === 'h2') return <h2 key={i} className="text-2xl font-bold mt-5 mb-3">{renderChildren()}</h2>;
+              if (style === 'h3') return <h3 key={i} className="text-xl font-bold mt-4 mb-2">{renderChildren()}</h3>;
+              if (style === 'blockquote') {
+                return (
+                  <blockquote key={i} className="border-l-4 pl-4 italic my-4">
+                    {renderChildren()}
+                  </blockquote>
+                );
+              }
+
               return (
-                <p key={i} className="mb-4">
-                  {block.children?.map((child: any, ci: number) => {
-                     let childText = <span key={ci}>{child.text}</span>;
-                     if (child.marks?.includes('strong')) childText = <strong key={ci}>{childText}</strong>;
-                     if (child.marks?.includes('em')) childText = <em key={ci}>{childText}</em>;
-                     return childText;
-                  })}
+                <p key={i} className="mb-4 leading-7">
+                  {renderChildren()}
                 </p>
               );
             })}

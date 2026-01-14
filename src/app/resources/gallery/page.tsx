@@ -24,7 +24,7 @@ interface Resource {
   type: ResourceType;
   description?: string;
   url?: string;
-  file?: unknown;
+  file?: { asset: { url: string } };
   thumbnail?: unknown;
   publishedAt?: string;
   featured?: boolean;
@@ -79,7 +79,11 @@ async function getLibraryData(): Promise<LibraryData> {
       type,
       description,
       url,
-      file,
+      file {
+        asset-> {
+          url
+        }
+      },
       thumbnail,
       publishedAt,
       featured
@@ -364,7 +368,7 @@ export default async function GalleryPage() {
                 whitepapers.slice(0, 5).map((item) => (
                   <a
                     key={item._id}
-                    href={item.url || '#'}
+                    href={item.file?.asset?.url || item.url || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block group p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 relative overflow-hidden"

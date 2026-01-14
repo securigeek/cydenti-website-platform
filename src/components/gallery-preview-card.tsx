@@ -18,6 +18,7 @@ interface GalleryPreviewCardProps {
     publishedAt: string;
     type?: string;
     url?: string;
+    file?: { asset: { url: string } };
     category?: string;
   };
 }
@@ -89,7 +90,7 @@ export function GalleryPreviewCard({ item }: GalleryPreviewCardProps) {
   const link =
     item._type === "blog" && item.slug
       ? `/resources/blogs/${item.slug.current}`
-      : item.url || "/resources/gallery";
+      : item.file?.asset?.url || item.url || "/resources/gallery";
 
   if (isVideo) {
     return (

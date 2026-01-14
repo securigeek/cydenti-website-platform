@@ -17,6 +17,7 @@ interface GalleryItem {
   publishedAt: string;
   type?: ResourceType;
   url?: string;
+  file?: { asset: { url: string } };
   category?: string;
 }
 
@@ -40,6 +41,11 @@ export async function GalleryPreviewSection() {
       publishedAt,
       type,
       url,
+      file {
+        asset-> {
+          url
+        }
+      },
       category
     }`
   );

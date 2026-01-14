@@ -12,6 +12,26 @@ export default function AdminDashboard() {
         
         <div className="grid md:grid-cols-2 gap-6">
           <div className="p-6 bg-white rounded-lg border">
+            <h2 className="text-xl font-semibold mb-4">Videos & Webinars</h2>
+            <p className="text-muted-foreground mb-4">
+              Manage video library and YouTube links
+            </p>
+            <Button asChild>
+              <Link href="/admin/videos">Manage Videos</Link>
+            </Button>
+          </div>
+
+          <div className="p-6 bg-white rounded-lg border">
+            <h2 className="text-xl font-semibold mb-4">Whitepapers</h2>
+            <p className="text-muted-foreground mb-4">
+              Upload and manage whitepapers (PDFs)
+            </p>
+            <Button asChild>
+              <Link href="/admin/whitepapers">Manage Whitepapers</Link>
+            </Button>
+          </div>
+
+          <div className="p-6 bg-white rounded-lg border">
             <h2 className="text-xl font-semibold mb-4">Blog Management</h2>
             <p className="text-muted-foreground mb-4">
               Create, edit, and manage blog posts

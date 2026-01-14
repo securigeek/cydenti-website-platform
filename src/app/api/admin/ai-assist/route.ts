@@ -116,9 +116,31 @@ export async function POST(req: NextRequest) {
         Ensure the content is professional, informative, and at least 800 words.`;
         
         const rawResponse = await callYouAI(prompt);
-        // Clean markdown code blocks if present
         const cleanedResponse = rawResponse.replace(/```json\n?|\n?```/g, '').trim();
-        return NextResponse.json(JSON.parse(cleanedResponse));
+
+        try {
+          const parsed = JSON.parse(cleanedResponse);
+          return NextResponse.json(parsed);
+        } catch {
+          const jsonMatch = cleanedResponse.match(/{[\s\S]*}/);
+          if (jsonMatch) {
+            try {
+              const parsedInner = JSON.parse(jsonMatch[0]);
+              return NextResponse.json(parsedInner);
+            } catch {
+            }
+          }
+
+          const fallback = {
+            title: title || topic,
+            content: cleanedResponse,
+            excerpt: '',
+            seoTitle: title || topic,
+            seoDescription: '',
+            canonicalUrl: '',
+          };
+          return NextResponse.json(fallback);
+        }
     }
 
     if (action === 'meta') {

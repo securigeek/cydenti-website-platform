@@ -16,6 +16,7 @@ interface PortableTextBlock {
   _key: string;
   style: string;
   children: PortableTextSpan[];
+  listItem?: string;
 }
 
 interface RichTextEditorProps {
@@ -37,25 +38,42 @@ export function RichTextEditor({ initialValue, onChange }: RichTextEditorProps) 
       return;
     }
 
-    const html = initialValue.map((block: PortableTextBlock) => {
-      if (block._type !== "block") return "";
-      
-      const tag = block.style === "h1" ? "h1" : block.style === "h2" ? "h2" : block.style === "blockquote" ? "blockquote" : "p";
-      const children = block.children.map((child: PortableTextSpan) => {
-        let text = child.text;
-        if (child.marks && child.marks.includes("strong")) text = `<strong>${text}</strong>`;
-        if (child.marks && child.marks.includes("em")) text = `<em>${text}</em>`;
-        return text;
-      }).join("");
+    const html = initialValue
+      .map((block: PortableTextBlock) => {
+        if (block._type !== "block") return "";
 
-      return `<${tag}>${children}</${tag}>`;
-    }).join("");
+        const tag =
+          block.style === "h1"
+            ? "h1"
+            : block.style === "h2"
+            ? "h2"
+            : block.style === "h3"
+            ? "h3"
+            : block.style === "blockquote"
+            ? "blockquote"
+            : "p";
+
+        const children = block.children
+          .map((child: PortableTextSpan) => {
+            let text = child.text;
+            if (child.marks && child.marks.includes("strong")) {
+              text = `<strong>${text}</strong>`;
+            }
+            if (child.marks && child.marks.includes("em")) {
+              text = `<em>${text}</em>`;
+            }
+            return text;
+          })
+          .join("");
+
+        return `<${tag}>${children}</${tag}>`;
+      })
+      .join("");
 
     if (editorRef.current.innerHTML !== html) {
       editorRef.current.innerHTML = html;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [initialValue]);
 
   const generateKey = () => Math.random().toString(36).substring(2, 9);
 
@@ -64,57 +82,78 @@ export function RichTextEditor({ initialValue, onChange }: RichTextEditorProps) 
     
     // Parse HTML back to Portable Text (Basic implementation)
     const nodes = Array.from(editorRef.current.childNodes);
-    const blocks = nodes.map((node: ChildNode) => {
-      const tag = node.nodeName.toLowerCase();
-      let style = "normal";
-      if (tag === "h1") style = "h1";
-      if (tag === "h2") style = "h2";
-      if (tag === "blockquote") style = "blockquote";
+    const blocks = nodes
+      .map((node: ChildNode) => {
+        const tag = node.nodeName.toLowerCase();
+        let style = "normal";
+        if (tag === "h1") style = "h1";
+        if (tag === "h2") style = "h2";
+        if (tag === "h3") style = "h3";
+        if (tag === "blockquote") style = "blockquote";
 
-      const children: PortableTextSpan[] = [];
-      
-      // Handle text nodes and simple elements inside block
-      const childNodes = node.childNodes && node.childNodes.length > 0 ? Array.from(node.childNodes) : [node];
-      
-      if (childNodes.length === 0 && node.textContent) {
+        const children: PortableTextSpan[] = [];
+
+        const childNodes =
+          node.childNodes && node.childNodes.length > 0
+            ? Array.from(node.childNodes)
+            : [node];
+
+        if (childNodes.length === 0 && node.textContent) {
           children.push({
-              _type: "span",
-              _key: generateKey(),
-              text: node.textContent,
-              marks: []
+            _type: "span",
+            _key: generateKey(),
+            text: node.textContent,
+            marks: [],
           });
-      } else {
-        childNodes.forEach((child: ChildNode) => {
+        } else {
+          childNodes.forEach((child: ChildNode) => {
             const marks: string[] = [];
             const text = child.textContent || "";
             const element = child as HTMLElement;
-            
-            if (child.nodeName === "STRONG" || child.nodeName === "B" || (element.style && element.style.fontWeight === "bold")) marks.push("strong");
-            if (child.nodeName === "EM" || child.nodeName === "I" || (element.style && element.style.fontStyle === "italic")) marks.push("em");
+
+            if (
+              child.nodeName === "STRONG" ||
+              child.nodeName === "B" ||
+              (element.style && element.style.fontWeight === "bold")
+            ) {
+              marks.push("strong");
+            }
+            if (
+              child.nodeName === "EM" ||
+              child.nodeName === "I" ||
+              (element.style && element.style.fontStyle === "italic")
+            ) {
+              marks.push("em");
+            }
 
             if (text) {
-                children.push({
-                    _type: "span",
-                    _key: generateKey(),
-                    text: text,
-                    marks: marks
-                });
+              children.push({
+                _type: "span",
+                _key: generateKey(),
+                text: text,
+                marks: marks,
+              });
             }
-        });
-      }
-      
-      // Fallback for empty blocks
-      if (children.length === 0) {
-          children.push({ _type: "span", _key: generateKey(), text: "", marks: [] });
-      }
+          });
+        }
 
-      return {
-        _type: "block" as const,
-        _key: generateKey(),
-        style: style,
-        children: children,
-      };
-    });
+        if (children.length === 0) {
+          children.push({
+            _type: "span",
+            _key: generateKey(),
+            text: "",
+            marks: [],
+          });
+        }
+
+        return {
+          _type: "block" as const,
+          _key: generateKey(),
+          style: style,
+          children: children,
+        };
+      })
+      .filter(Boolean);
 
     onChange(blocks);
   };

@@ -11,6 +11,7 @@ import { Loader2 } from 'lucide-react';
 
 interface ResourceEditorProps {
   resourceId?: string;
+  defaultType?: 'video' | 'whitepaper' | 'webinar';
 }
 
 interface ResourceFormData {
@@ -19,6 +20,7 @@ interface ResourceFormData {
   type: 'video' | 'whitepaper' | 'webinar';
   description: string;
   url: string;
+  file?: { asset: { _ref: string } };
   publishedAt: string;
   featured: boolean;
 }
@@ -30,17 +32,19 @@ interface Resource {
   type?: string;
   description?: string;
   url?: string;
+  file?: { asset: { _ref: string } };
   publishedAt?: string;
   featured?: boolean;
 }
 
-export function ResourceEditor({ resourceId }: ResourceEditorProps) {
+export function ResourceEditor({ resourceId, defaultType = 'video' }: ResourceEditorProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState<ResourceFormData>({
     title: '',
     slug: { current: '' },
-    type: 'video',
+    type: defaultType,
     description: '',
     url: '',
     publishedAt: new Date().toISOString(),
@@ -71,6 +75,7 @@ export function ResourceEditor({ resourceId }: ResourceEditorProps) {
           type,
           description: resource.description || '',
           url: resource.url || '',
+          file: resource.file,
           publishedAt: resource.publishedAt || new Date().toISOString(),
           featured: resource.featured || false,
         });
@@ -107,6 +112,42 @@ export function ResourceEditor({ resourceId }: ResourceEditorProps) {
     setFormData((prev) => ({ ...prev, slug: { current: slug } }));
   };
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const token = localStorage.getItem('adminToken');
+    const formDataUpload = new FormData();
+    formDataUpload.append('file', file);
+
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formDataUpload,
+      });
+
+      if (res.ok) {
+        const asset = await res.json();
+        setFormData(prev => ({
+          ...prev,
+          file: {
+            asset: {
+              _ref: asset._id,
+            },
+          },
+        }));
+      } else {
+        alert('Failed to upload file');
+      }
+    } catch {
+      alert('Failed to upload file');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -125,7 +166,9 @@ export function ResourceEditor({ resourceId }: ResourceEditorProps) {
       });
 
       if (res.ok) {
-        router.push('/admin/resources');
+        if (formData.type === 'video') router.push('/admin/videos');
+        else if (formData.type === 'whitepaper') router.push('/admin/whitepapers');
+        else router.push('/admin/resources');
         router.refresh();
       } else {
         alert('Failed to save resource');
@@ -193,15 +236,40 @@ export function ResourceEditor({ resourceId }: ResourceEditorProps) {
           />
         </div>
 
-        <div className="grid gap-2">
-          <Label htmlFor="url">External URL / Video Link</Label>
-          <Input
-            id="url"
-            value={formData.url}
-            onChange={(e) => handleChange('url', e.target.value)}
-            placeholder="https://youtube.com/..."
-          />
-        </div>
+        {(formData.type === 'video' || formData.type === 'webinar') && (
+            <div className="grid gap-2">
+            <Label htmlFor="url">YouTube URL</Label>
+            <Input
+                id="url"
+                value={formData.url}
+                onChange={(e) => handleChange('url', e.target.value)}
+                placeholder="https://youtube.com/..."
+            />
+            <p className="text-xs text-muted-foreground">Provide a valid YouTube link for preview.</p>
+            </div>
+        )}
+
+        {formData.type === 'whitepaper' && (
+            <div className="grid gap-2">
+                <Label htmlFor="file">Upload Whitepaper (PDF)</Label>
+                <div className="flex gap-2 items-center">
+                    <Input
+                        id="file"
+                        type="file"
+                        accept=".pdf"
+                        onChange={handleFileUpload}
+                        disabled={uploading}
+                    />
+                    {uploading && <Loader2 className="h-4 w-4 animate-spin" />}
+                </div>
+                {formData.file && (
+                    <div className="text-sm text-green-600 flex items-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-green-600" />
+                        File uploaded
+                    </div>
+                )}
+            </div>
+        )}
 
         <div className="flex items-center space-x-2">
           <Switch
@@ -211,6 +279,7 @@ export function ResourceEditor({ resourceId }: ResourceEditorProps) {
           />
           <Label htmlFor="featured">Featured Resource</Label>
         </div>
+
 
         <div className="grid gap-2">
             <Label htmlFor="publishedAt">Publish Date</Label>
