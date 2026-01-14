@@ -12,7 +12,7 @@ import { LivingIntelligenceCore } from "@/components/living-intelligence-core";
 export function Hero() {
 
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-28 pb-12 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24">
+    <section className="relative w-full overflow-hidden bg-white pt-20 pb-12 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Grid Pattern */}
