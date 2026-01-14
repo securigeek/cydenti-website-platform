@@ -58,7 +58,7 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 NEXT_PUBLIC_SANITY_TOKEN=your_read_token
 SANITY_WRITE_TOKEN=your_write_token
-ADMIN_EMAIL=admin@cydenti.com
+ADMIN_EMAIL=rratanranjeet790395@gmail.com
 ADMIN_PASSWORD=your_secure_password
 JWT_SECRET=your_32_char_secret
 ```

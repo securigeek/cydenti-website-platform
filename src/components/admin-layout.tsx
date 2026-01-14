@@ -56,7 +56,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r fixed h-full overflow-y-auto z-50">
+      <aside className="w-64 bg-white border-r fixed top-20 md:top-24 bottom-0 overflow-y-auto z-30">
         <div className="p-6 border-b">
           <h1 className="text-xl font-bold flex items-center gap-2">
             <span className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-lg">C</span>
@@ -97,7 +97,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 p-8 overflow-y-auto">
+      <main className="flex-1 ml-64 px-4 md:px-8 pt-24 md:pt-28 pb-8">
         <div className="max-w-6xl mx-auto">
           {children}
         </div>
