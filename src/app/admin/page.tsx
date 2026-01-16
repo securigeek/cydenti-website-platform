@@ -13,11 +13,14 @@ export default function AdminLoginPage() {
   const [step, setStep] = useState<'credentials' | 'otp'>('credentials');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [resendLoading, setResendLoading] = useState(false);
+  const [resendMessage, setResendMessage] = useState('');
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setResendMessage('');
     setLoading(true);
 
     try {
@@ -31,9 +34,15 @@ export default function AdminLoginPage() {
 
       if (res.ok) {
         setStep('otp');
-        setPassword('');
         if (data.debugOtp) {
           setOtp(String(data.debugOtp));
+        }
+        if (data.message) {
+          setResendMessage(String(data.message));
+        } else {
+          setResendMessage(
+            'OTP has been sent to the admin email address.'
+          );
         }
       } else {
         setError(data.error || 'Login failed');
@@ -48,6 +57,7 @@ export default function AdminLoginPage() {
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setResendMessage('');
     setLoading(true);
 
     try {
@@ -69,6 +79,42 @@ export default function AdminLoginPage() {
       setError('An error occurred');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    if (!email || !password) return;
+    setError('');
+    setResendMessage('');
+    setResendLoading(true);
+
+    try {
+      const res = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        if (data.debugOtp) {
+          setOtp(String(data.debugOtp));
+        }
+        if (data.message) {
+          setResendMessage(String(data.message));
+        } else {
+          setResendMessage(
+            'A new OTP has been sent to the admin email address.'
+          );
+        }
+      } else {
+        setError(data.error || 'Could not resend OTP');
+      }
+    } catch {
+      setError('An error occurred while resending OTP');
+    } finally {
+      setResendLoading(false);
     }
   };
 
@@ -121,9 +167,23 @@ export default function AdminLoginPage() {
               />
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Verifying...' : 'Verify OTP'}
-            </Button>
+            {resendMessage && (
+              <p className="text-sm text-gray-600">{resendMessage}</p>
+            )}
+            <div className="flex items-center justify-between gap-4">
+              <Button
+                type="button"
+                variant="outline"
+                className="flex-1"
+                disabled={resendLoading || loading}
+                onClick={handleResendOtp}
+              >
+                {resendLoading ? 'Resending...' : 'Resend code'}
+              </Button>
+              <Button type="submit" className="flex-1" disabled={loading}>
+                {loading ? 'Verifying...' : 'Verify OTP'}
+              </Button>
+            </div>
             {otp && (
               <p className="text-xs text-gray-500">
                 For local development, this field may be prefilled when email delivery is not configured.

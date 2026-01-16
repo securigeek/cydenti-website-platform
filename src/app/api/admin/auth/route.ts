@@ -40,20 +40,26 @@ async function sendAdminOtpEmail(otp: string): Promise<boolean> {
 
   const secure = port === 465 || process.env.SMTP_SECURE === 'true';
 
-  const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure,
-    auth: { user, pass },
-  });
+  try {
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure,
+      auth: { user, pass },
+    });
 
-  await transporter.sendMail({
-    from,
-    to,
-    subject: 'Your Cydenti Admin OTP Code',
-    text: `Your one-time password (OTP) for Cydenti admin access is: ${otp}\n\nThis code is valid for 5 minutes. If you did not request this, you can ignore this email.`,
-  });
-  return true;
+    await transporter.sendMail({
+      from,
+      to,
+      subject: 'Your Cydenti Admin OTP Code',
+      text: `Your one-time password (OTP) for Cydenti admin access is: ${otp}\n\nThis code is valid for 5 minutes. If you did not request this, you can ignore this email.`,
+    });
+    return true;
+  } catch (error) {
+    console.error('Failed to send admin OTP email via SMTP:', error);
+    console.warn('Admin OTP (email not sent):', otp);
+    return false;
+  }
 }
 
 export async function POST(req: NextRequest) {
