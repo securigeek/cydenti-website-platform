@@ -14,11 +14,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.cydenti.com"),
   title: "Cydenti - Identity Security Platform",
   description:
     "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
   icons: {
     icon: "/cydenti-brandmark.svg",
+  },
+  openGraph: {
+    title: "Cydenti - Identity Security Platform",
+    description:
+      "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
+    url: "https://www.cydenti.com",
+    siteName: "Cydenti",
+    type: "website",
+    images: [
+      {
+        url: "/cydenti-brandmark.svg",
+        width: 1200,
+        height: 630,
+        alt: "Cydenti brandmark",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cydenti - Identity Security Platform",
+    description:
+      "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
+    images: ["/cydenti-brandmark.svg"],
   },
 };
 
