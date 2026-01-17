@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
   icons: {
-    icon: "/cydenti-brandmark.svg",
+    icon: "/cydenti-brandmark.png",
   },
   openGraph: {
     title: "Cydenti - Identity Security Platform",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/cydenti-brandmark.svg",
+        url: "/cydenti-brandmark.png",
         width: 1200,
         height: 630,
         alt: "Cydenti brandmark",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Cydenti - Identity Security Platform",
     description:
       "The Sovereign Intelligence Layer for SaaS, Cloud & Identity Blind Spots.",
-    images: ["/cydenti-brandmark.svg"],
+    images: ["/cydenti-brandmark.png"],
   },
 };
 
